@@ -1,0 +1,9 @@
+.wrap{
+    width: 1200px;
+    margin: auto;
+}
+.wrap .main{
+    background: #fff;
+    padding: 10px;
+    border: 1px solid #333;
+}

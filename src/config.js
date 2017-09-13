@@ -4,7 +4,7 @@ class Config {
         global.REDUX = require('./redux');
         // global.THEMES = require('./themes');
         // global.MODELS = require('./models');
-        // global.COMPONENTS = require('./components');
+        global.COMPONENTS = require('./components');
         // global.ROUTES = require('./routePath');
 
         global.CONFIG = {

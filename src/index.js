@@ -20,12 +20,6 @@ class App {
             <Provider store={store}>
                 <BrowserRouter>
                     <div>
-                        <ul>
-                            <li><NavLink to='/'>Home</NavLink></li>
-                            <li><NavLink to='/about'>About</NavLink></li>
-                            <li><NavLink to='/article/1'>News 1</NavLink></li>
-                            <li><NavLink to='/article/2'>News 2</NavLink></li>
-                        </ul>
                         <Switch store ={store}>
                             <Route path='/' component = {pages.Home} exact={true}/>
                             <Route path='/about' component = {pages.About} />
