@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Button, Nav, NavItem, NavLink, Progress, Alert, Breadcrumb, BreadcrumbItem, Container, Row, Col} from 'reactstrap';
+import { Button, Nav, NavItem, NavLink, Progress, Alert, Breadcrumb, BreadcrumbItem, Container, Row, Col } from 'reactstrap';
 //import internal libs
 const { Main } = global.COMPONENTS.layouts;
 //=== map state ===
