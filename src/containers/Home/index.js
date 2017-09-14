@@ -2,22 +2,169 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Button, Nav, NavItem, NavLink, Progress, Alert, Breadcrumb, BreadcrumbItem, Container, Row, Col } from 'reactstrap';
+import {
+    Button,
+    Nav,
+    NavItem,
+    NavLink,
+    Progress,
+    Alert,
+    Breadcrumb,
+    BreadcrumbItem,
+    Container,
+    Row,
+    Col,
+    ListGroup,
+    ListGroupItem,
+    Form,
+    FormGroup,
+    Label,
+    Input,
+    FormFeedback,
+    FormText
+} from 'reactstrap';
+import FontAwesome from 'react-fontawesome';
 //import internal libs
-const { Main } = global.COMPONENTS.layouts;
+const { layouts: {Main} } = global.COMPONENTS;
+const { actions, types } = global.REDUX;
 //=== map state ===
 function mapStateToProps({ todo }) {
     return { todo }
 }
 class Home extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            list: null,
+            loading: false,
+            form: {
+                title: '',
+                author: ''
+            },
+            validation: {
+                title: '',
+                author: ''
+            },
+            editable: false,
+        };
+    }
+
+    componentWillMount() {
+        this.props.dispatch(
+            actions.todo.fetchTodo()
+        )
+        this.setState({ loading: true });
+    }
+
+    componentWillReceiveProps(props) {
+        let {todo} = props;
+        if (todo.action == 'TODO_FETCH') {
+            this.setState({
+                loading: false,
+                list: todo.list
+            })
+        } else if (todo.action == 'TODO_SAVE') {
+            this.setState({ loading: false, form: { title: '', author: '' } });
+            this.props.dispatch(
+                actions.todo.fetchTodo()
+            )
+        }
+        else if (todo.action == 'TODO_DELETE') {
+            this.setState({ loading: false });
+            this.props.dispatch(
+                actions.todo.fetchTodo()
+            )
+        }
+
+    }
+    //=== ACTION FUNCTIONS ===
+    onEdit(ID) {
+        console.log(ID, 'ID');
+        let {list} = this.state;
+        this.setState({
+            editable: true,
+            form: Object.assign({}, list[ID], { todoId: ID })
+        })
+    }
+
+    onDelete(ID) {
+        this.setState({ loading: true });
+        this.props.dispatch(
+            actions.todo.deleteTodo(ID)
+        )
+    }
+
+    onChangeInputs(value, field) {
+        this.setState({
+            form: Object.assign({}, this.state.form, { [field]: value.target.value })
+        })
+    }
+
+    onSubmit() {
+        this.setState({ loading: true, editable: false });
+        this.props.dispatch(
+            actions.todo.saveTodo(this.state.form, this.state.editable)
+        )
+    }
+
+    //=== RENDER FUNCTIONS ===
+    renderSong() {
+        let {list, loading} = this.state;
+        if (loading) return 'Loading...';
+        if (list === 'null' || list === null) return null;
+        else {
+            let data = [];
+            Object.keys(list).map((val) => {
+                data.push(
+                    <ListGroupItem key={val}>
+                        <FontAwesome
+                            className='super-crazy-colors'
+                            name='rocket'
+                            size='2x'
+                            spin
+                            style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
+                            />
+                            
+                        Song: {list[val].title}, author: {list[val].author}
+                        <Button onClick= {() => this.onEdit(val) } color="primary" className='pull-right'>Edit</Button>{' '}
+                        <Button onClick= {() => this.onDelete(val) } color="danger" className='pull-right'>Delete</Button>
+                    </ListGroupItem>
+                );
+            });
+            return (
+                <div>
+                    <h1>List songs from firebase: </h1>
+                    <ListGroup>
+                        {data}
+                    </ListGroup>
+                </div>
+            );
+        }
+    }
     render() {
-        console.log(this.props, 'todo');
         return (
             <Main>
                 <Container>
                     <Row>
-                        <Col>.col</Col>
+                        <Col xs="6">
+                            <h1>Song Form </h1>
+                            <Form>
+                                <FormGroup >
+                                    <Label >Title</Label>
+                                    <Input onChange={(value) => this.onChangeInputs(value, 'title') } value={this.state.form.title} />
+                                </FormGroup>
+                                <FormGroup >
+                                    <Label >Author</Label>
+                                    <Input onChange={(value) => this.onChangeInputs(value, 'author') } value={this.state.form.author} />
+                                </FormGroup>
+                                <Button color="primary" onClick={() => this.onSubmit() }>Submit</Button>
+                            </Form>
+                        </Col>
+                        <Col xs="6">
+                            {this.renderSong() }
+                        </Col>
                     </Row>
+
                     <Row>
                         <Col>.col</Col>
                         <Col>.col</Col>
@@ -28,25 +175,6 @@ class Home extends Component {
                         <Col xs="3">.col-3</Col>
                         <Col xs="auto">.col-auto - variable width content</Col>
                         <Col xs="3">.col-3</Col>
-                    </Row>
-                    <Row>
-                        <Col xs="6">.col-6</Col>
-                        <Col xs="6">.col-6</Col>
-                    </Row>
-                    <Row>
-                        <Col xs="6" sm="4">.col-6.col-sm-4</Col>
-                        <Col xs="6" sm="4">.col-6.col-sm-4</Col>
-                        <Col sm="4">.col.col-sm-4</Col>
-                    </Row>
-                    <Row>
-                        <Col sm={{ size: 6, push: 2, pull: 2, offset: 1 }}>.col.col-sm-6.col-sm-push-2.col-sm-pull-2.col-sm-offset-2</Col>
-                    </Row>
-                    <Row>
-                        <Col sm="12" md={{ size: 8, offset: 2 }}>.col.col-sm-12.col-md-6.col-md-offset-3</Col>
-                    </Row>
-                    <Row>
-                        <Col sm={{ size: 'auto', offset: 1 }}>.col.col-sm.col-sm-offset-1</Col>
-                        <Col sm={{ size: 'auto', offset: 1 }}>.col.col-sm.col-sm-offset-1</Col>
                     </Row>
                 </Container>
                 hello abc  <Button color="danger">Danger!</Button>

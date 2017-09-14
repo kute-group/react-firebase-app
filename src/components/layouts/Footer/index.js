@@ -1,6 +1,5 @@
 //import external libs
 import React, { Component } from 'react';
-import {  NavLink } from 'react-router-dom';
 
 //import internal libs
 import './style.css';

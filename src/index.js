@@ -1,7 +1,7 @@
 //import external libs
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Switch, Router, Route, NavLink } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 //import internal libs
@@ -25,7 +25,6 @@ class App {
                             <Route path='/about' component = {pages.About} />
                             <Route path='/article/:ID' component = {pages.Article} />
                         </Switch>
-
                     </div>
                 </BrowserRouter>
             </Provider>

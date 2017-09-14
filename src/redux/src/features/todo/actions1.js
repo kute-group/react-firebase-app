@@ -1,6 +1,5 @@
 import * as Types from './types';
 import { ApiUrl, FetchHelper } from '../../services';
-import firebase from '../../firebase';
 
 //=== ACTION TYPES ===
 const actionTypes = {
@@ -68,12 +67,20 @@ const actionTypes = {
 const actionMidlewares = {
     fetchTodo(params) {
         return dispatch => {
-            firebase.ref('/songs').once('value', snap => {
-                const invite = snap.val();
-                dispatch(actionTypes.todoFetch(invite))
-            }).catch((error) => {
-                dispatch(actionTypes.todoReset(error));
-            });
+            FetchHelper.get(
+                ApiUrl.todo,
+                params,
+                undefined,
+                res => {
+                    dispatch(actionTypes.todoFetch(res));
+                },
+                faild => {
+                    dispatch(actionTypes.todoReset(faild || null));
+                },
+                error => {
+                    dispatch(actionTypes.todoReset(error || null));
+                }
+            );
         };
     },
 
@@ -99,44 +106,52 @@ const actionMidlewares = {
     },
 
     saveTodo(params, editable) {
-        console.log(params, 'params');
         return dispatch => {
-            let { todoId, title, author } = params;
-            let url = !editable ? '/songs' : '/songs/' + todoId;
+            let mappers = [];
+            let { todoId } = params;
+            let method = !editable ? 'POST' : 'PUT';
+            let url = !editable ? ApiUrl.todo : ApiUrl.todo + '/' + todoId;
 
-            const guestsRef = firebase.ref(url);
-            if (editable) {
-                guestsRef.update({
-                    title,
-                    author
-                }).then(() => {
-                    dispatch(actionTypes.todoSave({ title, author }));
-                }).catch((error) => {
-                    dispatch(actionTypes.todoSaveFaild(error));
-                });
-            } else {
-                guestsRef.push({
-                    title,
-                    author
-                }).then(() => {
-                    dispatch(actionTypes.todoSave({ title, author }));
-                }).catch((error) => {
-                    dispatch(actionTypes.todoSaveFaild(error));
-                });
-            }
-
+            FetchHelper.postEncode(
+                url,
+                method,
+                params,
+                mappers,
+                res => {
+                    dispatch(actionTypes.todoSave(res));
+                },
+                faild => {
+                    dispatch(actionTypes.todoSaveFaild(faild));
+                },
+                error => {
+                    dispatch(actionTypes.todoSaveError(error || null));
+                }
+            );
         };
     },
 
-    deleteTodo(todoId) {
+    deleteTodo(params, identity) {
         return dispatch => {
-            let url = '/songs/' + todoId;
-            const guestsRef = firebase.ref(url);
-            guestsRef.remove().then(() => {
-                dispatch(actionTypes.todoDelete());
-            }).catch((error) => {
-                dispatch(actionTypes.todoDeleteFaild(error));
-            });
+            let promise = null;
+            let mappers = ['todoId'];
+
+            FetchHelper.postEncode(
+                ApiUrl.todo + '/' + params.todoId,
+                'DELETE',
+                params,
+                mappers,
+                result => {
+                    dispatch(actionTypes.todoDelete(result, identity));
+                },
+                () => {
+                    dispatch(actionTypes.todoDeleteFaild(identity));
+                },
+                () => {
+                    dispatch(actionTypes.todoDeleteFaild(identity));
+                }
+            );
+
+            return promise;
         };
     }
 };
