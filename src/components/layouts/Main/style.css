@@ -1,9 +1,59 @@
+html{ -webkit-tap-highlight-color:rgba(0,0,0,0); }
+body { font-family: 'Open Sans', sans-serif; font-weight: normal; font-style: normal; font-size: 14px; margin: 0px; color: #2f3742; }
+a, button, input { outline: medium none !important; -webkit-transition: all 0.5s ease-out 0s; -moz-transition: all 0.5s ease-out 0s; -ms-transition: all 0.5s ease-out 0s; -o-transition: all 0.5s ease-out 0s;
+  transition: all 0.5s ease-out 0s; }
+a:focus, a:hover { outline: medium none !important; text-decoration: none; -webkit-transition: all 0.5s ease-out 0s; -moz-transition: all 0.5s ease-out 0s; -ms-transition: all 0.5s ease-out 0s; -o-transition: all 0.5s ease-out 0s;
+  transition: all 0.5s ease-out 0s;  }
+ol, ul { padding: 0px; margin: 0px; }
+li { list-style: none !important; }
+p { font-size: 14px; color: #9ea8b6; line-height: 24px; }
+/*selection*/
+*::-moz-selection { background: #000; color: #ffffff; text-shadow: none; }
+::-moz-selection { background: #000; color: #ffffff; text-shadow: none; }
+::selection { background: #000; color: #ffffff; text-shadow: none; }
+h1, h2, h3, h4, h5, h6 { color: #2f3742; }
+h1 { font-size: 50px; }
+h2 { font-size: 30px; }
+h3 { font-size: 24px; }
+h4 { font-size: 18px; }
+h5 { font-size: 16px; }
+h6 { font-size: 14px; }
+ 
+
+
+
 .wrap{
-    width: 1200px;
+    width: 100%;
     margin: auto;
 }
 .wrap .main{
-    background: #fff;
-    padding: 10px;
-    border: 1px solid #333;
+    margin-left: 230px;
+    background-size: cover !important;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background:url( http://themes.potenzaglobalsolutions.com/html/sam-martin/it/layout-1/images/bg.jpg);
+}
+.wrap .main .intro{
+    color: #fff;
+    display: table-cell;
+    height: 100%;
+    vertical-align: middle;
+}
+.intro h1 span {
+    font-size: 30px;
+    display: block;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+}
+.intro h1 span {
+    font-size: 30px;
+    display: block;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
 }

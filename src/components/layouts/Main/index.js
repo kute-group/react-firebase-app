@@ -14,7 +14,6 @@ class Main extends Component {
                 <div className='main'>
                     {this.props.children}
                 </div>
-                <Footer/>
             </div>
         );
     }

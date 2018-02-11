@@ -1,20 +1,62 @@
 .header{
-    background: #ccc;
-    border:1px solid #333;
-    padding:10px;
+    position: fixed;
+    overflow: visible;
+    display: block;
+    left: 0px;
+    width: 230px;
+    height: 100%;
+    top: 0px;
+    z-index: 999;
+    background: #2f3742;
+    padding-bottom: 110px;
 }
-.header::after{
-    content: "";
-    display: table;
-    clear: both;
+.header .logo{
+    padding: 30px;
 }
-
+.header .logo img{
+    width: 100%;
+}
 .header .menu{
     list-style: none;
+    padding: 0;
+    margin: 0;
 }
-
-.header .menu li{
-    float: left;
-    padding: 10px 30px;
-    font-size: 25px;
+.header .menu li a{
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #ffffff;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    padding: 10px 15px 10px 30px;
+    border-right: 0px solid transparent;
+    display:block;
+}
+.header .menu li a:hover{
+    text-decoration: none;
+    color: #07cb79;
+    box-shadow: 15px 0px 0px 0px #07cb79 inset;
+    border-right: 5px solid #07cb79;
+}
+.header .menu li a.active{
+    color: #07cb79;
+    box-shadow: 15px 0px 0px 0px #07cb79 inset;
+    border-right: 5px solid #07cb79;
+}
+.header .menu-footer{
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    width: 100%;
+    text-align: left;
+    margin: 20px 20px 20px 30px;
+} 
+.header .menu-footer li{
+    display: inline-block;
+}
+.header .menu-footer li a{
+    display: block;
+    font-size: 14px;
+    padding-right: 15px;
+    color: #ffffff;
 }

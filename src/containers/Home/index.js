@@ -144,6 +144,15 @@ class Home extends Component {
     render() {
         return (
             <Main>
+                <div className="intro">
+                    <div className="content">
+                        <h1> <span> Hello i’m </span> Sam Martin </h1>
+                        <div><h2>UX/UI Designer / Web Developer </h2></div>
+                        <div className="button-large">
+                            <a href="#">Download my CV</a>
+                        </div>
+                    </div>
+                </div>
                 <Container>
                     <Row>
                         <Col xs="6">
@@ -164,63 +173,7 @@ class Home extends Component {
                             {this.renderSong() }
                         </Col>
                     </Row>
-
-                    <Row>
-                        <Col>.col</Col>
-                        <Col>.col</Col>
-                        <Col>.col</Col>
-                        <Col>.col</Col>
-                    </Row>
-                    <Row>
-                        <Col xs="3">.col-3</Col>
-                        <Col xs="auto">.col-auto - variable width content</Col>
-                        <Col xs="3">.col-3</Col>
-                    </Row>
                 </Container>
-                hello abc  <Button color="danger">Danger!</Button>
-                <div>
-                    <p>List Based</p>
-                    <Nav>
-                        <NavItem>
-                            <NavLink href="#">Link</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink href="#">Link</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink href="#">Another Link</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink disabled href="#">Disabled Link</NavLink>
-                        </NavItem>
-                    </Nav>
-                    <hr />
-                    <p>Link Based</p>
-                    <Nav>
-                        <NavLink href="#">Link</NavLink> <NavLink href="#">Link</NavLink> <NavLink href="#">Another Link</NavLink> <NavLink disabled href="#">Disabled Link</NavLink>
-                    </Nav>
-                    <Progress value="44" />
-                    <Alert color="success">
-                        <strong>Well done!</strong> You successfully read this important alert message.
-                    </Alert>
-                    <Alert color="info">
-                        <strong>Heads up!</strong> This alert needs your attention, but it's not super important.
-                    </Alert>
-                </div>
-                <div>
-                    <Breadcrumb>
-                        <BreadcrumbItem active>Home</BreadcrumbItem>
-                    </Breadcrumb>
-                    <Breadcrumb>
-                        <BreadcrumbItem><a href="#">Home</a></BreadcrumbItem>
-                        <BreadcrumbItem active>Library</BreadcrumbItem>
-                    </Breadcrumb>
-                    <Breadcrumb>
-                        <BreadcrumbItem><a href="#">Home</a></BreadcrumbItem>
-                        <BreadcrumbItem><a href="#">Library</a></BreadcrumbItem>
-                        <BreadcrumbItem active>Data</BreadcrumbItem>
-                    </Breadcrumb>
-                </div>
             </Main>
         );
     }
