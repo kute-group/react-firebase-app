@@ -1,6 +1,6 @@
 //layouts
 import Header from './Header';
 import Footer from './Footer';
-import Main from './Main';
+import MainPage from './MainPage';
 
-export { Header, Footer, Main };
+export { Header, Footer, MainPage };

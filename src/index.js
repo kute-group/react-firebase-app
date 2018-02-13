@@ -9,6 +9,7 @@ import './config';
 import store from './store';
 import * as pages from './containers';
 import registerServiceWorker from './registerServiceWorker';
+import ROUTES  from "./routers";
 registerServiceWorker();
 
 class App {
@@ -20,10 +21,10 @@ class App {
             <Provider store={store}>
                 <BrowserRouter>
                     <div>
-                        <Switch store ={store}>
-                            <Route path='/' component = {pages.Home} exact={true}/>
-                            <Route path='/about' component = {pages.About} />
-                            <Route path='/article/:ID' component = {pages.Article} />
+                        <Switch store={store}>
+                            {ROUTES.map(({ path, component, exact }, key) => (
+                                <Route key={key} path={path} component={component} exact={exact} />
+                            ))}
                         </Switch>
                     </div>
                 </BrowserRouter>

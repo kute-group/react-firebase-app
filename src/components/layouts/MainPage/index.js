@@ -6,7 +6,7 @@ import Header from '../Header';
 import Footer from '../Footer';
 import './style.css';
 
-class Main extends Component {
+class MainPage extends Component {
     render() {
         return (
             <div className='wrap'>
@@ -19,4 +19,4 @@ class Main extends Component {
     }
 }
 
-export default Main;
+export default MainPage;

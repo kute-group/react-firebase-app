@@ -1,0 +1,149 @@
+html{ -webkit-tap-highlight-color:rgba(0,0,0,0); }
+body { font-family: 'Open Sans', sans-serif; font-weight: normal; font-style: normal; font-size: 14px; margin: 0px; color: #2f3742; }
+a, button, input { outline: medium none !important; -webkit-transition: all 0.5s ease-out 0s; -moz-transition: all 0.5s ease-out 0s; -ms-transition: all 0.5s ease-out 0s; -o-transition: all 0.5s ease-out 0s;
+  transition: all 0.5s ease-out 0s; }
+a:focus, a:hover { outline: medium none !important; text-decoration: none; -webkit-transition: all 0.5s ease-out 0s; -moz-transition: all 0.5s ease-out 0s; -ms-transition: all 0.5s ease-out 0s; -o-transition: all 0.5s ease-out 0s;
+  transition: all 0.5s ease-out 0s;  }
+ol, ul { padding: 0px; margin: 0px; }
+li { list-style: none !important; }
+p { font-size: 14px; color: #9ea8b6; line-height: 24px; }
+/*selection*/
+*::-moz-selection { background: #000; color: #ffffff; text-shadow: none; }
+::-moz-selection { background: #000; color: #ffffff; text-shadow: none; }
+::selection { background: #000; color: #ffffff; text-shadow: none; }
+h1, h2, h3, h4, h5, h6 { color: #2f3742; }
+h1 { font-size: 50px; }
+h2 { font-size: 30px; }
+h3 { font-size: 24px; }
+h4 { font-size: 18px; }
+h5 { font-size: 16px; }
+h6 { font-size: 14px; }
+ 
+
+
+
+.wrap{
+    width: 100%;
+    margin: auto;
+}
+.wrap .main{
+    margin-left: 230px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+/* HOME */
+.wrap .main .home{
+    background:url( http://themes.potenzaglobalsolutions.com/html/sam-martin/it/layout-1/images/bg.jpg);
+    background-size: cover !important;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+}
+.wrap .main .home::before{
+    background: linear-gradient(45deg, #131b51 0%, #e8d4e6 100%);
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    content: '';
+    opacity: 0.6;
+}
+.home .intro{
+    color: #fff;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+.home .intro .content{
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    height: 100%;
+    padding: 0 10%;
+}
+.home .intro .content h1{
+    font-size: 72px;
+    color: #fff;
+    font-weight: 700;
+}
+.home .intro .content h1 span {
+    font-size: 30px;
+    display: block;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+}
+.home .intro .content h2 {
+    margin-bottom: 30px;
+}
+.home .intro .content .button-large a{
+    padding: 10px 30px;
+    font-size: 18px;
+    border-radius: 3px;
+    font-weight: 600;
+    background: #07cb79;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-family: 'Raleway', sans-serif;
+}
+/* ABOUT */
+.wrap .main .about{
+    padding: 40px;
+}
+.about .avatar{
+    width: 30%;
+    float: left;
+}
+.about .avatar img{
+    width: 100%;
+    height: auto;
+}
+.about .avatar .links{
+    background: #07cb79;
+    padding: 15px 10px;
+}
+.about .infomation{
+    width: 70%;
+    float: right;
+    padding: 0 30px;
+}
+.about .infomation .title-name span{
+    background: #07cb79;
+    display: inline-block;
+    font-size: 16px;
+    color: #ffffff;
+    padding: 6px 20px;
+}
+.about .infomation .title-name h2{
+    font-size: 38px;
+    color: #2f3742;
+    font-weight: 600;
+    margin-top: 4px;
+}
+.about .infomation .contact-block{
+    margin-top: 30px;
+}
+.about .infomation .contact-block .item{
+    width: 33.3333%;
+    float: left;
+}
+.about .infomation .description{
+    width: 100%;
+    clear: both;
+    font-size: 16px;
+    font-style: italic;
+    line-height: 30px;
+    color: #2f3742;
+}

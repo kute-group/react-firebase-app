@@ -3,16 +3,16 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 //import internal libs
-const { Main } = global.COMPONENTS.layouts;
+const { MainPage } = global.COMPONENTS.layouts;
 
 class Article extends Component {
     render() {
         console.log(this.props,'props');
         return (
-            <Main>
+            <MainPage>
                 {JSON.stringify(this.props)}
                 hello Article PAGE
-            </Main>
+            </MainPage>
         );
     }
 }

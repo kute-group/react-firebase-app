@@ -8,20 +8,27 @@
     top: 0px;
     z-index: 999;
     background: #2f3742;
-    padding-bottom: 110px;
 }
-.header .logo{
+.header .main-menu{
+    padding-bottom: 110px;
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    height: 80%;
+    padding-bottom: 10px;
+}
+.header .main-menu .logo{
     padding: 30px;
 }
-.header .logo img{
+.header .main-menu .logo img{
     width: 100%;
 }
-.header .menu{
+.header .main-menu .menu{
     list-style: none;
     padding: 0;
     margin: 0;
 }
-.header .menu li a{
+.header .main-menu .menu li a{
     font-size: 14px;
     text-transform: uppercase;
     color: #ffffff;
@@ -31,13 +38,13 @@
     border-right: 0px solid transparent;
     display:block;
 }
-.header .menu li a:hover{
+.header .main-menu .menu li a:hover{
     text-decoration: none;
     color: #07cb79;
     box-shadow: 15px 0px 0px 0px #07cb79 inset;
     border-right: 5px solid #07cb79;
 }
-.header .menu li a.active{
+.header .main-menu .menu li a.active{
     color: #07cb79;
     box-shadow: 15px 0px 0px 0px #07cb79 inset;
     border-right: 5px solid #07cb79;

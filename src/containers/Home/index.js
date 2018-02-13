@@ -25,7 +25,7 @@ import {
 } from 'reactstrap';
 import FontAwesome from 'react-fontawesome';
 //import internal libs
-const { layouts: {Main} } = global.COMPONENTS;
+const { layouts: { MainPage } } = global.COMPONENTS;
 const { actions, types } = global.REDUX;
 //=== map state ===
 function mapStateToProps({ todo }) {
@@ -57,7 +57,7 @@ class Home extends Component {
     }
 
     componentWillReceiveProps(props) {
-        let {todo} = props;
+        let { todo } = props;
         if (todo.action == 'TODO_FETCH') {
             this.setState({
                 loading: false,
@@ -80,7 +80,7 @@ class Home extends Component {
     //=== ACTION FUNCTIONS ===
     onEdit(ID) {
         console.log(ID, 'ID');
-        let {list} = this.state;
+        let { list } = this.state;
         this.setState({
             editable: true,
             form: Object.assign({}, list[ID], { todoId: ID })
@@ -109,7 +109,7 @@ class Home extends Component {
 
     //=== RENDER FUNCTIONS ===
     renderSong() {
-        let {list, loading} = this.state;
+        let { list, loading } = this.state;
         if (loading) return 'Loading...';
         if (list === 'null' || list === null) return null;
         else {
@@ -123,11 +123,11 @@ class Home extends Component {
                             size='2x'
                             spin
                             style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
-                            />
-                            
+                        />
+
                         Song: {list[val].title}, author: {list[val].author}
-                        <Button onClick= {() => this.onEdit(val) } color="primary" className='pull-right'>Edit</Button>{' '}
-                        <Button onClick= {() => this.onDelete(val) } color="danger" className='pull-right'>Delete</Button>
+                        <Button onClick={() => this.onEdit(val)} color="primary" className='pull-right'>Edit</Button>{' '}
+                        <Button onClick={() => this.onDelete(val)} color="danger" className='pull-right'>Delete</Button>
                     </ListGroupItem>
                 );
             });
@@ -143,17 +143,19 @@ class Home extends Component {
     }
     render() {
         return (
-            <Main>
-                <div className="intro">
-                    <div className="content">
-                        <h1> <span> Hello i’m </span> Sam Martin </h1>
-                        <div><h2>UX/UI Designer / Web Developer </h2></div>
-                        <div className="button-large">
-                            <a href="#">Download my CV</a>
+            <MainPage>
+                <div className="home">
+                    <div className="intro">
+                        <div className="content">
+                            <h1> <span> Hello I’m </span> Steve Luong </h1>
+                            <h2>UX/UI Designer, Web/Mobile Developer </h2>
+                            <div className="button-large">
+                                <a href="#">Download my CV</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <Container>
+                {/* <Container>
                     <Row>
                         <Col xs="6">
                             <h1>Song Form </h1>
@@ -173,8 +175,8 @@ class Home extends Component {
                             {this.renderSong() }
                         </Col>
                     </Row>
-                </Container>
-            </Main>
+                </Container> */}
+            </MainPage>
         );
     }
 }
