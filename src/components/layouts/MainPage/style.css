@@ -18,9 +18,10 @@ h3 { font-size: 24px; }
 h4 { font-size: 18px; }
 h5 { font-size: 16px; }
 h6 { font-size: 14px; }
+.main-block{
+    padding: 40px;
+}
  
-
-
 
 .wrap{
     width: 100%;
@@ -100,7 +101,6 @@ h6 { font-size: 14px; }
 }
 /* ABOUT */
 .wrap .main .about{
-    padding: 40px;
 }
 .about .avatar{
     width: 30%;
@@ -146,4 +146,27 @@ h6 { font-size: 14px; }
     font-style: italic;
     line-height: 30px;
     color: #2f3742;
+}
+/* SERVICES */
+.wrap .main .services{
+}
+.services .list-services .title-name span{
+    background: #07cb79;
+    display: inline-block;
+    font-size: 16px;
+    color: #ffffff;
+    padding: 6px 20px;
+}
+.services .list-services .title-name h2{
+    font-size: 38px;
+    color: #2f3742;
+    font-weight: 600;
+    margin-top: 4px;
+}
+.services .list-services .services-block{
+    margin-top: 30px;
+}
+.services .list-services .services-block .item{
+    width: 25%;
+    float: left;
 }

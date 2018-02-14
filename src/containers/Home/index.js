@@ -25,6 +25,7 @@ import {
 } from 'reactstrap';
 import FontAwesome from 'react-fontawesome';
 //import internal libs
+
 const { layouts: { MainPage } } = global.COMPONENTS;
 const { actions, types } = global.REDUX;
 //=== map state ===
@@ -148,7 +149,7 @@ class Home extends Component {
                     <div className="intro">
                         <div className="content">
                             <h1> <span> Hello I’m </span> Steve Luong </h1>
-                            <h2>UX/UI Designer, Web/Mobile Developer </h2>
+                            <h2>Web/Mobile Developer, DevOps Engineer </h2>
                             <div className="button-large">
                                 <a href="#">Download my CV</a>
                             </div>

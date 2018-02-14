@@ -10,6 +10,10 @@ const ROUTES = [
         component: pages.About,
     },
     {
+        path: '/services',
+        component: pages.Services,
+    },
+    {
         path: '/article/:ID',
         component: pages.Article,
     },

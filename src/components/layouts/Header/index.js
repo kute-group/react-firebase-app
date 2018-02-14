@@ -16,23 +16,25 @@ class Header extends Component {
                     <ul className='menu'>
                         <li><NavLink exact to='/'>Home</NavLink></li>
                         <li><NavLink to='/about'>About</NavLink></li>
-                        <li><NavLink to='/article/12s'>Services</NavLink></li>
-                        <li><NavLink to='/article/22'>Resume</NavLink></li>
-                        <li><NavLink to='about1'>Skills</NavLink></li>
-                        <li><NavLink to='/article/122'>Portfolio</NavLink></li>
-                        <li><NavLink to='/article/2s2'>Calendar</NavLink></li>
-                        <li><NavLink to='/abou2t'>Blog</NavLink></li>
-                        <li><NavLink to='/article/1ff'>Page</NavLink></li>
-                        <li><NavLink to='/article/2f'>Contact</NavLink></li>
+                        <li><NavLink to='/services'>Services</NavLink></li>
+                        <li><NavLink to='/resume'>Resume</NavLink></li>
+                        {/* <li><NavLink to='/skills'>Skills</NavLink></li> */}
+                        {/* <li><NavLink to='/portfolio'>Portfolio</NavLink></li> */}
+                        {/* <li><NavLink to='/calendar'>Calendar</NavLink></li> */}
+                        <li><NavLink to='/blog'>Blog</NavLink></li>
+                        {/* <li><NavLink to='/page'>Page</NavLink></li> */}
+                        <li><NavLink to='/contact'>Contact</NavLink></li>
                     </ul>
                 </nav>
                 <div className='menu-footer'>
                     <ul>
-                        <li><NavLink to='/'><i className="fa fa-facebook"></i> 1</NavLink></li>
-                        <li><NavLink to='about'><i className="fa fa-facebook"></i> 2</NavLink></li>
+                        <li><NavLink to='/'><i className="fa fa-facebook"></i></NavLink></li>
+                        <li><NavLink to='/'><i className="fa fa-youtube"></i></NavLink></li>
+                        <li><NavLink to='/'><i className="fa fa-google"></i></NavLink></li>
+                        <li><NavLink to='/'><i className="fa fa-apple"></i></NavLink></li>
                     </ul>
                     <div className='copyright'>
-                        <p>© Steve.Luong <br /> all rights reserved</p>
+                        <p>© Steve Luong <br /> all rights reserved</p>
                     </div>
                 </div>
             </div>

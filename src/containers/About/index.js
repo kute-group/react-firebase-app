@@ -1,12 +1,16 @@
+//import external libs
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import FontAwesome from'react-fontawesome';
+
+//import external libs
 const { MainPage } = global.COMPONENTS.layouts;
 
 class About extends Component {
     render() {
         return (
             <MainPage>
-                <div className="about">
+                <div className="about main-block">
                     <div className="avatar">
                         <figure>
                             <img src="http://themes.potenzaglobalsolutions.com/html/sam-martin/it/layout-1/images/me.jpg" alt="1" />
@@ -23,44 +27,54 @@ class About extends Component {
                         </div>
                         <div className="contact-block">
                             <div className="item">
-                                <span className="ti-user">s</span>
+                                <FontAwesome
+                                    name='user'
+                                    size='3x'
+                                />
                                 <div className="contact-info">
                                     <h4>Name:</h4>
-                                    <p>Sam Martin</p>
+                                    <p>Steve Luong</p>
                                 </div>
                             </div>
                             <div className="item">
-                                <span className="ti-user">s</span>
+                                <FontAwesome name='home' size='3x' />
                                 <div className="contact-info">
-                                    <h4>Name:</h4>
-                                    <p>Sam Martin</p>
+                                    <h4>Email:</h4>
+                                    <p>luonghop.lc@gmail.com</p>
                                 </div>
                             </div>
                             <div className="item">
-                                <span className="ti-user">s</span>
+                                <FontAwesome name='phone' size='3x' />
                                 <div className="contact-info">
-                                    <h4>Name:</h4>
-                                    <p>Sam Martin</p>
+                                    <h4>Phone:</h4>
+                                    <p>01632 434 165</p>
                                 </div>
                             </div>
                             <div className="item">
-                                <span className="ti-user">s</span>
+                                <FontAwesome name='calendar' size='3x' />
                                 <div className="contact-info">
-                                    <h4>Name:</h4>
-                                    <p>Sam Martin</p>
+                                    <h4>Date of Birth:</h4>
+                                    <p>27 Febuary 1993</p>
                                 </div>
                             </div>
                             <div className="item">
-                                <span className="ti-user">s</span>
+                                <FontAwesome name='map' size='3x' />
                                 <div className="contact-info">
-                                    <h4>Name:</h4>
-                                    <p>Sam Martin</p>
+                                    <h4>Address:</h4>
+                                    <p>225 Quan Hoa, Cau Giay, Ha Noi</p>
+                                </div>
+                            </div>
+                            <div className="item">
+                                <FontAwesome name='user' size='3x' />
+                                <div className="contact-info">
+                                    <h4>Nationality:</h4>
+                                    <p>Viet Nam</p>
                                 </div>
                             </div>
                         </div>
                         <div className="description">
                             <p>
-                                I have more than 9 years of experience in the field of Graphic/ E Learning/Web Designing. Specialized in Adobe web & graphic designing tools and also in otheta tools. Professional in Corporate branding, Graphic designing, Web Designing, visualization, GUI, graphics & animations for e-learning, illustrations, web icons, flash web banner, flash intro animations, logos, brochures, posters etc.
+                                I have more than 4 years of experience in the field of E Learning/Web Development. Specialized in Adobe web & graphic designing tools and also in otheta tools. Professional in Corporate branding, Graphic designing, Web Designing, visualization, GUI, graphics & animations for e-learning, illustrations, web icons, flash web banner, flash intro animations, logos, brochures, posters etc.
                                 </p> <p>
                                 Creative Solution Provider as a Freelance Graphic Artist and a Dedicated, Team worker to Induce the Creative Juice among the colleagues with a View to deliver the Best and New in the business.
 </p>
