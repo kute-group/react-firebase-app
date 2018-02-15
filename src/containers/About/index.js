@@ -1,22 +1,45 @@
 //import external libs
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import FontAwesome from'react-fontawesome';
+import FontAwesome from 'react-fontawesome';
 
 //import external libs
-const { MainPage } = global.COMPONENTS.layouts;
+const { layouts:{MainPage}, SEO } = global.COMPONENTS;
 
 class About extends Component {
     render() {
         return (
             <MainPage>
+                <SEO url="about" />
                 <div className="about main-block">
                     <div className="avatar">
                         <figure>
                             <img src="http://themes.potenzaglobalsolutions.com/html/sam-martin/it/layout-1/images/me.jpg" alt="1" />
                             <div className="links">
-                                <a href="">s</a>
-                                <a href="">s</a>
+                                <a href="">
+                                    <FontAwesome
+                                        name='facebook'
+                                        size='3x'
+                                    />
+                                </a>
+                                <a href="">
+                                    <FontAwesome
+                                        name='youtube'
+                                        size='3x'
+                                    />
+                                </a>
+                                <a href="">
+                                    <FontAwesome
+                                        name='google'
+                                        size='3x'
+                                    />
+                                </a>
+                                <a href="">
+                                    <FontAwesome
+                                        name='apple'
+                                        size='3x'
+                                    />
+                                </a>
                             </div>
                         </figure>
                     </div>

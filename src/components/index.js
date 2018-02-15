@@ -3,4 +3,6 @@ import * as layouts from './layouts';
 //pages
 import * as pages from './pages';
 
-export { layouts, pages };
+import SEO from './seo';
+
+export { layouts, pages, SEO };

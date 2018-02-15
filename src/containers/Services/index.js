@@ -4,12 +4,13 @@ import PropTypes from 'prop-types';
 import FontAwesome from'react-fontawesome';
 
 //import external libs
-const { MainPage } = global.COMPONENTS.layouts;
+const { layouts: { MainPage }, SEO } = global.COMPONENTS;
 
 class Services extends Component {
     render() {
         return (
             <MainPage>
+                <SEO url="services" />
                 <div className="services main-block">
                     <div className="list-services">
                         <div className="title-name">

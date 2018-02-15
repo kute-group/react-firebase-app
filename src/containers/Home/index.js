@@ -26,7 +26,7 @@ import {
 import FontAwesome from 'react-fontawesome';
 //import internal libs
 
-const { layouts: { MainPage } } = global.COMPONENTS;
+const { layouts: { MainPage }, SEO } = global.COMPONENTS;
 const { actions, types } = global.REDUX;
 //=== map state ===
 function mapStateToProps({ todo }) {
@@ -145,6 +145,7 @@ class Home extends Component {
     render() {
         return (
             <MainPage>
+                <SEO url="home" />
                 <div className="home">
                     <div className="intro">
                         <div className="content">
