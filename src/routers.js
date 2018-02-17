@@ -25,6 +25,18 @@ const ROUTES = [
         path: '/contact',
         component: pages.Contact,
     },
+    // {
+    //     path: '/auth/',
+    //     component: pages.Login,
+    // },
+    {
+        path: '/auth/login',
+        component: pages.Login,
+    },
+    {
+        path: '/auth/register',
+        component: pages.Register,
+    },
     {
         path: '*',
         component: pages.NotFound,

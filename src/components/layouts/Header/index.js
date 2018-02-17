@@ -24,6 +24,7 @@ class Header extends Component {
                         <li><NavLink to='/blog'>Blog</NavLink></li>
                         {/* <li><NavLink to='/page'>Page</NavLink></li> */}
                         <li><NavLink to='/contact'>Contact</NavLink></li>
+                        <li><NavLink to='/auth/login'>Login</NavLink></li>
                     </ul>
                 </nav>
                 <div className='menu-footer'>

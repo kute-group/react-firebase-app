@@ -61,8 +61,8 @@ h6 { font-size: 14px; }
     bottom: 0;
     right: 0;
 }
-/* HOME */
-.wrap .main .home{
+/* HOME/AUTH */
+.wrap .main .home, .wrap .main .auth{
     background:url( http://themes.potenzaglobalsolutions.com/html/sam-martin/it/layout-1/images/bg.jpg);
     background-size: cover !important;
     background-repeat: no-repeat;
@@ -73,7 +73,7 @@ h6 { font-size: 14px; }
     bottom: 0;
     top: 0;
 }
-.wrap .main .home::before{
+.wrap .main .home::before, .wrap .main .auth::before{
     background: linear-gradient(45deg, #131b51 0%, #e8d4e6 100%);
     position: absolute;
     left: 0;
@@ -135,6 +135,33 @@ h6 { font-size: 14px; }
     0% { opacity: 1.0; }
     50% { opacity: 0.6; }
     100% { opacity: 1.0; }
+}
+.auth{
+    padding-top: 10%;
+}
+.auth .auth-form{
+    width: 600px;
+    margin: auto;
+    /* background-color: rgba(#f8f9fa, #f8f9fa, #f8f9fa, 0.6); */
+    background: #fff;
+    padding: 20px 40px 30px 40px;
+    border-radius: 10px;
+}
+.auth .auth-form .tabs{
+    clear: both;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #007bff;
+    padding-bottom: 4px;
+}
+.auth .auth-form .tabs a{
+    font-size: 20px;
+    padding: 5px 15px;
+    color: #fff;
+    text-decoration: none;
+}
+.auth .auth-form .tabs a.active{
+    color: #007bff;
+    border-bottom: 3px solid #007bff;
 }
 /* ABOUT */
 .wrap .main .about{
