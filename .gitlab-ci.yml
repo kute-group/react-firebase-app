@@ -539,5 +539,5 @@ production:
 before_script:
   - *auto_devops
   
-deploy:
-  script: aws s3 cp ./ s3://steve-luong-app/ --recursive --exclude "*" --include "*.html"
+# deploy:
+#   script: aws s3 cp ./ s3://steve-luong-app/ --recursive --exclude "*" --include "*.html"
