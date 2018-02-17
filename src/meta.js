@@ -1,7 +1,7 @@
 const META = [
     {
         url:'default',
-        title: 'Home page || Steve Luong blog',
+        title: 'Steve Luong blog',
         description:'This is my page',
         keywords: 'steve luong, hop, dev, devops'
     },
@@ -14,6 +14,18 @@ const META = [
     {
         url:'services',
         title: 'Services page || Steve Luong blog',
+        description:'This is my page',
+        keywords: 'steve luong, hop, dev, devops'
+    },
+    {
+        url:'contact',
+        title: 'Contact page || Steve Luong blog',
+        description:'This is my page',
+        keywords: 'steve luong, hop, dev, devops'
+    },
+    {
+        url:'blog',
+        title: 'Blog page || Steve Luong blog',
         description:'This is my page',
         keywords: 'steve luong, hop, dev, devops'
     },

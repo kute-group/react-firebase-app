@@ -17,7 +17,7 @@ class Header extends Component {
                         <li><NavLink exact to='/'>Home</NavLink></li>
                         <li><NavLink to='/about'>About</NavLink></li>
                         <li><NavLink to='/services'>Services</NavLink></li>
-                        <li><NavLink to='/resume'>Resume</NavLink></li>
+                        {/* <li><NavLink to='/resume'>Resume</NavLink></li> */}
                         {/* <li><NavLink to='/skills'>Skills</NavLink></li> */}
                         {/* <li><NavLink to='/portfolio'>Portfolio</NavLink></li> */}
                         {/* <li><NavLink to='/calendar'>Calendar</NavLink></li> */}

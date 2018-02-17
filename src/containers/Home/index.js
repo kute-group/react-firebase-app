@@ -23,6 +23,7 @@ import {
     FormFeedback,
     FormText
 } from 'reactstrap';
+import Typist from 'react-typist';
 import FontAwesome from 'react-fontawesome';
 //import internal libs
 
@@ -149,11 +150,19 @@ class Home extends Component {
                 <div className="home">
                     <div className="intro">
                         <div className="content">
-                            <h1> <span> Hello I’m </span> Steve Luong </h1>
-                            <h2>Web/Mobile Developer, DevOps Engineer </h2>
-                            <div className="button-large">
-                                <a href="#">Download my CV</a>
-                            </div>
+                            <Typist avgTypingDelay={100} cursor={{show: false}}>
+                                <h1> 
+                                    <span> Hello I’m </span>
+                                    <Typist.Delay ms={500} />
+                                     Steve Luong 
+                                </h1>
+                                <Typist.Delay ms={500} />
+                                <h2>Web/Mobile Developer, DevOps Engineer </h2>
+                                <Typist.Delay ms={700} />
+                                <div className="button-large">
+                                    <a href="#">Download my CV</a>
+                                </div>
+                            </Typist>
                         </div>
                     </div>
                 </div>

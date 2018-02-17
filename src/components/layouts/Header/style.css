@@ -22,6 +22,11 @@
 }
 .header .main-menu .logo img{
     width: 100%;
+    border-radius: 10px;
+    animation-name: blinker;
+    animation-duration: 4s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
 }
 .header .main-menu .menu{
     list-style: none;

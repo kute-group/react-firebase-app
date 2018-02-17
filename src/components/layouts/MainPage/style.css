@@ -18,11 +18,37 @@ h3 { font-size: 24px; }
 h4 { font-size: 18px; }
 h5 { font-size: 16px; }
 h6 { font-size: 14px; }
+.not-found{
+
+}
+.not-found h2{
+    text-align: center;
+    text-transform: capitalize;
+    padding-top: 2em;
+    
+}
+.not-found h2 span{
+    font-size: 4em;
+    color: #990000;
+}
 .main-block{
     padding: 40px;
 }
  
-
+.main-block .header-block span{
+    background: #07cb79;
+    display: inline-block;
+    font-size: 16px;
+    color: #ffffff;
+    padding: 6px 20px;
+    text-transform: capitalize;
+}
+.main-block .header-block h2{
+    font-size: 38px;
+    color: #2f3742;
+    font-weight: 600;
+    margin-top: 4px;
+}
 .wrap{
     width: 100%;
     margin: auto;
@@ -99,6 +125,17 @@ h6 { font-size: 14px; }
     text-transform: uppercase;
     font-family: 'Raleway', sans-serif;
 }
+.home .intro .content .button-large a{
+    animation-name: blinker;
+    animation-duration: 1.7s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+@keyframes blinker {
+    0% { opacity: 1.0; }
+    50% { opacity: 0.6; }
+    100% { opacity: 1.0; }
+}
 /* ABOUT */
 .wrap .main .about{
 }
@@ -164,23 +201,95 @@ h6 { font-size: 14px; }
 /* SERVICES */
 .wrap .main .services{
 }
-.services .list-services .title-name span{
-    background: #07cb79;
-    display: inline-block;
-    font-size: 16px;
-    color: #ffffff;
-    padding: 6px 20px;
-}
-.services .list-services .title-name h2{
-    font-size: 38px;
-    color: #2f3742;
-    font-weight: 600;
-    margin-top: 4px;
-}
 .services .list-services .services-block{
     margin-top: 30px;
 }
 .services .list-services .services-block .item{
     width: 25%;
     float: left;
+    padding: 15px;
+    padding-top: 0px;
+}
+.services .list-services .services-block .item .services-info h4{
+     padding: 30px 0;
+     color: #2f3742;
+     text-transform: capitalize;
+     font-weight: 500;
+     font-size: 22px;
+}
+.services .list-services .services-block .item .services-info .description a{
+    display: block;
+    background: #07cb79;
+    padding: 10px 30px;
+    margin-top: 30px;
+    color: #fff;
+    text-transform: capitalize;
+    font-size: 18px;
+    position: relative;
+}
+.services .list-services .services-block .item:hover .services-info .description a{
+    background: #2f3742;
+}
+.services .list-services .services-block .item .services-info .description a span{
+    position: absolute;
+    right:30px;
+    top:10px;
+    line-height: 26px;
+}
+/* BLOG */
+.wrap .main .posts{
+    padding-top: 30px;
+}
+.posts .post-block{
+    padding-top: 30px;
+}
+.posts .post-block .item{
+    width: 25%;
+    float: left;
+    padding: 15px;
+    padding-top: 0px;
+    padding-left: 0;
+    height: 460px;
+    position: relative;
+    margin-bottom: 10px;
+}
+.posts .post-block .item img{
+    width: 100%;
+}
+.posts .post-block .item .post-info{
+    position: absolute;
+    top: 120px;
+    left: 10px;
+    right: 25px;
+    bottom: 0;
+    background: #f8f9fa;
+    padding: 15px;
+}
+.posts .post-block .item .post-info h4{
+    font-weight: 200;
+    text-transform: capitalize;
+    color: #2f3742;
+    margin-bottom: 15px;
+    display: block;
+    font-size: 24px;
+    text-align: center;
+}
+.posts .post-block .item .post-info a{
+    display: block;
+    background: #07cb79;
+    padding: 10px 30px;
+    margin-top: 30px;
+    color: #fff;
+    text-transform: capitalize;
+    font-size: 18px;
+    position: relative;
+}
+/* CONTACT */
+.wrap .main .contact{
+    padding-top: 30px;
+}
+.contact .map-block{
+    width: 100%;
+    height: 440px;
+    background: #ddd;
 }

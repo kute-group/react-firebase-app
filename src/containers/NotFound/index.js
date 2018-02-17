@@ -6,7 +6,12 @@ class NotFound extends Component {
     render() {
         return (
             <MainPage>
-                hello NotFound
+               <div className="not-found main-block">
+                    <h2>
+                        <span>404</span><br/>
+                        Page not found
+                    </h2>
+               </div>
             </MainPage>
         );
     }

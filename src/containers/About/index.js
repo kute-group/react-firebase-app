@@ -60,7 +60,7 @@ class About extends Component {
                                 </div>
                             </div>
                             <div className="item">
-                                <FontAwesome name='home' size='3x' />
+                                <FontAwesome name='envelope' size='3x' />
                                 <div className="contact-info">
                                     <h4>Email:</h4>
                                     <p>luonghop.lc@gmail.com</p>
@@ -88,7 +88,7 @@ class About extends Component {
                                 </div>
                             </div>
                             <div className="item">
-                                <FontAwesome name='user' size='3x' />
+                                <FontAwesome name='address-card' size='3x' />
                                 <div className="contact-info">
                                     <h4>Nationality:</h4>
                                     <p>Viet Nam</p>

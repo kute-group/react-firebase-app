@@ -14,8 +14,16 @@ const ROUTES = [
         component: pages.Services,
     },
     {
+        path: '/blog',
+        component: pages.Blog,
+    },
+    {
         path: '/article/:ID',
         component: pages.Article,
+    },
+    {
+        path: '/contact',
+        component: pages.Contact,
     },
     {
         path: '*',
