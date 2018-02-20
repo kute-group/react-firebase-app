@@ -30,8 +30,8 @@ import FontAwesome from 'react-fontawesome';
 const { layouts: { MainPage }, SEO } = global.COMPONENTS;
 const { actions, types } = global.REDUX;
 //=== map state ===
-function mapStateToProps({ todo }) {
-    return { todo }
+function mapStateToProps({ todo, global }) {
+    return { todo, global }
 }
 class Home extends Component {
     constructor(props) {
@@ -144,6 +144,7 @@ class Home extends Component {
         }
     }
     render() {
+        console.log(this.props,'ddf');
         return (
             <MainPage>
                 <SEO url="home" />

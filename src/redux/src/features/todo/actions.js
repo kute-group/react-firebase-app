@@ -1,4 +1,5 @@
 import * as Types from './types';
+import { actions as globalAction } from '../global';
 import { ApiUrl, FetchHelper } from '../../services';
 import firebase from '../../firebase';
 
@@ -68,9 +69,11 @@ const actionTypes = {
 const actionMidlewares = {
     fetchTodo(params) {
         return dispatch => {
+            dispatch(globalAction.loadingShow());
             firebase.ref('/songs').once('value', snap => {
                 const invite = snap.val();
-                dispatch(actionTypes.todoFetch(invite))
+                dispatch(actionTypes.todoFetch(invite));
+                dispatch(globalAction.loadingHide());
             }).catch((error) => {
                 dispatch(actionTypes.todoReset(error));
             });

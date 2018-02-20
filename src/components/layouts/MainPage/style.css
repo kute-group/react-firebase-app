@@ -18,8 +18,14 @@ h3 { font-size: 24px; }
 h4 { font-size: 18px; }
 h5 { font-size: 16px; }
 h6 { font-size: 14px; }
+.progress{
+    position: absolute;
+    z-index: 9999;
+    height: 6px;
+    width: 100%;
+    border-radius: 1px;
+}
 .not-found{
-
 }
 .not-found h2{
     text-align: center;

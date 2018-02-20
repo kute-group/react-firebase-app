@@ -14,7 +14,7 @@ class About extends Component {
                 <div className="about main-block">
                     <div className="avatar">
                         <figure>
-                            <img src="http://themes.potenzaglobalsolutions.com/html/sam-martin/it/layout-1/images/me.jpg" alt="1" />
+                            <img src="https://scontent-hkg.xx.fbcdn.net/v/t1.0-9/27072879_1548640371921136_6130175718960902028_n.jpg?oh=2ff93d90dac08ffccf8eb6378ee10ed1&oe=5B0B7C1B" alt="1" />
                             <div className="links">
                                 <a href="">
                                     <FontAwesome
@@ -97,10 +97,15 @@ class About extends Component {
                         </div>
                         <div className="description">
                             <p>
-                                I have more than 4 years of experience in the field of E Learning/Web Development. Specialized in Adobe web & graphic designing tools and also in otheta tools. Professional in Corporate branding, Graphic designing, Web Designing, visualization, GUI, graphics & animations for e-learning, illustrations, web icons, flash web banner, flash intro animations, logos, brochures, posters etc.
-                                </p> <p>
-                                Creative Solution Provider as a Freelance Graphic Artist and a Dedicated, Team worker to Induce the Creative Juice among the colleagues with a View to deliver the Best and New in the business.
-</p>
+                                I have more than 4 years of experience in the field of Web, Native/Hybird application Development. Now, I am working for FPT Software that is part of FPT Corporation. I am a full stack developer and familar with Agile/Scrum. With Front-End position, I have experience in ReactJs, AngularJs, VueJs; with Back-End: NodeJs, ExpressJs, FeathersJs, Python; with AWS DevOps Engineer: use almost all of the main services of the AWS stack (like EC2, S3, RDS,
+VPC, IAM, ELB, Cloud watch, Route 53, Lamda and Cloud Formation) focused on high
+availability, fault tolerance environment. I’m friendly with Infrastructure as code.</p><p> My favourite quote: 
+Running a marathon is far more
+mental than physical. A person’s ability
+to run a marathon—or do anything
+hard—is more a reflection of their level
+of confidence than their actual ability
+                            </p>
                         </div>
                     </div>
                 </div>
