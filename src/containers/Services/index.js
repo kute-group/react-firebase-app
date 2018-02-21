@@ -9,25 +9,25 @@ const items = [
     {
         title: 'UI/UX Design',
         icon: 'laptop',
-        description: 'Become aware of the temperature, the sights, the sounds and enjoy walking along the path of your life. Make it sensory rich and get comfortable with the idea. Imagine the feeling of your feet walking along the path and the sound',
+        description: 'We will take your customers on an amazing journey from the very first second of using your product. Our custom designs offer an alluring and straightforward path to learning more about your company and opting for your services.',
         link: '#',
     },
     {
-        title: 'Clean Code',
+        title: 'Front-end Development',
         icon: 'code',
-        description: 'Become aware of the temperature, the sights, the sounds and enjoy walking along the path of your life. Make it sensory rich and get comfortable with the idea. Imagine the feeling of your feet walking along the path and the sound',
+        description: 'Looks great, loads fast, works with out a tiny hiccup – here is how your final product will look like. We create interfaces users can not help, but love. Each product is made with great care to make it look equally stunning on large desktop screens and mobile devices.',
         link: '#',
     },
     {
-        title: 'Hosting/Domain',
+        title: 'DevOps',
         icon: 'cloud',
-        description: 'Become aware of the temperature, the sights, the sounds and enjoy walking along the path of your life. Make it sensory rich and get comfortable with the idea. Imagine the feeling of your feet walking along the path and the sound',
+        description: 'we practice the agile approach to software development, allowing our compact teams to build enterprise-level, high-delivery products with fewer people involved and less hours billed. We offer our customers to experience the same benefits with our DevOps Advisory Service',
         link: '#',
     },
     {
-        title: 'Consult',
+        title: 'Technical Support',
         icon: 'flag',
-        description: 'Become aware of the temperature, the sights, the sounds and enjoy walking along the path of your life. Make it sensory rich and get comfortable with the idea. Imagine the feeling of your feet walking along the path and the sound',
+        description: 'Your business is in the middle on an unexpected crisis. Perhaps there has been a reported security breach. Maybe your site has experienced a huge spike in traffic and suddenly went awol from an unexpected performance load. A payment form is not working, information is not rendered properly on your landing page.',
         link: '#',
     }
 ]
@@ -44,7 +44,7 @@ class Services extends Component {
                     <div className="services-info">
                         <h4>{item.title}</h4>
                         <p className="description">
-                            {item.description}
+                            <span>{item.description}</span>
                             <a href="#">
                                 Read more...
                                 <FontAwesome

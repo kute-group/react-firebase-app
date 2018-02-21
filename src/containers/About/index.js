@@ -5,6 +5,8 @@ import FontAwesome from 'react-fontawesome';
 
 //import external libs
 const { layouts:{MainPage}, SEO } = global.COMPONENTS;
+const { images } = global.THEMES;
+console.log(images,'images');
 
 class About extends Component {
     render() {
@@ -14,32 +16,32 @@ class About extends Component {
                 <div className="about main-block">
                     <div className="avatar">
                         <figure>
-                            <img src="https://scontent-hkg.xx.fbcdn.net/v/t1.0-9/27072879_1548640371921136_6130175718960902028_n.jpg?oh=2ff93d90dac08ffccf8eb6378ee10ed1&oe=5B0B7C1B" alt="1" />
+                            <img src={images.default.avatar} alt="1" />
                             <div className="links">
-                                <a href="">
+                                <a target="_blank" href="https://www.facebook.com/steve.luong.5">
                                     <FontAwesome
                                         name='facebook'
                                         size='3x'
                                     />
                                 </a>
-                                <a href="">
+                                <a target="_blank" href="https://www.youtube.com/channel/UCZQv-jc3EmDjxfZq5SEwuQQ">
                                     <FontAwesome
                                         name='youtube'
                                         size='3x'
                                     />
                                 </a>
-                                <a href="">
+                                <a target="_blank" href="https://www.topcv.vn/xem-cv/f5a04956d682fe06145f3f4f73715afc">
                                     <FontAwesome
-                                        name='google'
+                                        name='laptop'
                                         size='3x'
                                     />
                                 </a>
-                                <a href="">
+                                {/* <a href="">
                                     <FontAwesome
                                         name='apple'
                                         size='3x'
                                     />
-                                </a>
+                                </a> */}
                             </div>
                         </figure>
                     </div>

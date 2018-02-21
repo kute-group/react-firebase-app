@@ -3,7 +3,7 @@ class Config {
         global.PLATFROM = 'web'; // 'web' or 'mobile'
         global.DATABASE = 'firebase'; // 'firebase' or 'any thing else'
         global.REDUX = require('./redux');
-        // global.THEMES = require('./themes');
+        global.THEMES = require('./themes');
         // global.MODELS = require('./models');
         global.COMPONENTS = require('./components');
         // global.ROUTES = require('./routePath');

@@ -29,10 +29,21 @@ class Header extends Component {
                 </nav>
                 <div className='menu-footer'>
                     <ul>
-                        <li><NavLink to='/'><i className="fa fa-facebook"></i></NavLink></li>
-                        <li><NavLink to='/'><i className="fa fa-youtube"></i></NavLink></li>
-                        <li><NavLink to='/'><i className="fa fa-google"></i></NavLink></li>
-                        <li><NavLink to='/'><i className="fa fa-apple"></i></NavLink></li>
+                        <li>
+                            <a target="_blank" href="https://www.facebook.com/steve.luong.5">
+                                <i className="fa fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="https://www.youtube.com/channel/UCZQv-jc3EmDjxfZq5SEwuQQ">
+                                <i className="fa fa-youtube"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="https://www.topcv.vn/xem-cv/f5a04956d682fe06145f3f4f73715afc">
+                                <i className="fa fa-laptop"></i>
+                            </a>
+                        </li>
                     </ul>
                     <div className='copyright'>
                         <p>© Steve Luong <br /> all rights reserved</p>
