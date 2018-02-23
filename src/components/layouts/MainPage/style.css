@@ -19,7 +19,7 @@ h4 { font-size: 18px; }
 h5 { font-size: 16px; }
 h6 { font-size: 14px; }
 .image-loading{
-    background: url('./loading.gif') center no-repeat;
+    background: url('./loading.gif');
 }
 .progress{
     position: absolute;
@@ -182,8 +182,6 @@ h6 { font-size: 14px; }
 .about .avatar img{
     width: 100%;
     height: auto;
-    min-height: 270px;
-    min-width: 100%;
 }
 .about .avatar .links{
     background: #07cb79;

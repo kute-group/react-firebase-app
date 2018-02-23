@@ -2,11 +2,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
+import LazyLoad from 'react-lazy-load';
 
 //import external libs
 const { layouts: { MainPage }, SEO } = global.COMPONENTS;
 const { images } = global.THEMES;
-console.log(images, 'images');
 
 class About extends Component {
     render() {
@@ -16,11 +16,12 @@ class About extends Component {
                 <div className="about main-block">
                     <div className="avatar">
                         <figure>
-                            <img
-                                src={images.default.avatar}
-                                className="image-loading"
-                                alt="avatar"
-                            />
+                            <LazyLoad height={762} offsetVertical={300}>
+                                <img
+                                    src={images.default.avatar}
+                                    alt="avatar"
+                                />
+                            </LazyLoad>
                             <div className="links">
                                 <a target="_blank" href="https://www.facebook.com/steve.luong.5">
                                     <FontAwesome
@@ -106,11 +107,11 @@ class About extends Component {
                                 I have more than 4 years of experience in the field of Web, Native/Hybird application Development. Now, I am working for FPT Software that is part of FPT Corporation. I am a full stack developer and familar with Agile/Scrum. With Front-End position, I have experience in ReactJs, AngularJs, VueJs; with Back-End: NodeJs, ExpressJs, FeathersJs, Python; with AWS DevOps Engineer: use almost all of the main services of the AWS stack (like EC2, S3, RDS,
 VPC, IAM, ELB, Cloud watch, Route 53, Lamda and Cloud Formation) focused on high
 availability, fault tolerance environment. I’m friendly with Infrastructure as code.</p><p> My favourite quote:
-                            Running a marathon is far more
-                            mental than physical. A person’s ability
-                            to run a marathon—or do anything
-                            hard—is more a reflection of their level
-                            of confidence than their actual ability
+                                                        Running a marathon is far more
+                                                        mental than physical. A person’s ability
+                                                        to run a marathon—or do anything
+                                                        hard—is more a reflection of their level
+                                                        of confidence than their actual ability
                             </p>
                         </div>
                     </div>
