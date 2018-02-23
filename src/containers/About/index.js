@@ -16,7 +16,7 @@ class About extends Component {
                 <div className="about main-block">
                     <div className="avatar">
                         <figure>
-                            <LazyLoad height={762} offsetVertical={300}>
+                            <LazyLoad>
                                 <img
                                     src={images.default.avatar}
                                     alt="avatar"

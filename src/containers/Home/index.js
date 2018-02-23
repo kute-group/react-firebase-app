@@ -29,6 +29,8 @@ import FontAwesome from 'react-fontawesome';
 
 const { layouts: { MainPage }, SEO } = global.COMPONENTS;
 const { actions, types } = global.REDUX;
+const { images } = global.THEMES;
+
 //=== map state ===
 function mapStateToProps({ todo, global }) {
     return { todo, global }
@@ -148,7 +150,7 @@ class Home extends Component {
         return (
             <MainPage>
                 <SEO url="home" />
-                <div className="home">
+                <div className="home" style={{backgroundImage: `url(${images.default.bg})`}}>
                     <div className="intro">
                         <div className="content">
                             <Typist avgTypingDelay={100} cursor={{show: false}}>
