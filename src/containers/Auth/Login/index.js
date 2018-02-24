@@ -55,7 +55,7 @@ class Login extends Component {
         return (
             <MainPage>
                 <SEO url="login" />
-                <AuthPage page="login">
+                <AuthPage page="login" >
                     <FormGroup >
                         <Label >Username</Label>
                         <Input placeholder="Enter your username" onChange={(value) => this.onChangeInputs(value, 'title')} value={this.state.form.title} />

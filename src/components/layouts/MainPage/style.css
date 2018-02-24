@@ -83,14 +83,14 @@ h6 { font-size: 14px; }
     top: 0;
 }
 .wrap .main .home::before, .wrap .main .auth::before{
-    background: linear-gradient(45deg, #131b51 0%, #e8d4e6 100%);
+    background: linear-gradient(180deg, #07cb79 0%, #2f3742 100%);
     position: absolute;
     left: 0;
     right: 0;
     bottom: 0;
     top: 0;
     content: '';
-    opacity: 0.6;
+    opacity: 0.4;
 }
 .home .intro{
     color: #fff;

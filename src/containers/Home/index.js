@@ -150,7 +150,7 @@ class Home extends Component {
         return (
             <MainPage>
                 <SEO url="home" />
-                <div className="home" style={{backgroundImage: `url(${images.default.bg})`}}>
+                <div className="home" style={{backgroundImage: `url(${images.default.home})`}}>
                     <div className="intro">
                         <div className="content">
                             <Typist avgTypingDelay={100} cursor={{show: false}}>

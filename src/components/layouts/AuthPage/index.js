@@ -34,6 +34,8 @@ const TABS = [
     }
 ];
 
+const { images } = global.THEMES;
+
 class AuthPage extends Component {
 
     renderTabs(){
@@ -45,7 +47,7 @@ class AuthPage extends Component {
     }
     render() {
         return (
-            <div className="auth">
+            <div className="auth" style={{backgroundImage: `url(${images.default.landing})`}}>
                 <div className="auth-form">
                     <Container>
                         <Row>
