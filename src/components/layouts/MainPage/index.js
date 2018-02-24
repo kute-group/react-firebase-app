@@ -35,7 +35,6 @@ class MainPage extends Component {
     }
 
     render() {
-        console.log(this.state,'state');
         return (
             <div className='wrap'>
                 {(this.state.times > 0 && this.state.times <= 1000) &&

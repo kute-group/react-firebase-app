@@ -13,12 +13,12 @@ import {
     Container,
     Row,
     Col,
+    Input,
     ListGroup,
     ListGroupItem,
     Form,
     FormGroup,
     Label,
-    Input,
     FormFeedback,
     FormText
 } from 'reactstrap';
@@ -30,6 +30,7 @@ import { NavLink } from 'react-router-dom';
 
 const { layouts: { MainPage, AuthPage }, SEO } = global.COMPONENTS;
 const { actions, types } = global.REDUX;
+const { validators } = global.HELPERS;
 //=== map state ===
 function mapStateToProps({ todo }) {
     return { todo }
@@ -38,33 +39,86 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            list: null,
-            loading: false,
-            form: {
-                title: '',
-                author: ''
-            },
-            validation: {
-                title: '',
-                author: ''
-            },
-            editable: false,
+            form: {},
+            error: {},
         };
     }
+    onChangeInputs(value, field) {
+        this.setState({
+            form: Object.assign({}, this.state.form, { [field]: value.target.value })
+        })
+    }
+    onSubmit() {
+        const { form } = this.state;
+        if (this.doValidate()) this.doLogin();
+    }
+    doValidate() {
+        const RULES = [
+            { 
+                username:{
+                    require: true,
+                    minLength: 5,
+                    maxLength: 10
+                } 
+            },
+            { 
+                password: {
+                    require: true,
+                    minLength: 5
+                } 
+            },
+        ];
+        const { form } = this.state;
+        const vali = validators.validate(RULES, form);
+        if(!vali.status) {
+            this.setState({error: vali});
+            return false;
+        }
+        return true;
+    }
+    doLogin() {
+        console.log(this.state.form);
+    }
+    renderTextHelper(field) {
+        const { error } = this.state;
+        let text = '';
+        if(typeof(error[field]) !=='undefined' && error[field] !=='') text = error[field];
+        return (<p>{text}</p>)
+    }
+    renderClassHelper(field) {
+        const { error } = this.state;
+        let text = '';
+        if(typeof(error[field]) !=='undefined' && error[field] ==='') text = 'success';
+        if(typeof(error[field]) !=='undefined' && error[field] !=='') text = 'error';
+        return text;
+    }
     render() {
+        console.log(this.state, 'state');
         return (
             <MainPage>
                 <SEO url="login" />
                 <AuthPage page="login" >
-                    <FormGroup >
-                        <Label >Username</Label>
-                        <Input placeholder="Enter your username" onChange={(value) => this.onChangeInputs(value, 'title')} value={this.state.form.title} />
+                    <FormGroup className={this.renderClassHelper('username')} >
+                        <Label >Username </Label>
+                        <Input
+                            className="form-input valid-feedback"
+                            placeholder="Enter your username"
+                            onChange={(value) => this.onChangeInputs(value, 'username')}
+                            value={this.state.form.title} />
+                            {this.renderTextHelper('username')}
                     </FormGroup>
-                    <FormGroup >
-                        <Label >Password</Label>
-                        <Input placeholder="Enter your password" onChange={(value) => this.onChangeInputs(value, 'author')} value={this.state.form.author} />
+                    <FormGroup className={this.renderClassHelper('password')} >
+                        <Label >Password </Label>
+                        <Input
+                            type="password"
+                            className="form-input"
+                            placeholder="Enter your password"
+                            onChange={(value) => this.onChangeInputs(value, 'password')}
+                            value={this.state.form.author} />
+                            {this.renderTextHelper('password')}
+                        
                     </FormGroup>
-                    <Button color="primary" onClick={() => this.onSubmit()}>Submit</Button>
+                    <Button className="pull-right" color="primary" onClick={() => this.onSubmit()}>Submit</Button>
                 </AuthPage>
             </MainPage>
         );

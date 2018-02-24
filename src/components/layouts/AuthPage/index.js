@@ -23,13 +23,13 @@ import {
 import { NavLink } from 'react-router-dom';
 const TABS = [
     {
-        title:'Login',
-        path:'/auth/login',
+        title: 'Login',
+        path: '/auth/login',
         ID: 'login'
     },
     {
-        title:'Register',
-        path:'/auth/register',
+        title: 'Register',
+        path: '/auth/register',
         ID: 'register'
     }
 ];
@@ -38,21 +38,21 @@ const { images } = global.THEMES;
 
 class AuthPage extends Component {
 
-    renderTabs(){
+    renderTabs() {
         const { page } = this.props;
-        const tabs = TABS.map((item,index)=>{
-            return(<NavLink to={item.path}>{item.title}</NavLink>);
+        const tabs = TABS.map((item, index) => {
+            return (<NavLink key={index} to={item.path}>{item.title}</NavLink>);
         })
-        return(<div className="tabs">{tabs}</div>);
+        return (<div className="tabs">{tabs}</div>);
     }
     render() {
         return (
-            <div className="auth" style={{backgroundImage: `url(${images.default.landing})`}}>
+            <div className="auth" style={{ backgroundImage: `url(${images.default.landing})` }}>
                 <div className="auth-form">
                     <Container>
                         <Row>
                             <Col xs="12">
-                               {this.renderTabs()}
+                                {this.renderTabs()}
                                 <Form>
                                     {this.props.children}
                                 </Form>
