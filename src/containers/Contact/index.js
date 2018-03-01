@@ -10,13 +10,14 @@ import GoogleMapReact from 'google-map-react';
 const { layouts: { MainPage }, SEO } = global.COMPONENTS;
 const { images } = global.THEMES;
 const AnyReactComponent = ({ text }) => <div className="marker"> 
-    <h4>{text}</h4>
-    <img src={images.default.marker} width="100"/>
+    <img src={images.default.marker} width="80" style={{marginTop:'-85px'}}/>
 </div>;
 
 
 class Contact extends Component {
     render() {
+        const height = window.innerHeight -160;
+        console.log(height);
         return (
             <MainPage>
                 <SEO url="contact" />
@@ -26,11 +27,12 @@ class Contact extends Component {
                             <span>Get in touch</span>
                             <h2>Contact me</h2>
                         </div>
-                        <div className="map-block">
+                        <div className="map-block" style={{height:`${height}px`}}>
                             <GoogleMapReact
                                 bootstrapURLKeys={{ key: '' }}
                                 defaultCenter={{lat: 21.036867, lng: 105.803688}}
                                 defaultZoom={15}
+                                className="maps"
                             >
                                 <AnyReactComponent
                                     lat={21.036867}

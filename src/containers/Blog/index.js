@@ -106,6 +106,7 @@ class Blog extends Component {
         return (<div className="post-block">{listServives}</div>);
     }
     render() {
+        const height = window.innerHeight -150;
         return (
             <MainPage>
                 <SEO url="blog" />
@@ -118,7 +119,7 @@ class Blog extends Component {
                         <Scrollbars     
                             autoHide
                             autoHeight
-                            autoHeightMin={500}
+                            autoHeightMin={height}
                             hideTracksWhenNotNeeded
                             renderTrackVertical={props => <div {...props} style={trackLightStyle} />}
                             renderThumbVertical={props => <div {...props} style={thumbLightStyle} />}
