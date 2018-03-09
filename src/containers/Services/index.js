@@ -7,27 +7,27 @@ import FontAwesome from 'react-fontawesome';
 const { layouts: { MainPage }, SEO } = global.COMPONENTS;
 const items = [
     {
-        title: 'UI/UX Design',
+        title: 'Website Development',
         icon: 'laptop',
-        description: 'We will take your customers on an amazing journey from the very first second of using your product. Our custom designs offer an alluring and straightforward path to learning more about your company and opting for your services.',
+        description: 'I am a freelancer at UpWorks.com, this is the best place to find online job. I am willing to join projects that use Wordpress, PHP, ReactJs, AngularJs. I have a solid knowledge about HTML/CSS/JAVASCRIPT. I also get jobs from VietNamese, If you are have an idea that need a website, let\'s contact me',
         link: '#',
     },
     {
-        title: 'Front-end Development',
-        icon: 'code',
-        description: 'Looks great, loads fast, works with out a tiny hiccup – here is how your final product will look like. We create interfaces users can not help, but love. Each product is made with great care to make it look equally stunning on large desktop screens and mobile devices.',
+        title: 'Mobile Development',
+        icon: 'mobile',
+        description: 'I have experience in hybird web app development. I use Ionic, React Native in my mobile projects. With the platforms, I can build IOS, Android apps very quickly. Preogessive web app also is my favirous platform to build mobile app that use wb technology.',
         link: '#',
     },
     {
-        title: 'DevOps',
+        title: 'Hosting/Domain',
         icon: 'cloud',
-        description: 'we practice the agile approach to software development, allowing our compact teams to build enterprise-level, high-delivery products with fewer people involved and less hours billed. We offer our customers to experience the same benefits with our DevOps Advisory Service',
+        description: 'If you have a website and need hosting and domain to push that web go global. I suggest for you some cheap and quality plans. I also help you to maintaince your website and help your site live 24/7',
         link: '#',
     },
     {
-        title: 'Technical Support',
+        title: 'Trainning',
         icon: 'flag',
-        description: 'Your business is in the middle on an unexpected crisis. Perhaps there has been a reported security breach. Maybe your site has experienced a huge spike in traffic and suddenly went awol from an unexpected performance load. A payment form is not working, information is not rendered properly on your landing page.',
+        description: 'If you are student or someone that have interested in building your own website or mobile app. Please contact me, I have strong experience in trainning at a IT center. In my jobs, I ussually train my new coworkers by all my heart.',
         link: '#',
     }
 ]

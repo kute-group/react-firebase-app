@@ -401,10 +401,7 @@ html {
         margin-left: 0 !important;
         width: 100%;
     }
-    .main .home{
-        background-size: cover;
-        background-position: center;
-    }
+    
     .main-menu .logo{
         display: none;
     }
@@ -420,5 +417,19 @@ html {
     .header .main-menu .menu li a:hover{
        
         border: 0px solid #07cb79 !important;
+    }
+    
+}
+
+@media screen and (max-width: 480px) {
+    .main .home{
+        background-position: 81% -9% !important;
+        background-size: cover;
+    }
+    .home .intro .content h1{
+        font-size: 3em;
+    }
+    .home .intro .content h2{
+        font-size: 2em;
     }
 }
