@@ -414,13 +414,40 @@ html {
     .services .list-services .services-block .item, .posts .post-block .item{
         width: 50%;
     }
-    .header .main-menu .menu li a:hover{
-       
+    
+    
+}
+@media screen and (max-width: 680px) {
+    .main-block{
+        padding: 20px;
+    }
+    .header .main-menu .menu li a.active{
         border: 0px solid #07cb79 !important;
+        -webkit-box-shadow: 0px 0px 0px 0px #07cb79 inset;
+        box-shadow: 0px 0px 0px 0px #07cb79 inset;
+    }
+    .header .main-menu .menu li a {
+        padding: 15px 5px 10px 25px;
+    }
+    .about .avatar img{
+        width: 80%;
+        margin-left: 10%;
+        height: auto;
+        border: 2px solid #ddd;
+        border-radius: 20px;
+    }
+    .about .avatar{
+        width: 100%;
+        clear: both;
+        float: none;
+    }
+    .about .infomation{
+        width: 100%;
+        clear: both;
+        float: none;
     }
     
 }
-
 @media screen and (max-width: 480px) {
     .main .home{
         background-position: 81% -9% !important;

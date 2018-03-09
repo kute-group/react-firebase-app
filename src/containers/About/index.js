@@ -23,7 +23,7 @@ class About extends Component {
                                 />
                             </LazyLoad>
                             <div className="links">
-                                <a target="_blank" href="https://www.facebook.com/steve.luong.5">
+                                <a target="_blank"  href="https://www.facebook.com/steve.luong.5">
                                     <FontAwesome
                                         name='facebook'
                                         size='3x'
