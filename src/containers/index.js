@@ -7,12 +7,11 @@ import Article from './Article';
 import { Login, Register } from './Auth';
 import { 
     Home as AdHome, 
-    Article as AdArticle,
 } from './Admin';
 import NotFound from './NotFound';
 
 
 export { 
     Home, About, Contact, Blog, Services, Article, Login, Register, NotFound,
-    AdHome, AdArticle
+    AdHome
  };

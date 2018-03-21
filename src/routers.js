@@ -38,6 +38,10 @@ const ROUTES = [
         component: pages.Register,
     },
     {
+        path: '/admin/home',
+        component: pages.AdHome,
+    },
+    {
         path: '*',
         component: pages.NotFound,
     },

@@ -9,12 +9,15 @@ import './config';
 import store from './store';
 import * as pages from './containers';
 import registerServiceWorker from './registerServiceWorker';
-import ROUTES  from "./routers";
+import ROUTES from "./routers";
 registerServiceWorker();
 
 class App {
     constructor() {
         this.init();
+    }
+    onHandle(){
+        console.log('hello ');
     }
     init() {
         ReactDOM.render(
@@ -23,7 +26,7 @@ class App {
                     <div>
                         <Switch store={store}>
                             {ROUTES.map(({ path, component, exact }, key) => (
-                                <Route key={key} path={path} component={component} exact={exact} />
+                                <Route key={key} path={path} component={component} exact={exact} onEnter={this.onHandle} />
                             ))}
                         </Switch>
                     </div>

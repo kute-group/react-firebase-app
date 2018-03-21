@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^4.0.0-alpha.6",
+    "draft-js": "^0.10.5",
     "firebase": "^4.3.1",
     "google-map-react": "^0.31.0",
     "lodash": "^4.17.5",
@@ -12,6 +13,7 @@
     "react-addons-transition-group": "^15.6.0",
     "react-custom-scrollbars": "^4.2.1",
     "react-dom": "^15.6.1",
+    "react-draft-wysiwyg": "^1.12.11",
     "react-fontawesome": "^1.6.1",
     "react-helmet": "^5.2.0",
     "react-lazy-load": "^3.0.13",
