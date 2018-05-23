@@ -13,27 +13,27 @@ import ROUTES from "./routers";
 registerServiceWorker();
 
 class App {
-    constructor() {
-        this.init();
-    }
-    onHandle(){
-        console.log('hello ');
-    }
-    init() {
-        ReactDOM.render(
-            <Provider store={store}>
-                <BrowserRouter>
-                    <div>
-                        <Switch store={store}>
-                            {ROUTES.map(({ path, component, exact }, key) => (
-                                <Route key={key} path={path} component={component} exact={exact} onEnter={this.onHandle} />
-                            ))}
-                        </Switch>
-                    </div>
-                </BrowserRouter>
-            </Provider>
-            , document.getElementById('root'));
-    }
+  constructor() {
+    this.init();
+  }
+  onHandle() {
+    console.log('hello ');
+  }
+  init() {
+    ReactDOM.render(
+      <Provider store={store}>
+        <BrowserRouter>
+          <div>
+            <Switch store={store}>
+              {ROUTES.map(({ path, component, exact }, key) => (
+                <Route key={key} path={path} component={component} exact={exact} onEnter={this.onHandle} />
+              ))}
+            </Switch>
+          </div>
+        </BrowserRouter>
+      </Provider>
+      , document.getElementById('root'));
+  }
 
 }
 new App();
