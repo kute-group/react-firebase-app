@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
 //import internal libs
-import './style.css';
+import './style.scss';
 
 class Header extends Component {
     render() {
@@ -25,6 +25,7 @@ class Header extends Component {
                         {/* <li><NavLink to='/page'>Page</NavLink></li> */}
                         <li><NavLink to='/contact'>Contact</NavLink></li>
                         <li><NavLink to='/auth/login'>Login</NavLink></li>
+                        <li><NavLink to='/admin/home'>Admin</NavLink></li>
                     </ul>
                 </nav>
                 <div className='menu-footer'>

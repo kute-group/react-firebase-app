@@ -26,6 +26,7 @@ import Typist from 'react-typist';
 import FontAwesome from 'react-fontawesome';
 import { NavLink } from 'react-router-dom';
 import { Editor } from 'react-draft-wysiwyg';
+// import draftToHtml from 'draftjs-to-html';
 import { EditorState } from 'draft-js';
 import '../../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
@@ -107,7 +108,7 @@ class Home extends Component {
         })
     }
     onEditorStateChange(content){
-        console.log(content, 'content');
+      console.log(draftToHtml(content))
         this.setState({
             form: Object.assign({}, this.state.form, { content})
         })
@@ -126,6 +127,7 @@ class Home extends Component {
         if (loading) return 'Loading...';
         if (list === 'null' || list === null) return null;
         else {
+            console.log(list,'list');
             let data = [];
             Object.keys(list).map((val) => {
                 data.push(
@@ -172,6 +174,7 @@ class Home extends Component {
                                     <Input onChange={(value) => this.onChangeInputs(value, 'author') } value={this.state.form.author} />
                                 </FormGroup>
                                 <Editor wrapperClassName="wrapper-class"
+                                rawContentState={this.state.form.conten}
                                 editorState={this.state.form.content}
                                     editorClassName="editor-class"
                                     toolbarClassName="toolbar-class"

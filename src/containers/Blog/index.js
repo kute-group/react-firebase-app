@@ -1,71 +1,14 @@
 //import external libs
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import FontAwesome from 'react-fontawesome';
 import { Scrollbars } from 'react-custom-scrollbars';
 import { NavLink } from 'react-router-dom';
 
 //import external libs
 const { layouts: { MainPage }, SEO } = global.COMPONENTS;
-const items = [
-    {
-        title: 'Are You Famous Or Focused',
-        category: 'Health',
-        image: 'http://themes.potenzaglobalsolutions.com/html/sam-martin/it/layout-1/images/blog/01.jpg',
-        description: 'Become aware walking along the path of your life. Make it sensory rich and get comfortable with the idea. Imagine the feeling of your feet walking along the path and the sound',
-        link: '/article/care-health',
-    },
-    {
-        title: 'Are You Famous Or Focused',
-        category: 'Health',
-        image: 'http://themes.potenzaglobalsolutions.com/html/sam-martin/it/layout-1/images/blog/01.jpg',
-        description: 'Become aware walking along the path of your life. Make it sensory rich and get comfortable with the idea. Imagine the feeling of your feet walking along the path and the sound',
-        link: '/article/care-health',
-    },
-    {
-        title: 'Are You Famous Or Focused',
-        category: 'Health',
-        image: 'http://themes.potenzaglobalsolutions.com/html/sam-martin/it/layout-1/images/blog/01.jpg',
-        description: 'Become aware walking along the path of your life. Make it sensory rich and get comfortable with the idea. Imagine the feeling of your feet walking along the path and the sound',
-        link: '/article/care-health',
-    },
-    {
-        title: 'Are You Famous Or Focused',
-        category: 'Health',
-        image: 'http://themes.potenzaglobalsolutions.com/html/sam-martin/it/layout-1/images/blog/01.jpg',
-        description: 'Become aware walking along the path of your life. Make it sensory rich and get comfortable with the idea. Imagine the feeling of your feet walking along the path and the sound',
-        link: '/article/care-health',
-    },
-    {
-        title: 'Are You Famous Or Focused',
-        category: 'Health',
-        image: 'http://themes.potenzaglobalsolutions.com/html/sam-martin/it/layout-1/images/blog/01.jpg',
-        description: 'Become aware walking along the path of your life. Make it sensory rich and get comfortable with the idea. Imagine the feeling of your feet walking along the path and the sound',
-        link: '/article/care-health',
-    },
-    {
-        title: 'Are You Famous Or Focused',
-        category: 'Health',
-        image: 'http://themes.potenzaglobalsolutions.com/html/sam-martin/it/layout-1/images/blog/01.jpg',
-        description: 'Become aware walking along the path of your life. Make it sensory rich and get comfortable with the idea. Imagine the feeling of your feet walking along the path and the sound',
-        link: '/article/care-health',
-    },
-    {
-        title: 'Are You Famous Or Focused',
-        category: 'Health',
-        image: 'http://themes.potenzaglobalsolutions.com/html/sam-martin/it/layout-1/images/blog/01.jpg',
-        description: 'Become aware walking along the path of your life. Make it sensory rich and get comfortable with the idea. Imagine the feeling of your feet walking along the path and the sound',
-        link: '/article/care-health',
-    },
-    {
-        title: 'Are You Famous Or Focused',
-        category: 'Health',
-        image: 'http://themes.potenzaglobalsolutions.com/html/sam-martin/it/layout-1/images/blog/01.jpg',
-        description: 'Become aware walking along the path of your life. Make it sensory rich and get comfortable with the idea. Imagine the feeling of your feet walking along the path and the sound',
-        link: '/article/care-health',
-    },
-    
-];
+const { actions, types } = global.REDUX;
 export const trackLightStyle = {
     background: '#e9e9e9',
     position: 'absolute',
@@ -84,18 +27,47 @@ export const trackLightStyle = {
     height: '30px',
     transform: 'translateY(0px)',
   };
-
+//=== map state ===
+function mapStateToProps({ post }) {
+  return { postStore: post }
+}
 class Blog extends Component {
+  componentWillMount() {
+      this.props.dispatch(
+          actions.post.fetchPost()
+      )
+      this.setState({ loading: true });
+  }
+   string_to_slug (str) {
+    str = str.replace(/^\s+|\s+$/g, ''); // trim
+    str = str.toLowerCase();
+  
+    // remove accents, swap ñ for n, etc
+    var from = "àáäâèéëêìíïîòóöôùúüûñç·/_,:;";
+    var to   = "aaaaeeeeiiiioooouuuunc------";
+    for (var i=0, l=from.length ; i<l ; i++) {
+        str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+    }
+
+    str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+        .replace(/\s+/g, '-') // collapse whitespace and replace by -
+        .replace(/-+/g, '-'); // collapse dashes
+
+    return str;
+}
     renderItem() {
-        const listServives = items.map((item, index) => {
+         const {postStore} = this.props;
+         if( postStore.list === null || postStore.list.length === 0) return false;
+         console.log(postStore.list,'ddvvvv');
+        const listServives = postStore.list.map((item, index) => {
             return (
-                <div className="item">
-                    <img src={item.image} className="image"/>
+                <div className="item" key={index}>
+                    <img src='https://buithucdong.com/file/2014/08/18826_4405766577037_1503075782_n.jpg' className="image"/>
                     <div className="post-info">
                         <h4>{item.title}</h4>
                         <p className="description">
                             {item.description}
-                            <NavLink to={item.link}>
+                            <NavLink to={`/article/${this.string_to_slug(item.title)}`}>
                                 Read more...
                             </NavLink>
                         </p>
@@ -107,6 +79,8 @@ class Blog extends Component {
     }
     render() {
         const height = window.innerHeight -150;
+        const {postStore} = this.props;
+        console.log(postStore,'dd');
         return (
             <MainPage>
                 <SEO url="blog" />
@@ -137,4 +111,4 @@ Blog.propTypes = {
 
 };
 
-export default Blog;
+export default connect(mapStateToProps)(Blog);

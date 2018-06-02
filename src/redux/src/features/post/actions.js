@@ -71,8 +71,18 @@ const actionMidlewares = {
         return dispatch => {
             dispatch(globalAction.loadingShow());
             firebase.ref('/posts').once('value', snap => {
-                const invite = snap.val();
-                dispatch(actionTypes.postFetch(invite));
+              var returnArr = [];
+
+              snap.forEach(function(childSnapshot) {
+                  if(childSnapshot.val() !== 1){
+                    var item = childSnapshot.val();
+                    item.key = childSnapshot.key;
+            
+                    returnArr.push(item);
+                  }
+                 
+              });
+                dispatch(actionTypes.postFetch(returnArr));
                 dispatch(globalAction.loadingHide());
             }).catch((error) => {
                 dispatch(actionTypes.postReset(error));

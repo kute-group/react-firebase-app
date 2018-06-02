@@ -11,6 +11,7 @@ import * as pages from './containers';
 import registerServiceWorker from './registerServiceWorker';
 import ROUTES from './routers';
 import './themes/styles/default/main.scss';
+import './themes/styles/admin/main.scss';
 
 registerServiceWorker();
 
@@ -19,7 +20,7 @@ class App {
     this.init();
   }
   onHandle() {
-    console.log('hello ');
+    // console.log('hello ');
   }
   init() {
     ReactDOM.render(

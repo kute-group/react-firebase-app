@@ -8,7 +8,7 @@ const META = [
     {
         url:'about',
         title: 'About page || Steve Luong blog',
-        description:'This is my page',
+        description:'This is my page trang gi do',
         keywords: 'steve luong, hop, dev, devops'
     },
     {

@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 //import internal libs
-import './style.css';
+// import './style.css';
 
 class AdminPage extends Component {
   render() {
