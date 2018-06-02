@@ -9,7 +9,9 @@ import './config';
 import store from './store';
 import * as pages from './containers';
 import registerServiceWorker from './registerServiceWorker';
-import ROUTES from "./routers";
+import ROUTES from './routers';
+import './themes/styles/default/main.scss';
+
 registerServiceWorker();
 
 class App {
