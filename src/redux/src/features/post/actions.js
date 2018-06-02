@@ -65,6 +65,7 @@ const actionTypes = {
     }
 };
 
+
 //=== ACTION MIDLEWARES ===
 const actionMidlewares = {
     fetchPost(params) {
