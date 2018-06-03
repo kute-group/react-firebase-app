@@ -1,3 +1,3 @@
-import validators from './validators.js'
+import validators from './validators.js';
 
 export { validators };

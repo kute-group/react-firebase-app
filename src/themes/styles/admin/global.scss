@@ -1,0 +1,206 @@
+body {
+    font-size: 14px;
+}
+
+.theme-adminLTE,
+.theme-adminLTE.skin-blue {
+    background: #222d32;
+    font-family: $font-family;
+    .main-header {
+        position: relative;
+        background: $primary-color;
+        z-index: 9999;
+        .logo {
+            width: 230px;
+            height: 50px;
+            display: block;
+            float: left;
+            background: $primary-color-bold;
+            text-align: center;
+            span {
+                color: #fff;
+                line-height: 50px;
+                font-size: 20px;
+            }
+            .logo-mini {
+                display: none;
+            }
+            .logo-lg {
+                font-weight: lighter;
+                b {
+                    font-weight: bolder;
+                }
+            }
+        }
+        .nav-static-top {
+            height: 50px;
+            .sidebar-toggle {
+                line-height: 50px;
+                color: #fff;
+                font-size: 20px;
+                padding: 15px;
+                margin-right: 15px;
+                height: 50px;
+                cursor: pointer;
+                &:hover {
+                    background: $primary-color-bold;
+                }
+            }
+            .navbar-custom-menu {
+                padding-right: 15px;
+                ul {
+                    li {
+                        float: left;
+                        color: #fff;
+                        line-height: 50px;
+                        a {
+                            color: #fff;
+                            cursor: pointer;
+                            padding: 15px;
+                            &:hover {
+                                background: $primary-color-bold;
+                            }
+                        }
+                    }
+                    .user {
+                        a {
+                            padding: 0 15px;
+                            float: left;
+                            .user-image {
+                                width: 25px;
+                                height: 25px;
+                                border-radius: 50%;
+                                margin-right: 10px;
+                                margin-top: -2px;
+                            }
+                            span {
+                                float: right;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .main-sidebar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding-top: 50px;
+        width: 230px;
+        min-height: 100%;
+        .user-panel {
+            position: relative;
+            width: 100%;
+            padding: 10px;
+            overflow: hidden;
+            .left-image {
+                img {
+                    width: 100%;
+                    max-width: 45px;
+                    height: auto;
+                    border-radius: 50%;
+                }
+            }
+            .right-info {
+                margin-left: 20px;
+                float: left;
+                a {
+                    color: #fff;
+                    font-weight: bold;
+                }
+                p {
+                    color: #fff;
+                    font-size: 12px;
+                    padding-top: 3px;
+                    margin: 0;
+                    span {
+                        font-size: 13px;
+                        margin-right: 5px;
+                    }
+                }
+            }
+        }
+        .search-form {
+            padding: 10px;
+            input {
+                width: 100%;
+                color: #666;
+                border-top-left-radius: 2px;
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+                border-bottom-left-radius: 2px;
+                box-shadow: none;
+                background-color: #374850;
+                border: 1px solid transparent;
+                height: 35px;
+                padding-left: 15px;
+                outline: none;
+            }
+        }
+        .sidebar-menu {
+            ul {
+                li {
+                    clear: both;
+                    a {
+                        padding: 12px 5px 12px 15px;
+                        color: #b8c7ce;
+                        display: block;
+                        border-left-color: $primary-color;
+                        span {
+                            margin-right: 10px;
+                        }
+                    }
+                    &:first-child {
+                        background: #1a2226;
+                        color: #4b646f;
+                        padding: 10px 25px 10px 15px;
+                        font-size: 12px;
+                        text-transform: uppercase;
+                    }
+                    .active {
+                        color: #fff;
+                        background: #1e282c;
+                        border-left: 3px solid $primary-color;
+                    }
+                    &:hover {
+                        a {
+                            color: #fff;
+                            background: #1e282c;
+                            border-left-color: $primary-color;
+                            border-left: 3px solid transparent;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.main-content {
+    background: $color-grey;
+    margin-left: 230px;
+    padding: 15px;
+}
+
+.theme-adminLTE.skin-red {
+    background: #000;
+    .main-header {
+        position: relative;
+        height: 50px;
+        background: $skin-red-color;
+        z-index: 9999;
+    }
+    .main-sidebar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding-top: 50px;
+        width: 230px;
+        min-height: 100%;
+    }
+    .main-content {
+        background: $color-grey;
+        margin-left: 230px;
+    }
+}

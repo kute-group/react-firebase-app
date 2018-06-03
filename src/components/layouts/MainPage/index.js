@@ -36,7 +36,7 @@ class MainPage extends Component {
 
     render() {
         return (
-            <div className='wrap'>
+            <div className='wrap theme-default'>
                 {(this.state.times > 0 && this.state.times <= 1000) &&
                     <div className="progress">
                         <Progress animated color="warning" value={this.state.times} />
