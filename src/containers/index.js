@@ -5,14 +5,15 @@ import Contact from './Contact';
 import Services from './Services';
 import Article from './Article';
 import { Login, Register } from './Auth';
-import { 
-    Home as AdHome, 
+import {
+    Home as AdHome,
+    Article as AdArticle,
     Project as AdProject,
 } from './Admin';
 import NotFound from './NotFound';
 
 
-export { 
+export {
     Home, About, Contact, Blog, Services, Article, Login, Register, NotFound,
-    AdHome, AdProject
- };
+    AdHome, AdArticle, AdProject
+};

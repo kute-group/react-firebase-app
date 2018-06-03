@@ -158,7 +158,7 @@ body {
                         font-size: 12px;
                         text-transform: uppercase;
                     }
-                    .active {
+                    a.active {
                         color: #fff;
                         background: #1e282c;
                         border-left: 3px solid $primary-color;
@@ -181,6 +181,7 @@ body {
     background: $color-grey;
     margin-left: 230px;
     padding: 15px;
+    min-height: 960px;
 }
 
 .theme-adminLTE.skin-red {

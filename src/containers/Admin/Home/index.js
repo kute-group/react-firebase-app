@@ -36,7 +36,7 @@ const { layouts: { MainPage, AdminPage }, SEO } = global.COMPONENTS;
 const { actions, types } = global.REDUX;
 //=== map state ===
 function mapStateToProps({ post }) {
-    return { post, post }
+    return { post };
 }
 class Home extends Component {
     constructor(props) {
@@ -47,7 +47,7 @@ class Home extends Component {
             form: {
                 title: '',
                 author: '',
-                content:EditorState.createEmpty()
+                content: EditorState.createEmpty()
             },
             validation: {
                 title: '',
@@ -60,7 +60,7 @@ class Home extends Component {
     componentWillMount() {
         this.props.dispatch(
             actions.post.fetchPost()
-        )
+        );
         this.setState({ loading: true });
     }
 
@@ -70,55 +70,53 @@ class Home extends Component {
             this.setState({
                 loading: false,
                 list: post.list
-            })
+            });
         } else if (post.action == 'POST_SAVE') {
             this.setState({ loading: false, form: { title: '', author: '' } });
             this.props.dispatch(
                 actions.post.fetchPost()
-            )
+            );
         }
         else if (post.action == 'POST_DELETE') {
             this.setState({ loading: false });
             this.props.dispatch(
                 actions.post.fetchPost()
-            )
+            );
         }
 
     }
     //=== ACTION FUNCTIONS ===
     onEdit(ID) {
-        console.log(ID, 'ID');
         let { list } = this.state;
         this.setState({
             editable: true,
             form: Object.assign({}, list[ID], { postId: ID })
-        })
+        });
     }
 
     onDelete(ID) {
         this.setState({ loading: true });
         this.props.dispatch(
             actions.post.deletePost(ID)
-        )
+        );
     }
 
     onChangeInputs(value, field) {
         this.setState({
             form: Object.assign({}, this.state.form, { [field]: value.target.value })
-        })
+        });
     }
-    onEditorStateChange(content){
-      console.log(draftToHtml(content))
+    onEditorStateChange(content) {
         this.setState({
-            form: Object.assign({}, this.state.form, { content})
-        })
+            form: Object.assign({}, this.state.form, { content })
+        });
     }
 
     onSubmit() {
         this.setState({ loading: true, editable: false });
         this.props.dispatch(
             actions.post.savePost(this.state.form, this.state.editable)
-        )
+        );
     }
 
     //=== RENDER FUNCTIONS ===
@@ -127,7 +125,6 @@ class Home extends Component {
         if (loading) return 'Loading...';
         if (list === 'null' || list === null) return null;
         else {
-            console.log(list,'list');
             let data = [];
             Object.keys(list).map((val) => {
                 data.push(
@@ -160,34 +157,32 @@ class Home extends Component {
         return (
             <AdminPage>
                 <SEO url="login" />
-                   <Container>
-                    <Row>
-                        <Col xs="6">
-                            <h1>Song Form </h1>
-                            <Form>
-                                <FormGroup >
-                                    <Label >Title</Label>
-                                    <Input onChange={(value) => this.onChangeInputs(value, 'title') } value={this.state.form.title} />
-                                </FormGroup>
-                                <FormGroup >
-                                    <Label >Author</Label>
-                                    <Input onChange={(value) => this.onChangeInputs(value, 'author') } value={this.state.form.author} />
-                                </FormGroup>
-                                <Editor wrapperClassName="wrapper-class"
+                <div className="content-block row">
+                    <Col xs="6">
+                        <h1>Home page </h1>
+                        <Form>
+                            <FormGroup >
+                                <Label >Title</Label>
+                                <Input onChange={(value) => this.onChangeInputs(value, 'title')} value={this.state.form.title} />
+                            </FormGroup>
+                            <FormGroup >
+                                <Label >Author</Label>
+                                <Input onChange={(value) => this.onChangeInputs(value, 'author')} value={this.state.form.author} />
+                            </FormGroup>
+                            <Editor wrapperClassName="wrapper-class"
                                 rawContentState={this.state.form.conten}
                                 editorState={this.state.form.content}
-                                    editorClassName="editor-class"
-                                    toolbarClassName="toolbar-class"
-                                    onEditorStateChange={(e)=>this.onEditorStateChange(e)}
-                                 />
-                                <Button color="primary" onClick={() => this.onSubmit() }>Submit</Button>
-                            </Form>
-                        </Col>
-                        <Col xs="6">
-                            {this.renderSong() }
-                        </Col>
-                    </Row>
-                </Container>
+                                editorClassName="editor-class"
+                                toolbarClassName="toolbar-class"
+                                onEditorStateChange={(e) => this.onEditorStateChange(e)}
+                            />
+                            <Button color="primary" onClick={() => this.onSubmit()}>Submit</Button>
+                        </Form>
+                    </Col>
+                    <Col xs="6">
+                        {this.renderSong()}
+                    </Col>
+                </div>
             </AdminPage>
         );
     }
@@ -197,4 +192,4 @@ Home.propTypes = {
 
 };
 
-export default connect(mapStateToProps)(Home)
+export default connect(mapStateToProps)(Home);

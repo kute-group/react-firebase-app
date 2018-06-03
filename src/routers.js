@@ -42,6 +42,10 @@ const ROUTES = [
         component: pages.AdHome,
     },
     {
+        path: '/admin/article',
+        component: pages.AdArticle,
+    },
+    {
         path: '/admin/project',
         component: pages.AdProject,
     },

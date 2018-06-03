@@ -5,7 +5,8 @@ class Config {
         global.REDUX = require('./redux');
         global.HELPERS = require('./helpers');
         global.THEMES = require('./themes');
-        // global.MODELS = require('./models');
+        global.LANG = 'LANG_EN';
+        global.LANGUAGES = require('./constants/languages');
         global.COMPONENTS = require('./components');
         // global.ROUTES = require('./routePath');
         global.CONFIG = {
@@ -14,10 +15,10 @@ class Config {
                 SERVER: process.env.REACT_APP_SERVER || 'http://ec2-13-229-33-52.ap-southeast-1.compute.amazonaws.com:2018/',
                 CMS: process.env.REACT_CMS_SERVER || 'http://ec2-54-255-196-148.ap-southeast-1.compute.amazonaws.com:3020/',
             },
-            FIREBASE:{
-                apiKey:'AIzaSyCZZGVdty7x_zgzsDcDsdnAYjAmGAqC23E',
-                authDomain:'luongbahop1993.firebaseapp.com',
-                databaseURL:'https://luongbahop1993.firebaseio.com'
+            FIREBASE: {
+                apiKey: 'AIzaSyCZZGVdty7x_zgzsDcDsdnAYjAmGAqC23E',
+                authDomain: 'luongbahop1993.firebaseapp.com',
+                databaseURL: 'https://luongbahop1993.firebaseio.com'
             }
         };
     }
