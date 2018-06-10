@@ -154,34 +154,13 @@ class Article extends Component {
         }
     }
     render() {
+        console.log(this.props);
         return (
             <AdminPage>
                 <SEO url="login" />
                 <div className="content-block row">
-                    <Col xs="6">
-                        <h1>Song Form </h1>
-                        <Form>
-                            <FormGroup >
-                                <Label >Title</Label>
-                                <Input onChange={(value) => this.onChangeInputs(value, 'title')} value={this.state.form.title} />
-                            </FormGroup>
-                            <FormGroup >
-                                <Label >Author</Label>
-                                <Input onChange={(value) => this.onChangeInputs(value, 'author')} value={this.state.form.author} />
-                            </FormGroup>
-                            <Editor wrapperClassName="wrapper-class"
-                                rawContentState={this.state.form.conten}
-                                editorState={this.state.form.content}
-                                editorClassName="editor-class"
-                                toolbarClassName="toolbar-class"
-                                onEditorStateChange={(e) => this.onEditorStateChange(e)}
-                            />
-                            <Button color="primary" onClick={() => this.onSubmit()}>Submit</Button>
-                        </Form>
-                    </Col>
-                    <Col xs="6">
-                        {this.renderSong()}
-                    </Col>
+                   
+                    
                 </div>
             </AdminPage>
         );
