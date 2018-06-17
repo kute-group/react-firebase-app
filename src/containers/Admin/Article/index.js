@@ -25,15 +25,15 @@ import {
 import Typist from 'react-typist';
 import FontAwesome from 'react-fontawesome';
 import { NavLink } from 'react-router-dom';
-import { Editor } from 'react-draft-wysiwyg';
-// import draftToHtml from 'draftjs-to-html';
-import { EditorState } from 'draft-js';
-import '../../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 //import internal libs
+import ArticleList from './Article.List';
+import ArticleForm from './Article.Form';
 
 const { layouts: { MainPage, AdminPage }, SEO } = global.COMPONENTS;
 const { actions, types } = global.REDUX;
+
+
 //=== map state ===
 function mapStateToProps({ post }) {
     return { post };
@@ -47,7 +47,6 @@ class Article extends Component {
             form: {
                 title: '',
                 author: '',
-                content: EditorState.createEmpty()
             },
             validation: {
                 title: '',
@@ -86,11 +85,12 @@ class Article extends Component {
 
     }
     //=== ACTION FUNCTIONS ===
+
     onEdit(ID) {
         let { list } = this.state;
         this.setState({
             editable: true,
-            form: Object.assign({}, list[ID], { postId: ID })
+            form: Object.assign({}, list[ID], { key: ID })
         });
     }
 
@@ -101,66 +101,64 @@ class Article extends Component {
         );
     }
 
-    onChangeInputs(value, field) {
-        this.setState({
-            form: Object.assign({}, this.state.form, { [field]: value.target.value })
-        });
-    }
     onEditorStateChange(content) {
         this.setState({
             form: Object.assign({}, this.state.form, { content })
         });
     }
 
-    onSubmit() {
-        this.setState({ loading: true, editable: false });
+    onSubmit(form) {
+
         this.props.dispatch(
-            actions.post.savePost(this.state.form, this.state.editable)
+            actions.post.savePost(form, this.state.editable)
+        );
+        this.setState({ loading: true, editable: false, form });
+    }
+    //=== RENDER FUNCTIONS ===
+
+    renderHeader() {
+        let title = 'Bài viết';
+        let showButton = true;
+        if (location.pathname.indexOf('/admin/article/add') >= 0) {
+            title = 'Thêm bài viết';
+            showButton = false;
+        } else if (location.pathname.indexOf('/admin/article/edit/') >= 0) title = 'Chỉnh sửa bài viết';
+        return (
+            <div className="col-md-6 left-block">
+                <h3>{title}</h3>
+                {showButton && <NavLink to="/admin/article/add">Viết bài mới</NavLink>}
+            </div>
         );
     }
 
-    //=== RENDER FUNCTIONS ===
-    renderSong() {
-        let { list, loading } = this.state;
-        if (loading) return 'Loading...';
-        if (list === 'null' || list === null) return null;
-        else {
-            let data = [];
-            Object.keys(list).map((val) => {
-                data.push(
-                    <ListGroupItem key={val}>
-                        <FontAwesome
-                            className='super-crazy-colors'
-                            name='rocket'
-                            size='2x'
-                            spin
-                            style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
-                        />
-
-                        sss: {list[val].title}, author: {list[val].author}
-                        <Button onClick={() => this.onEdit(val)} color="primary" className='pull-right'>Edit</Button>{' '}
-                        <Button onClick={() => this.onDelete(val)} color="danger" className='pull-right'>Delete</Button>
-                    </ListGroupItem>
-                );
-            });
-            return (
-                <div>
-                    <h1>List songs from firebase: </h1>
-                    <ListGroup>
-                        {data}
-                    </ListGroup>
-                </div>
-            );
-        }
-    }
     render() {
-        console.log(this.props);
+        const { location } = this.props;
+        const { list, loading, form } = this.state;
         return (
             <AdminPage>
-                <SEO url="login" />
+                <SEO url="admin/article" />
                 <div className="content-block row">
-                   
-                    
+                    <div className="content-header clearfix col-md-12" >
+                        <div className="row">
+                            {this.renderHeader(location)}
+                            <div className="breadcrumbs col-md-6">
+                                <a href="/admin/article" className=" pull-right"> <i className="fa fa-arrow-right"></i> Bài viết </a>
+                                <a href="/admin/home" className=" pull-right"> <i className="fa fa-home"></i> Trang chủ </a>
+                            </div>
+                        </div>
+                    </div>
+                    {location.pathname === '/admin/article' && <ArticleList
+                        onDelete={(ID) => this.onDelete(ID)}
+                        onEdit={(ID) => this.onEdit(ID)}
+                        list={list}
+                        loading={loading} />
+                    }
+                    {(location.pathname.indexOf('/admin/article/add') >= 0
+                        || location.pathname.indexOf('/admin/article/edit/') >= 0
+                    ) && <ArticleForm
+                            form={form}
+                            onSubmit={(form) => this.onSubmit(form)}
+                        />}
                 </div>
             </AdminPage>
         );

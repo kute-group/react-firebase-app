@@ -11,7 +11,7 @@ class Header extends Component {
             <div className='header'>
                 <nav className="main-menu">
                     <div className="logo">
-                        <NavLink exact to='/'><img src="https://scontent.fhan3-1.fna.fbcdn.net/v/t1.0-9/25551862_1514378232014017_8031161563457491441_n.jpg?oh=16f664cf34949bc3c0cf7910156fbd9e&oe=5ADD71FE" /></NavLink>
+                        <NavLink exact to='/'><img src="https://adminlte.io/themes/AdminLTE/dist/img/user2-160x160.jpg" /></NavLink>
                     </div>
                     <ul className='menu'>
                         <li><NavLink exact to='/'>Home</NavLink></li>

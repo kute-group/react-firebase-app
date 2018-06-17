@@ -19,21 +19,40 @@ import {
     FormFeedback,
     FormText
 } from 'reactstrap';
+import { NavLink } from 'react-router-dom';
 class ArticleList extends Component {
-
+    //=== RENDER FUNCTIONS ===
+    renderRow() {
+        let { list, loading } = this.props;
+        if (loading) return null;
+        if (list === 'null' || list === null) return null;
+        else {
+            let data = [];
+            list.map((val, key) => {
+                data.push(
+                    <tr key={`row-${key}`} >
+                        <td><input type="checkbox" /></td>
+                        <td>
+                            <NavLink onClick={()=>this.props.onEdit(key)} to={`/admin/article/edit/${val.key}`}>{val.title}</NavLink>
+                        </td>
+                        <td>tin xã hội</td>
+                        <td>{val.author}</td>
+                        <td>
+                            <a onClick={()=>this.props.onDelete(val.key)}>Xoá</a>{' '}
+                            <NavLink onClick={()=>this.props.onEdit(key)} to={`/admin/article/edit/${val.key}`}>Sửa</NavLink>
+                        </td>
+                    </tr>
+                );
+            });
+            return (<tbody>{data}</tbody>);
+        }
+    }
     render() {
+        const {list} = this.props;
+        console.log(list,'list');
         return (
             <Col xs="12">
-                <div className="content-header clearfix" >
-                    <h1 className="col-md-6">
-                        Bài viết
-                    </h1>
-                    <ol className="breadcrumb pull-right">
-                        <li><a href="#"><i className="fa fa-dashboard"></i> Home</a></li>
-                        <li><a href="#">Tables</a></li>
-                        <li className="active">Simple</li>
-                    </ol>
-                </div>
+                
                 <div className="block-filter">
                     Page:
                     <select name="" id="">
@@ -49,40 +68,17 @@ class ArticleList extends Component {
                             <th>Tiêu đề</th>
                             <th>Danh mục</th>
                             <th>Tác giả</th>
+                            <th>Hành động</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>bản tin xã hội</td>
-                            <td>tin xã hội</td>
-                            <td>Bá Hợp</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>bản tin xã hội</td>
-                            <td>tin xã hội</td>
-                            <td>Bá Hợp</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>bản tin xã hội</td>
-                            <td>tin xã hội</td>
-                            <td>Bá Hợp</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>bản tin xã hội</td>
-                            <td>tin xã hội</td>
-                            <td>Bá Hợp</td>
-                        </tr>
-                    </tbody>
+                    {this.renderRow()}
                     <tfoot>
                         <tr>
                             <th>id</th>
                             <th>Tiêu đề</th>
                             <th>Danh mục</th>
                             <th>Tác giả</th>
+                            <th>Hành động</th>
                         </tr>
                     </tfoot>
                 </table>
