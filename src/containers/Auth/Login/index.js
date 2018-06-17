@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router'
 import {
     Button,
     Nav,
@@ -25,6 +26,7 @@ import {
 import Typist from 'react-typist';
 import FontAwesome from 'react-fontawesome';
 import { NavLink } from 'react-router-dom';
+// import { browserHistory } from './react-router';
 
 //import internal libs
 
@@ -50,6 +52,7 @@ class Login extends Component {
     }
     onSubmit() {
         const { form } = this.state;
+        this.props.history.push('/admin/home');
         if (this.doValidate()) this.doLogin();
     }
     doValidate() {
@@ -129,4 +132,4 @@ Login.propTypes = {
 
 };
 
-export default connect(mapStateToProps)(Login)
+export default withRouter(connect(mapStateToProps)(Login));

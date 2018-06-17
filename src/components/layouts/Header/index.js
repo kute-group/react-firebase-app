@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
 //import internal libs
+const { images } = global.THEMES;
 import './style.scss';
 
 class Header extends Component {
@@ -11,7 +12,7 @@ class Header extends Component {
             <div className='header'>
                 <nav className="main-menu">
                     <div className="logo">
-                        <NavLink exact to='/'><img src="https://adminlte.io/themes/AdminLTE/dist/img/user2-160x160.jpg" /></NavLink>
+                        <NavLink exact to='/'><img src={images.default.avatar}/></NavLink>
                     </div>
                     <ul className='menu'>
                         <li><NavLink exact to='/'>Home</NavLink></li>
@@ -25,7 +26,7 @@ class Header extends Component {
                         {/* <li><NavLink to='/page'>Page</NavLink></li> */}
                         <li><NavLink to='/contact'>Contact</NavLink></li>
                         <li><NavLink to='/auth/login'>Login</NavLink></li>
-                        <li><NavLink to='/admin/home'>Admin</NavLink></li>
+                        {/* <li><NavLink to='/admin/home'>Admin</NavLink></li> */}
                     </ul>
                 </nav>
                 <div className='menu-footer'>

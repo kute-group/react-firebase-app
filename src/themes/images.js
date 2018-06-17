@@ -1,8 +1,8 @@
 const images = {
     avatar: require('./images/avatar.JPG'),
-    home: require('./images/home.jpg'),
+    home: require('./images/background.png'),
     loading: require('./images/loading.gif'),
-    landing: require('./images/landing.jpg'),
+    landing: require('./images/background.png'),
     bg: require('./images/bg.jpg'),
     marker: require('./images/marker.png'),
 };
