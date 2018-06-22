@@ -303,7 +303,7 @@ class Silk extends Component {
                                     </Typist>
                                     Giá chỉ:
                                    - 279k cho 8 chiếc
-                                   - 309k cho 10 chiếc
+                                   - 309k cho 10 chiếcư 
                                 </div>
                                 <Scrollbars
                                     autoHide
