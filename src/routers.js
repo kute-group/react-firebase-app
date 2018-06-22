@@ -2,7 +2,7 @@ import * as pages from './containers';
 const ROUTES = [
     {
         path: '/',
-        component: pages.Home,
+        component: pages.Silk,
         exact: true,
     },
     {
@@ -24,6 +24,12 @@ const ROUTES = [
     {
         path: '/contact',
         component: pages.Contact,
+    },
+
+    {
+        path: '/silk',
+        component: pages.Silk,
+        
     },
     // {
     //     path: '/auth/',

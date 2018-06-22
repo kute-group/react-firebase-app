@@ -4,6 +4,8 @@ import Blog from './Blog';
 import Contact from './Contact';
 import Services from './Services';
 import Article from './Article';
+
+import Silk from './Silk';
 import { Login, Register } from './Auth';
 import {
     Home as AdHome,
@@ -15,5 +17,6 @@ import NotFound from './NotFound';
 
 export {
     Home, About, Contact, Blog, Services, Article, Login, Register, NotFound,
+    Silk,
     AdHome, AdArticle, AdProject
 };
