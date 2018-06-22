@@ -155,24 +155,18 @@ const actionMidlewares = {
         };
     },
 
-    addGoogleSheet() {
-
+    addGoogleSheet(request) {
+        const {fullname, phone, note, address} = request;
         return dispatch => {
             let url = 'https://script.google.com/macros/s/AKfycbz1mmHFNZNMREv58N0F2nZWEPqYXJsEUPl52FxVySVC0Io9M_s/exec';
-            const params = {
-                data: 'Hợp',
-            };
-            const request = {
-                customerID: '2222',
-                username: '333'
-            };
-            const { customerID, username } = request;
             return axios({
                 method: 'post',
                 url,
                 params: {
-                    customerID,
-                    username,
+                    fullname,
+                    phone,
+                    address,
+                    note
                 }
             });
 

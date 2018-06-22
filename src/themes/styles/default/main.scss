@@ -479,6 +479,22 @@ html {
 
 /* BLOG */
 
+.product-popup {
+    .info {
+        width: 50%;
+        float: left;
+        padding: 10px;
+        .images-product {
+            width: 100%;
+        }
+    }
+    .cart-field {
+        width: 50%;
+        float: right;
+        padding: 10px;
+    }
+}
+
 .wrap .main .posts {
     padding-top: 30px;
 }

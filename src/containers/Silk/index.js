@@ -63,7 +63,7 @@ const styles = {
     },
     dialogStyles: {
         width: '900px',
-        height: '300px',
+        height: 'auto',
         left: '50%',
         top: '200px',
         margin: '-150px 0 0 -450px',
@@ -148,8 +148,11 @@ class Silk extends Component {
             list: null,
             loading: false,
             form: {
-                title: '',
-                author: ''
+                fullname:'',
+                address:'',
+                phone:'',
+                note:'',
+
             },
             validation: {
                 title: '',
@@ -223,10 +226,16 @@ class Silk extends Component {
         )
     }
 
+    changeInput(value, field) {
+        this.setState({
+            form: Object.assign({}, this.state.form, { [field]: value.target.value })
+        });
+    }
+
     addGoogleSheet() {
         console.log(actions,'actions');
         this.props.dispatch(
-            actions.post.addGoogleSheet()
+            actions.post.addGoogleSheet(this.state.form)
         )
     };
 
@@ -318,17 +327,38 @@ class Silk extends Component {
                         closeButtonStyle={styles.closeButtonStyle}
                         title={'Đặt hàng online'}
                     >
-                        <div className="select-stocks-portfolio">
+                        <div className="product-popup">
+                            <div className="info">
+                                <img className="images-product" onClick={() => this.viewProduct()} src={IMAGES[Math.floor(Math.random() * 10)].image || IMAGES[0].image} />
                             Bạn muốn sang trọng quý phái, bạn muốn mềm mại êm ái, bạn muốn cảm giác thoả mái mỗi sáng thức dậy, sau khi tắm xong, sau khi đi spa hay tập thể hình.
     
-                            Đầy đủ kích thước, phù hợp với mọi nhu cầu.
-                            - Khăn 100% cotton, khăn modal mềm mại, mượt mà.
-                            - Không mẫn cảm, kích ứng với da.
-                            - ship toàn quốc
-                            P/s:
-                            - đừng ngại liên hệ shop, chúng tôi phục vụ 24/24.
-                            - ưu đãi lớn cho đại lý, khách sạn.
-                            <a onClick={() => this.addGoogleSheet()}>submit </a>
+                                Đầy đủ kích thước, phù hợp với mọi nhu cầu.
+                                - Khăn 100% cotton, khăn modal mềm mại, mượt mà.
+                                - Không mẫn cảm, kích ứng với da.
+                                - ship toàn quốc
+                                P/s:
+                                - đừng ngại liên hệ shop, chúng tôi phục vụ 24/24.
+                                - ưu đãi lớn cho đại lý, khách sạn.
+                            </div>
+                           <div className="cart-field">
+                                <div className="form-group">
+                                    <label>Họ và tên</label>
+                                    <input value={this.state.form.fullname} onChange={(value)=>this.changeInput(value,'fullname')}  className="form-control" type="text" />
+                                </div>
+                                <div className="form-group">
+                                    <label>Số điện thoại</label>
+                                    <input value={this.state.form.phone}  onChange={(value)=>this.changeInput(value,'phone')} className="form-control" type="text" />
+                                </div>
+                                <div className="form-group">
+                                    <label>Địa chỉ</label>
+                                    <textarea value={this.state.form.address}  onChange={(value)=>this.changeInput(value,'address')} className="form-control"></textarea>
+                                </div>
+                                <div className="form-group">
+                                    <label>Ghi chú</label>
+                                    <textarea value={this.state.form.note}  onChange={(value)=>this.changeInput(value,'note')} className="form-control"></textarea>
+                                </div>
+                                <a className="btn btn-primary" onClick={() => this.addGoogleSheet()}>submit </a>
+                           </div>
 
                         </div>
                     </SkyLight>
