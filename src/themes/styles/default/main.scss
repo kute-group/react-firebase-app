@@ -485,21 +485,24 @@ html {
 
 .posts .post-block {
     padding-top: 30px;
+    overflow: hidden;
 }
 
 .posts .post-block .item {
-    width: 25%;
+    width: 50%;
     float: left;
-    padding: 15px;
+    padding: 25px;
     padding-top: 0px;
     padding-left: 0;
     height: 460px;
     position: relative;
-    margin-bottom: 10px;
 }
 
 .posts .post-block .item img {
     width: 100%;
+    border-radius: 25px;
+    border: 1px solid #07cb79;
+    cursor: pointer;
 }
 
 .posts .post-block .item .post-info {

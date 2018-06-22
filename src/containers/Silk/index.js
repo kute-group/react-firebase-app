@@ -26,6 +26,7 @@ import {
 import Typist from 'react-typist';
 import FontAwesome from 'react-fontawesome';
 import { Scrollbars } from 'react-custom-scrollbars';
+import SkyLight from 'react-skylight';
 //import internal libs
 
 const { layouts: { MainPage }, SEO } = global.COMPONENTS;
@@ -49,9 +50,56 @@ export const thumbLightStyle = {
     height: '30px',
     transform: 'translateY(0px)',
 };
-const IMAGES= [
+
+const styles = {
+    overlayStyles: {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: 99,
+        backgroundColor: 'rgba(0,0,0,0.2)'
+    },
+    dialogStyles: {
+        width: '900px',
+        height: '300px',
+        left: '50%',
+        top: '200px',
+        margin: '-150px 0 0 -450px',
+        opacity: '1',
+        borderRadius: '3px',
+        backgroundColor: '#fff',
+        boxShadow: '0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28)',
+        padding: '25px'
+    },
+    title: {
+        margin: '0',
+        padding: '0',
+        color: '#07cb79'
+    },
+    closeButtonStyle: {
+        cursor: 'pointer',
+        position: 'absolute',
+        fontSize: '1.8em',
+        right: '10px',
+        top: '8px',
+        color: 'black'
+    },
+    expandBtn: {
+        position: 'absolute',
+        left: '-46px',
+        top: '5px',
+        width: '42px',
+        height: '32px',
+        display: 'block',
+        background: 'transparent'
+    }
+};
+const IMAGES = [
     {
-        image: 'https://scontent.fhan3-2.fna.fbcdn.net/v/t1.0-9/35067551_185346588791576_3492654644759363584_o.jpg?_nc_cat=0&oh=58ca913b5d8e31df5ecc1ee23ce47236&oe=5BA728A3'
+        image: 'https://scontent.fhan3-2.fna.fbcdn.net/v/t1.0-9/35067551_185346588791576_3492654644759363584_o.jpg?_nc_cat=0&oh=58ca913b5d8e31df5ecc1ee23ce47236&oe=5BA728A3',
+        color: 'Tím',
     },
     {
         image: 'https://scontent.fhan3-2.fna.fbcdn.net/v/t1.0-9/35114028_185345158791719_9054988011518820352_o.jpg?_nc_cat=0&oh=8a5c36181079371272a584a7238fafa3&oe=5BBAC512'
@@ -175,6 +223,13 @@ class Silk extends Component {
         )
     }
 
+    addGoogleSheet() {
+        console.log(actions,'actions');
+        this.props.dispatch(
+            actions.post.addGoogleSheet()
+        )
+    };
+
     string_to_slug(str) {
         str = str.replace(/^\s+|\s+$/g, ''); // trim
         str = str.toLowerCase();
@@ -192,14 +247,18 @@ class Silk extends Component {
 
         return str;
     }
+
+    viewProduct() {
+        this.refs.cartPopup.show();
+    }
+
     renderItem() {
         const { postStore } = this.props;
         if (postStore.list === null || postStore.list.length === 0) return false;
-        console.log(postStore.list, 'ddvvvv');
         const listServives = postStore.list.map((item, index) => {
             return (
                 <div className="item" key={index}>
-                    <img src={IMAGES[Math.floor(Math.random() * 10)].image || IMAGES[0].image}  className="image" />
+                    <img onClick={() => this.viewProduct()} src={IMAGES[Math.floor(Math.random() * 10)].image || IMAGES[0].image} className="image" />
                 </div>
             );
         })
@@ -207,44 +266,8 @@ class Silk extends Component {
     }
 
     //=== RENDER FUNCTIONS ===
-    renderSong() {
-        let { list, loading } = this.state;
-        if (loading) return 'Loading...';
-        if (list === 'null' || list === null) return null;
-        else {
-            let data = [];
-            Object.keys(list).map((val) => {
-                data.push(
-                    <ListGroupItem key={val}>
-                        <FontAwesome
-                            className='super-crazy-colors'
-                            name='rocket'
-                            size='2x'
-                            spin
-                            style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
-                        />
-
-                        Song: {list[val].title}, author: {list[val].author}
-                        <Button onClick={() => this.onEdit(val)} color="primary" className='pull-right'>Edit</Button>{' '}
-                        <Button onClick={() => this.onDelete(val)} color="danger" className='pull-right'>Delete</Button>
-                    </ListGroupItem>
-                );
-            });
-            return (
-                <div>
-                    <h1>List songs from firebase: </h1>
-                    <ListGroup>
-                        {data}
-                    </ListGroup>
-                </div>
-            );
-        }
-    }
     render() {
-        console.log(this.props, 'ddf');
         const height = window.innerHeight - 150;
-        const { postStore } = this.props;
-        console.log(postStore, 'dd');
         return (
             <MainPage>
                 <SEO url="home" />
@@ -255,23 +278,23 @@ class Silk extends Component {
                                 <div className="header-block">
                                     <span>Khăn xuất khẩu</span>
                                     <h2>Khăn tắm, khăn spa, khăn mặt, khăn đầu</h2>
-                                    <Typist avgTypingDelay={30} cursor={{show: false}}>
+                                    <Typist avgTypingDelay={30} cursor={{ show: false }}>
                                         <p>
 
                                             Bạn muốn sang trọng quý phái, bạn muốn mềm mại êm ái, bạn muốn cảm giác thoả mái mỗi sáng thức dậy, sau khi tắm xong, sau khi đi spa hay tập thể hình.
 
-Đầy đủ kích thước, phù hợp với mọi nhu cầu.
-- Khăn 100% cotton, khăn modal mềm mại, mượt mà.
-- Không mẫn cảm, kích ứng với da.
-- ship toàn quốc
-P/s:
-- đừng ngại liên hệ shop, chúng tôi phục vụ 24/24. 
-- ưu đãi lớn cho đại lý, khách sạn.
+                                            Đầy đủ kích thước, phù hợp với mọi nhu cầu.
+                                            - Khăn 100% cotton, khăn modal mềm mại, mượt mà.
+                                            - Không mẫn cảm, kích ứng với da.
+                                            - ship toàn quốc
+                                            P/s:
+                                            - đừng ngại liên hệ shop, chúng tôi phục vụ 24/24.
+                                            - ưu đãi lớn cho đại lý, khách sạn.
                                         </p>
                                     </Typist>
-                                    Giá chỉ: 
-- 279k cho 8 chiếc
-- 309k cho 10 chiếc
+                                    Giá chỉ:
+                                   - 279k cho 8 chiếc
+                                   - 309k cho 10 chiếc
                                 </div>
                                 <Scrollbars
                                     autoHide
@@ -286,6 +309,29 @@ P/s:
                             </div>
                         </div>
                     </div>
+                    <SkyLight
+                        ref="cartPopup"
+                        hideOnOverlayClicked={true}
+                        dialogStyles={styles.dialogStyles}
+                        overlayStyles={styles.overlayStyles}
+                        titleStyle={styles.title}
+                        closeButtonStyle={styles.closeButtonStyle}
+                        title={'Đặt hàng online'}
+                    >
+                        <div className="select-stocks-portfolio">
+                            Bạn muốn sang trọng quý phái, bạn muốn mềm mại êm ái, bạn muốn cảm giác thoả mái mỗi sáng thức dậy, sau khi tắm xong, sau khi đi spa hay tập thể hình.
+    
+                            Đầy đủ kích thước, phù hợp với mọi nhu cầu.
+                            - Khăn 100% cotton, khăn modal mềm mại, mượt mà.
+                            - Không mẫn cảm, kích ứng với da.
+                            - ship toàn quốc
+                            P/s:
+                            - đừng ngại liên hệ shop, chúng tôi phục vụ 24/24.
+                            - ưu đãi lớn cho đại lý, khách sạn.
+                            <a onClick={() => this.addGoogleSheet()}>submit </a>
+
+                        </div>
+                    </SkyLight>
                 </div>
 
             </MainPage>
@@ -297,4 +343,4 @@ Silk.propTypes = {
 
 };
 
-export default connect(mapStateToProps)(Silk)
+export default connect(mapStateToProps)(Silk);

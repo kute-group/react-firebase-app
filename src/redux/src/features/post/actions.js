@@ -2,6 +2,7 @@ import * as Types from './types';
 import { actions as globalAction } from '../global';
 import { ApiUrl, FetchHelper } from '../../services';
 import firebase from '../../firebase';
+import axios from 'axios';
 
 //=== ACTION TYPES ===
 const actionTypes = {
@@ -72,17 +73,17 @@ const actionMidlewares = {
         return dispatch => {
             dispatch(globalAction.loadingShow());
             firebase.ref('/posts').once('value', snap => {
-              var returnArr = [];
+                var returnArr = [];
 
-              snap.forEach(function(childSnapshot) {
-                  if(childSnapshot.val() !== 1){
-                    var item = childSnapshot.val();
-                    item.key = childSnapshot.key;
-            
-                    returnArr.push(item);
-                  }
-                 
-              });
+                snap.forEach(function (childSnapshot) {
+                    if (childSnapshot.val() !== 1) {
+                        var item = childSnapshot.val();
+                        item.key = childSnapshot.key;
+
+                        returnArr.push(item);
+                    }
+
+                });
                 dispatch(actionTypes.postFetch(returnArr));
                 dispatch(globalAction.loadingHide());
             }).catch((error) => {
@@ -151,6 +152,30 @@ const actionMidlewares = {
             }).catch((error) => {
                 dispatch(actionTypes.postDeleteFaild(error));
             });
+        };
+    },
+
+    addGoogleSheet() {
+
+        return dispatch => {
+            let url = 'https://script.google.com/macros/s/AKfycbz1mmHFNZNMREv58N0F2nZWEPqYXJsEUPl52FxVySVC0Io9M_s/exec';
+            const params = {
+                data: 'Hợp',
+            };
+            const request = {
+                customerID: '2222',
+                username: '333'
+            };
+            const { customerID, username } = request;
+            return axios({
+                method: 'post',
+                url,
+                params: {
+                    customerID,
+                    username,
+                }
+            });
+
         };
     }
 };
