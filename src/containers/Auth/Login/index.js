@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router'
+import { withRouter } from 'react-router';
 import {
     Button,
     Nav,
@@ -48,7 +48,7 @@ class Login extends Component {
     onChangeInputs(value, field) {
         this.setState({
             form: Object.assign({}, this.state.form, { [field]: value.target.value })
-        })
+        });
     }
     onSubmit() {
         const { form } = this.state;

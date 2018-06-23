@@ -20,6 +20,8 @@ import {
     FormText
 } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
+
+const { images } = global.THEMES;
 class ArticleList extends Component {
     //=== RENDER FUNCTIONS ===
     renderRow() {
@@ -31,16 +33,22 @@ class ArticleList extends Component {
             list.map((val, key) => {
                 data.push(
                     <tr key={`row-${key}`} >
-                        <td><input type="checkbox" /></td>
-                        <td>
-                            <NavLink onClick={()=>this.props.onEdit(key)} to={`/admin/article/edit/${val.key}`}>{val.title}</NavLink>
+                        <td className="td-check"><input type="checkbox" /></td>
+                        <td className="td-title">
+                            <NavLink className="title" onClick={()=>this.props.onEdit(val.key)} to={`/admin/article/edit/${val.key}`}>{val.title}</NavLink>
+                            <div className="toggle-actions">
+                                <ul>
+                                    <li><NavLink onClick={()=>this.props.onEdit(val.key)} to={`/admin/article/edit/${val.key}`}>Chỉnh sửa</NavLink> <span>|</span></li>
+                                    <li><a className="danger-link" onClick={()=>this.props.onDelete(val.key)}>Xoá tạm</a><span>|</span></li>
+                                    <li><NavLink onClick={()=>this.props.onEdit(key)} to={`/admin/article/edit/${val.key}`}>Sao chép</NavLink></li>
+                                </ul>
+                            </div>
+                        
                         </td>
+                        <td>
+                            <img className="thumb" src={(typeof(val.avatar) !== 'undefined' && val.avatar !== '') ? val.avatar : images.default.imageDefault}/></td>
                         <td>tin xã hội</td>
                         <td>{val.author}</td>
-                        <td>
-                            <a onClick={()=>this.props.onDelete(val.key)}>Xoá</a>{' '}
-                            <NavLink onClick={()=>this.props.onEdit(key)} to={`/admin/article/edit/${val.key}`}>Sửa</NavLink>
-                        </td>
                     </tr>
                 );
             });
@@ -48,11 +56,8 @@ class ArticleList extends Component {
         }
     }
     render() {
-        const {list} = this.props;
-        console.log(list,'list');
         return (
             <Col xs="12">
-                
                 <div className="block-filter">
                     Page:
                     <select name="" id="">
@@ -64,21 +69,21 @@ class ArticleList extends Component {
                 <table className="table-list">
                     <thead>
                         <tr>
-                            <th>id</th>
+                            <th>ID</th>
                             <th>Tiêu đề</th>
+                            <th>Hình ảnh</th>
                             <th>Danh mục</th>
                             <th>Tác giả</th>
-                            <th>Hành động</th>
                         </tr>
                     </thead>
                     {this.renderRow()}
                     <tfoot>
                         <tr>
-                            <th>id</th>
+                            <th>ID</th>
                             <th>Tiêu đề</th>
+                            <th>Hình ảnh</th>
                             <th>Danh mục</th>
                             <th>Tác giả</th>
-                            <th>Hành động</th>
                         </tr>
                     </tfoot>
                 </table>

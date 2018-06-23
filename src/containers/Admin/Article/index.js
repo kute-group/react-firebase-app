@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import {
     Button,
     Nav,
@@ -35,8 +36,8 @@ const { actions, types } = global.REDUX;
 
 
 //=== map state ===
-function mapStateToProps({ post }) {
-    return { post };
+function mapStateToProps({ post, global }) {
+    return { post, global };
 }
 class Article extends Component {
     constructor(props) {
@@ -47,6 +48,7 @@ class Article extends Component {
             form: {
                 title: '',
                 author: '',
+                avatar:''
             },
             validation: {
                 title: '',
@@ -64,13 +66,15 @@ class Article extends Component {
     }
 
     componentWillReceiveProps(props) {
-        let { post } = props;
+        let { post, global } = props;
+        // ACTION FOR POST
         if (post.action == 'POST_FETCH') {
             this.setState({
                 loading: false,
                 list: post.list
             });
         } else if (post.action == 'POST_SAVE') {
+            this.props.history.push('/admin/article');
             this.setState({ loading: false, form: { title: '', author: '' } });
             this.props.dispatch(
                 actions.post.fetchPost()
@@ -88,9 +92,11 @@ class Article extends Component {
 
     onEdit(ID) {
         let { list } = this.state;
+        let ID_KEY = list.findIndex((item)=>item.key === ID);
+        console.log(ID_KEY, 'ID_KEY');
         this.setState({
             editable: true,
-            form: Object.assign({}, list[ID], { key: ID })
+            form: list[ID_KEY]
         });
     }
 
@@ -114,6 +120,12 @@ class Article extends Component {
         );
         this.setState({ loading: true, editable: false, form });
     }
+    onUpload(file){
+        console.log(file,'onUpload');
+        this.props.dispatch(
+            actions.global.upLoad(file)
+        );
+    }
     //=== RENDER FUNCTIONS ===
 
     renderHeader() {
@@ -132,8 +144,9 @@ class Article extends Component {
     }
 
     render() {
-        const { location } = this.props;
+        const { location, global } = this.props;
         const { list, loading, form } = this.state;
+        console.log(this.state,' hello man');
         return (
             <AdminPage>
                 <SEO url="admin/article" />
@@ -157,6 +170,7 @@ class Article extends Component {
                         || location.pathname.indexOf('/admin/article/edit/') >= 0
                     ) && <ArticleForm
                             form={form}
+                            onUpload= {(file)=>this.onUpload(file)}
                             onSubmit={(form) => this.onSubmit(form)}
                         />}
                 </div>
@@ -169,4 +183,4 @@ Article.propTypes = {
 
 };
 
-export default connect(mapStateToProps)(Article);
+export default withRouter(connect(mapStateToProps)(Article));

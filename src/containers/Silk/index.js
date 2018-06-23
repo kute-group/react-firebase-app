@@ -96,68 +96,22 @@ const styles = {
         background: 'transparent'
     }
 };
-const IMAGES = [
-    {
-        image: 'https://scontent.fhan3-2.fna.fbcdn.net/v/t1.0-9/35067551_185346588791576_3492654644759363584_o.jpg?_nc_cat=0&oh=58ca913b5d8e31df5ecc1ee23ce47236&oe=5BA728A3',
-        color: 'Tím',
-    },
-    {
-        image: 'https://scontent.fhan3-2.fna.fbcdn.net/v/t1.0-9/35114028_185345158791719_9054988011518820352_o.jpg?_nc_cat=0&oh=8a5c36181079371272a584a7238fafa3&oe=5BBAC512'
-    },
-    {
-        image: 'https://scontent.fhan3-1.fna.fbcdn.net/v/t1.0-9/35026735_184074752252093_6517712961597865984_o.jpg?_nc_cat=0&oh=60d351b9def95d6b2abadc4162370bd6&oe=5BB0ADE2'
-    },
-    {
-        image: 'https://scontent.fhan3-2.fna.fbcdn.net/v/t1.0-9/35067551_185346588791576_3492654644759363584_o.jpg?_nc_cat=0&oh=58ca913b5d8e31df5ecc1ee23ce47236&oe=5BA728A3'
-    },
-    {
-        image: 'https://scontent.fhan3-2.fna.fbcdn.net/v/t1.0-9/35114028_185345158791719_9054988011518820352_o.jpg?_nc_cat=0&oh=8a5c36181079371272a584a7238fafa3&oe=5BBAC512'
-    },
-    {
-        image: 'https://scontent.fhan3-1.fna.fbcdn.net/v/t1.0-9/35026735_184074752252093_6517712961597865984_o.jpg?_nc_cat=0&oh=60d351b9def95d6b2abadc4162370bd6&oe=5BB0ADE2'
-    },
-    {
-        image: 'https://scontent.fhan3-2.fna.fbcdn.net/v/t1.0-9/35067551_185346588791576_3492654644759363584_o.jpg?_nc_cat=0&oh=58ca913b5d8e31df5ecc1ee23ce47236&oe=5BA728A3'
-    },
-    {
-        image: 'https://scontent.fhan3-2.fna.fbcdn.net/v/t1.0-9/35114028_185345158791719_9054988011518820352_o.jpg?_nc_cat=0&oh=8a5c36181079371272a584a7238fafa3&oe=5BBAC512'
-    },
-    {
-        image: 'https://scontent.fhan3-1.fna.fbcdn.net/v/t1.0-9/35026735_184074752252093_6517712961597865984_o.jpg?_nc_cat=0&oh=60d351b9def95d6b2abadc4162370bd6&oe=5BB0ADE2'
-    },
-    {
-        image: 'https://scontent.fhan3-2.fna.fbcdn.net/v/t1.0-9/35067551_185346588791576_3492654644759363584_o.jpg?_nc_cat=0&oh=58ca913b5d8e31df5ecc1ee23ce47236&oe=5BA728A3'
-    },
-    {
-        image: 'https://scontent.fhan3-2.fna.fbcdn.net/v/t1.0-9/35114028_185345158791719_9054988011518820352_o.jpg?_nc_cat=0&oh=8a5c36181079371272a584a7238fafa3&oe=5BBAC512'
-    },
-    {
-        image: 'https://scontent.fhan3-1.fna.fbcdn.net/v/t1.0-9/35026735_184074752252093_6517712961597865984_o.jpg?_nc_cat=0&oh=60d351b9def95d6b2abadc4162370bd6&oe=5BB0ADE2'
-    }
-
-];
 
 //=== map state ===
 function mapStateToProps({ todo, global, post }) {
-    return { todo, global, postStore: post }
+    return { todo, global, postStore: post };
 }
 class Silk extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            list: null,
-            loading: false,
             form: {
                 fullname:'',
                 address:'',
                 phone:'',
                 note:'',
-
             },
-            validation: {
-                title: '',
-                author: ''
-            },
+            product: null,
             editable: false,
         };
     }
@@ -171,7 +125,7 @@ class Silk extends Component {
     componentWillMount() {
         this.props.dispatch(
             actions.post.fetchPost()
-        )
+        );
         this.setState({ loading: true });
     }
 
@@ -181,49 +135,54 @@ class Silk extends Component {
             this.setState({
                 loading: false,
                 list: todo.list
-            })
+            });
         } else if (todo.action == 'TODO_SAVE') {
             this.setState({ loading: false, form: { title: '', author: '' } });
             this.props.dispatch(
                 actions.todo.fetchTodo()
-            )
+            );
         }
         else if (todo.action == 'TODO_DELETE') {
             this.setState({ loading: false });
             this.props.dispatch(
                 actions.todo.fetchTodo()
-            )
+            );
         }
 
     }
+
     //=== ACTION FUNCTIONS ===
+    viewProduct(product) {
+        this.setState({product});
+        this.refs.cartPopup.show();
+    }
+
     onEdit(ID) {
-        console.log(ID, 'ID');
         let { list } = this.state;
         this.setState({
             editable: true,
             form: Object.assign({}, list[ID], { todoId: ID })
-        })
+        });
     }
 
     onDelete(ID) {
         this.setState({ loading: true });
         this.props.dispatch(
             actions.todo.deleteTodo(ID)
-        )
+        );
     }
 
     onChangeInputs(value, field) {
         this.setState({
             form: Object.assign({}, this.state.form, { [field]: value.target.value })
-        })
+        });
     }
 
     onSubmit() {
         this.setState({ loading: true, editable: false });
         this.props.dispatch(
             actions.todo.saveTodo(this.state.form, this.state.editable)
-        )
+        );
     }
 
     changeInput(value, field) {
@@ -233,11 +192,19 @@ class Silk extends Component {
     }
 
     addGoogleSheet() {
-        console.log(actions,'actions');
         this.props.dispatch(
             actions.post.addGoogleSheet(this.state.form)
-        )
-    };
+        );
+    }
+
+    resetForm(){
+        this.setState({form:{
+            fullname:'',
+            phone:'',
+            address:'',
+            note:''
+        }});
+    }
 
     string_to_slug(str) {
         str = str.replace(/^\s+|\s+$/g, ''); // trim
@@ -257,26 +224,22 @@ class Silk extends Component {
         return str;
     }
 
-    viewProduct() {
-        this.refs.cartPopup.show();
-    }
-
+    //=== RENDER FUNCTIONS ===
     renderItem() {
         const { postStore } = this.props;
         if (postStore.list === null || postStore.list.length === 0) return false;
         const listServives = postStore.list.map((item, index) => {
             return (
                 <div className="item" key={index}>
-                    <img onClick={() => this.viewProduct()} src={IMAGES[Math.floor(Math.random() * 10)].image || IMAGES[0].image} className="image" />
+                    <img onClick={() => this.viewProduct(item)} src={(typeof(item.avatar) !== 'undefined' && item.avatar !== '') ? item.avatar : images.default.imageDefault} className="image" />
                 </div>
             );
         })
         return (<div className="post-block">{listServives}</div>);
     }
 
-    //=== RENDER FUNCTIONS ===
     render() {
-        const height = window.innerHeight - 150;
+        const height = window.innerHeight - 5;
         return (
             <MainPage>
                 <SEO url="home" />
@@ -284,27 +247,7 @@ class Silk extends Component {
                     <div className="intro">
                         <div className="posts main-block">
                             <div className="list-posts">
-                                <div className="header-block">
-                                    <span>Khăn xuất khẩu</span>
-                                    <h2>Khăn tắm, khăn spa, khăn mặt, khăn đầu</h2>
-                                    <Typist avgTypingDelay={30} cursor={{ show: false }}>
-                                        <p>
-
-                                            Bạn muốn sang trọng quý phái, bạn muốn mềm mại êm ái, bạn muốn cảm giác thoả mái mỗi sáng thức dậy, sau khi tắm xong, sau khi đi spa hay tập thể hình.
-
-                                            Đầy đủ kích thước, phù hợp với mọi nhu cầu.
-                                            - Khăn 100% cotton, khăn modal mềm mại, mượt mà.
-                                            - Không mẫn cảm, kích ứng với da.
-                                            - ship toàn quốc
-                                            P/s:
-                                            - đừng ngại liên hệ shop, chúng tôi phục vụ 24/24.
-                                            - ưu đãi lớn cho đại lý, khách sạn.
-                                        </p>
-                                    </Typist>
-                                    Giá chỉ:
-                                   - 279k cho 8 chiếc
-                                   - 309k cho 10 chiếcư 
-                                </div>
+                                
                                 <Scrollbars
                                     autoHide
                                     autoHeight
@@ -313,6 +256,23 @@ class Silk extends Component {
                                     renderTrackVertical={props => <div {...props} style={trackLightStyle} />}
                                     renderThumbVertical={props => <div {...props} style={thumbLightStyle} />}
                                 >
+                                    <div className="header-block product-intro">
+                                        <span>Khăn xuất khẩu</span>
+                                        <h2>Khăn tắm, khăn spa, khăn mặt, khăn đầu</h2>
+                                        <Typist avgTypingDelay={5} cursor={{ show: false }}>
+                                        <p>Bạn muốn sang trọng quý phái, bạn muốn mềm mại êm ái, bạn muốn cảm giác thoả mái mỗi sáng thức dậy,<br/> sau khi tắm xong, sau khi đi spa hay tập thể hình</p>
+        
+                                        <p>Đầy đủ kích thước, phù hợp với mọi nhu cầu.</p>
+                                        <ul>
+                                            <li>- Khăn 100% cotton, khăn modal mềm mại, mượt mà.</li>
+                                            <li>- Không mẫn cảm, kích ứng với da.</li>
+                                            <li>- ship toàn quốc</li>
+                                        </ul>
+                                        </Typist>
+                                        Giá chỉ:
+                                    - 279k cho 8 chiếc
+                                    - 309k cho 10 chiếcư 
+                                    </div>
                                     {this.renderItem()}
                                 </Scrollbars>
                             </div>
@@ -329,35 +289,35 @@ class Silk extends Component {
                     >
                         <div className="product-popup">
                             <div className="info">
-                                <img className="images-product" onClick={() => this.viewProduct()} src={IMAGES[Math.floor(Math.random() * 10)].image || IMAGES[0].image} />
-                            Bạn muốn sang trọng quý phái, bạn muốn mềm mại êm ái, bạn muốn cảm giác thoả mái mỗi sáng thức dậy, sau khi tắm xong, sau khi đi spa hay tập thể hình.
+                                <img className="images-product" src={(this.state.product !== null && typeof(this.state.product.avatar) !== 'undefined' && this.state.product.avatar !== '') ? this.state.product.avatar : images.default.imageDefault}/>
+                                <p>Bạn muốn sang trọng quý phái, bạn muốn mềm mại êm ái, bạn muốn cảm giác thoả mái mỗi sáng thức dậy, sau khi tắm xong, sau khi đi spa hay tập thể hình</p>
     
-                                Đầy đủ kích thước, phù hợp với mọi nhu cầu.
-                                - Khăn 100% cotton, khăn modal mềm mại, mượt mà.
-                                - Không mẫn cảm, kích ứng với da.
-                                - ship toàn quốc
-                                P/s:
-                                - đừng ngại liên hệ shop, chúng tôi phục vụ 24/24.
-                                - ưu đãi lớn cho đại lý, khách sạn.
+                                <p>Đầy đủ kích thước, phù hợp với mọi nhu cầu.</p>
+                                <ul>
+                                    <li>- Khăn 100% cotton, khăn modal mềm mại, mượt mà.</li>
+                                    <li>- Không mẫn cảm, kích ứng với da.</li>
+                                    <li>- ship toàn quốc</li>
+                                </ul>
                             </div>
                            <div className="cart-field">
                                 <div className="form-group">
-                                    <label>Họ và tên</label>
-                                    <input value={this.state.form.fullname} onChange={(value)=>this.changeInput(value,'fullname')}  className="form-control" type="text" />
+                                    <label>Họ và tên <span>(*)</span></label>
+                                    <input placeholder="Họ và tên của anh/chị" value={this.state.form.fullname} onChange={(value)=>this.changeInput(value,'fullname')}  className="form-control" type="text" />
                                 </div>
                                 <div className="form-group">
-                                    <label>Số điện thoại</label>
-                                    <input value={this.state.form.phone}  onChange={(value)=>this.changeInput(value,'phone')} className="form-control" type="text" />
+                                    <label>Số điện thoại <span>(*)</span></label>
+                                    <input placeholder="Số điện thoại của anh/chị" value={this.state.form.phone}  onChange={(value)=>this.changeInput(value,'phone')} className="form-control" type="text" />
                                 </div>
                                 <div className="form-group">
-                                    <label>Địa chỉ</label>
-                                    <textarea value={this.state.form.address}  onChange={(value)=>this.changeInput(value,'address')} className="form-control"></textarea>
+                                    <label>Địa chỉ <span>(*)</span></label>
+                                    <textarea placeholder="Địa chỉ nhận hàng của anh/chị" value={this.state.form.address}  onChange={(value)=>this.changeInput(value,'address')} className="form-control"></textarea>
                                 </div>
                                 <div className="form-group">
                                     <label>Ghi chú</label>
-                                    <textarea value={this.state.form.note}  onChange={(value)=>this.changeInput(value,'note')} className="form-control"></textarea>
+                                    <textarea placeholder="Thông tin thêm về đơn hàng của anh/chị" value={this.state.form.note}  onChange={(value)=>this.changeInput(value,'note')} className="form-control"></textarea>
                                 </div>
-                                <a className="btn btn-primary" onClick={() => this.addGoogleSheet()}>submit </a>
+                                <button className="btn submit btn-primary pull-right" onClick={() => this.addGoogleSheet()}>Gửi đơn hàng </button>
+                                <button className="btn reset btn-danger pull-right" onClick={() => this.resetForm()}>Làm lại </button>
                            </div>
 
                         </div>

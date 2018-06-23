@@ -79,10 +79,8 @@ const actionMidlewares = {
                     if (childSnapshot.val() !== 1) {
                         var item = childSnapshot.val();
                         item.key = childSnapshot.key;
-
                         returnArr.push(item);
                     }
-
                 });
                 dispatch(actionTypes.postFetch(returnArr));
                 dispatch(globalAction.loadingHide());
@@ -114,27 +112,28 @@ const actionMidlewares = {
     },
 
     savePost(params, editable) {
-        console.log(params, 'params');
         return dispatch => {
-            let { postId, title, author } = params;
-            let url = !editable ? '/posts' : '/posts/' + postId;
+            let { key, title, author, avatar } = params;
+            let url = !editable ? '/posts' : '/posts/' + key;
 
             const guestsRef = firebase.ref(url);
             if (editable) {
                 guestsRef.update({
                     title,
+                    avatar,
                     author
                 }).then(() => {
-                    dispatch(actionTypes.postSave({ title, author }));
+                    dispatch(actionTypes.postSave({ title, author, avatar }));
                 }).catch((error) => {
                     dispatch(actionTypes.postSaveFaild(error));
                 });
             } else {
                 guestsRef.push({
                     title,
-                    author
+                    author,
+                    avatar
                 }).then(() => {
-                    dispatch(actionTypes.postSave({ title, author }));
+                    dispatch(actionTypes.postSave({ title, author, avatar }));
                 }).catch((error) => {
                     dispatch(actionTypes.postSaveFaild(error));
                 });

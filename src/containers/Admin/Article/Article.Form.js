@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
     Button,
     Nav,
@@ -19,11 +20,16 @@ import {
     FormFeedback,
     FormText
 } from 'reactstrap';
-import Dropzone from 'react-dropzone'
+import Dropzone from 'react-dropzone';
 import { Editor } from 'react-draft-wysiwyg';
 // import draftToHtml from 'draftjs-to-html';
 import { EditorState } from 'draft-js';
 import '../../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+
+//=== map state ===
+function mapStateToProps({ post, global }) {
+    return { post, global };
+}
 class ArticleForm extends Component {
     constructor(props) {
         super(props);
@@ -36,24 +42,35 @@ class ArticleForm extends Component {
             files:[]
         };
     }
+    componentWillReceiveProps(props) {
+        let {  global } = props;
+        // ACTION FOR GLOBAL
+        if (global.action == 'UPLOAD_SUCCESS') {
+            this.setState({
+                form: Object.assign({}, this.state.form, { avatar: global.url })
+            });
+        } 
+    }
+       
     onChangeInputs(value, field) {
         this.setState({
             form: Object.assign({}, this.state.form, { [field]: value.target.value })
         });
     }
-    onEditorStateChange: Function = (editorState) => {
+    onEditorStateChange(editorState){
         this.setState({
             editorState,
         });
-    };
+    }
     onDrop(files) {
+        this.props.onUpload(files[0]);
         this.setState({
             files
         });
     }
     render() {
-        console.log(this.state, 'hop');
         const { form } = this.state;
+        console.log(this.state, 'form');
         return (
             <div className="form-block col-md-12">
                 <div className="row">
@@ -94,13 +111,12 @@ class ArticleForm extends Component {
                                 <h3>Ảnh đại diện</h3>
                             </div>
                             <div className="b-content">
-                                <Dropzone onDrop={this.onDrop.bind(this)}>
+                                <Dropzone 
+                                    className="dropzone"
+                                    multiple= {false}
+                                    onDrop={this.onDrop.bind(this)}>
+                                    <img src={this.state.form.avatar}/>
                                 </Dropzone>
-                                <ul>
-                                    {
-                                        this.state.files.map(f => <li key={f.name}>{f.name} - {f.size} bytes</li>)
-                                    }
-                                </ul>
                             </div>
                         </div>
                     </div>
@@ -110,4 +126,4 @@ class ArticleForm extends Component {
     }
 }
 
-export default ArticleForm;
+export default connect(mapStateToProps)(ArticleForm);

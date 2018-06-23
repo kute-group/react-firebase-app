@@ -38,15 +38,60 @@
         }
         tbody {
             tr {
+                min-height: 56px;
                 td {
                     padding: 8px 10px;
                     line-height: 1.4em;
+                    .title {
+                        font-weight: bold;
+                        font-weight: 600;
+                        color: #0073aa;
+                    }
+                    .thumb {
+                        width: 145px;
+                        max-height: 200px;
+                        border: 1px solid #ddd;
+                        margin: 3px;
+                        border-radius: 5px;
+                    }
+                    .toggle-actions {
+                        min-height: 20px;
+                        ul {
+                            display: none;
+                            li {
+                                float: left;
+                                a {
+                                    color: #0073aa;
+                                    font-size: 12px;
+                                    cursor: pointer;
+                                }
+                                .danger-link {
+                                    color: #a00;
+                                }
+                                span {
+                                    font-size: 10px;
+                                    color: #ddd;
+                                    padding: 5px;
+                                }
+                            }
+                        }
+                    }
+                }
+                .td-title {
+                    width: 300px;
+                }
+                .td-check {
+                    width: 50px;
                 }
                 &:nth-child(even) {
                     background-color: #f9f9f9;
                 }
                 &:hover {
-                    background-color: #f9f9f9;
+                    .toggle-actions {
+                        ul {
+                            display: block;
+                        }
+                    }
                 }
             }
         }
@@ -295,6 +340,18 @@
                             .b-content {
                                 border-top: 1px solid #ddd;
                                 padding: 8px 12px;
+                                .dropzone {
+                                    width: 100%;
+                                    height: auto;
+                                    min-height: 180px;
+                                    background: #ddd;
+                                    cursor: pointer;
+                                    img {
+                                        width: 100%;
+                                        height: auto;
+                                        min-height: 180px;
+                                    }
+                                }
                             }
                             .b-footer {
                                 padding: 10px;
