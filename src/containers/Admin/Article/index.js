@@ -75,6 +75,12 @@ class Article extends Component {
             });
         } else if (post.action == 'POST_SAVE') {
             this.props.history.push('/admin/article');
+            this.props.dispatch(
+                actions.global.showNoti({
+                    message: 'Notification message',
+                    level: 'success'
+                })
+            );
             this.setState({ loading: false, form: { title: '', author: '' } });
             this.props.dispatch(
                 actions.post.fetchPost()
@@ -93,7 +99,6 @@ class Article extends Component {
     onEdit(ID) {
         let { list } = this.state;
         let ID_KEY = list.findIndex((item)=>item.key === ID);
-        console.log(ID_KEY, 'ID_KEY');
         this.setState({
             editable: true,
             form: list[ID_KEY]
@@ -121,7 +126,6 @@ class Article extends Component {
         this.setState({ loading: true, editable: false, form });
     }
     onUpload(file){
-        console.log(file,'onUpload');
         this.props.dispatch(
             actions.global.upLoad(file)
         );
@@ -144,9 +148,8 @@ class Article extends Component {
     }
 
     render() {
-        const { location, global } = this.props;
-        const { list, loading, form } = this.state;
-        console.log(this.state,' hello man');
+        const { location, post } = this.props;
+        const { list, form } = this.state;
         return (
             <AdminPage>
                 <SEO url="admin/article" />
@@ -164,7 +167,7 @@ class Article extends Component {
                         onDelete={(ID) => this.onDelete(ID)}
                         onEdit={(ID) => this.onEdit(ID)}
                         list={list}
-                        loading={loading} />
+                        loading={post.loading} />
                     }
                     {(location.pathname.indexOf('/admin/article/add') >= 0
                         || location.pathname.indexOf('/admin/article/edit/') >= 0

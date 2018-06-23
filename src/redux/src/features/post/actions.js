@@ -6,6 +6,12 @@ import axios from 'axios';
 
 //=== ACTION TYPES ===
 const actionTypes = {
+    runLoading(loading){
+        return {
+            loading,
+            type: Types.POST_LOADING,
+        };
+    },
     postFetch(list) {
         return {
             type: Types.POST_FETCH,
@@ -71,7 +77,7 @@ const actionTypes = {
 const actionMidlewares = {
     fetchPost(params) {
         return dispatch => {
-            dispatch(globalAction.loadingShow());
+            dispatch(actionTypes.runLoading(true));
             firebase.ref('/posts').once('value', snap => {
                 var returnArr = [];
 
@@ -83,7 +89,7 @@ const actionMidlewares = {
                     }
                 });
                 dispatch(actionTypes.postFetch(returnArr));
-                dispatch(globalAction.loadingHide());
+                dispatch(actionTypes.runLoading(false));
             }).catch((error) => {
                 dispatch(actionTypes.postReset(error));
             });
@@ -113,9 +119,9 @@ const actionMidlewares = {
 
     savePost(params, editable) {
         return dispatch => {
+            dispatch(actionTypes.runLoading(true));
             let { key, title, author, avatar } = params;
             let url = !editable ? '/posts' : '/posts/' + key;
-
             const guestsRef = firebase.ref(url);
             if (editable) {
                 guestsRef.update({
@@ -124,8 +130,10 @@ const actionMidlewares = {
                     author
                 }).then(() => {
                     dispatch(actionTypes.postSave({ title, author, avatar }));
+                    dispatch(actionTypes.runLoading(false));
                 }).catch((error) => {
                     dispatch(actionTypes.postSaveFaild(error));
+                    dispatch(actionTypes.runLoading(false));
                 });
             } else {
                 guestsRef.push({

@@ -70,7 +70,6 @@ class ArticleForm extends Component {
     }
     render() {
         const { form } = this.state;
-        console.log(this.state, 'form');
         return (
             <div className="form-block col-md-12">
                 <div className="row">

@@ -10,7 +10,8 @@ const initialState = {
     delete: {
         identity: null,
         result: null
-    }
+    },
+    loading: false
 };
 
 export default function post(state = initialState, action) {
@@ -21,7 +22,10 @@ export default function post(state = initialState, action) {
             return Object.assign({}, state, {
                 list: action.list
             });
-
+        case Types.POST_LOADING:
+            return Object.assign({}, state, {
+            loading: action.loading
+        });
         case Types.POST_RESET:
             return Object.assign({}, state, {
                 list: null

@@ -65,7 +65,7 @@ const styles = {
         width: '900px',
         height: 'auto',
         left: '50%',
-        top: '200px',
+        top: '25%',
         margin: '-150px 0 0 -450px',
         opacity: '1',
         borderRadius: '3px',
@@ -234,7 +234,7 @@ class Silk extends Component {
                     <img onClick={() => this.viewProduct(item)} src={(typeof(item.avatar) !== 'undefined' && item.avatar !== '') ? item.avatar : images.default.imageDefault} className="image" />
                 </div>
             );
-        })
+        });
         return (<div className="post-block">{listServives}</div>);
     }
 

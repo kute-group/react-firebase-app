@@ -1,13 +1,47 @@
 //import external libs
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import FontAwesome from 'react-fontawesome';
+import NotificationSystem from 'react-notification-system';
 import { NavLink } from 'react-router-dom';
+import 'react-placeholder/lib/reactPlaceholder.css';
 //import internal libs
 const LANG = global.LANGUAGES[global.LANG];
-
+//=== map state ===
+function mapStateToProps({  global }) {
+    return { global };
+}
 class AdminPage extends Component {
     constructor(props) {
         super(props);
+    }
+
+    componentWillReceiveProps(props) {
+        const { global } = props;
+        console.log(global, 'global');
+        // ACTION FOR GLOBAL
+        if(global.action == 'SHOW_NOTI') {
+            console.log(props, 'props');
+            this.fireNotification({
+                message: 'Notification message',
+                level: 'success'
+            });
+        }
+
+    }
+    fireNotification(noti) {
+        if (!this.noti) {
+            this.noti = this.refs.notificationSystem;
+        }
+        if (this.noti) {
+            if (
+                noti &&
+                noti.message &&
+                noti.message.indexOf('CLIENT-01') !== -1
+            )
+                return;
+            this.noti.addNotification(noti);
+        }
     }
     render() {
         return (
@@ -135,9 +169,10 @@ class AdminPage extends Component {
                 <div className='main-content'>
                     {this.props.children}
                 </div>
+                <NotificationSystem ref="notificationSystem" />
             </div>
         );
     }
 }
 
-export default AdminPage;
+export default connect(mapStateToProps)(AdminPage);

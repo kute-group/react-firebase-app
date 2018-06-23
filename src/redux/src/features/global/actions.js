@@ -3,6 +3,12 @@ import {storage} from '../../firebase';
 
 //=== ACTION TYPES ===
 const actionTypes = {
+    showNotifi(noti) {
+        return {
+            type: Types.SHOW_NOTI,
+            noti
+        };
+    },
     loadingShow() {
         return {
             type: Types.LOADING_SHOW,
@@ -29,6 +35,11 @@ const actionTypes = {
 
 //=== ACTION MIDLEWARES ===
 const actionMidlewares = {
+    showNoti(noti) {
+        return dispatch => {
+            dispatch(actionTypes.showNotifi(noti));
+        };
+    },
     showLoading() {
         return dispatch => {
             dispatch(actionTypes.loadingShow());

@@ -20,9 +20,11 @@ import {
     FormText
 } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
+import ReactPlaceholder from 'react-placeholder';
 
 const { images } = global.THEMES;
 class ArticleList extends Component {
+
     //=== RENDER FUNCTIONS ===
     renderRow() {
         let { list, loading } = this.props;
@@ -55,6 +57,30 @@ class ArticleList extends Component {
             return (<tbody>{data}</tbody>);
         }
     }
+
+    renderLoading(){
+        const colSpan=5;
+        return(
+            <tbody>
+                <tr>
+                    <td colSpan={colSpan}>
+                        <ReactPlaceholder type='media' ready={false} rows={4}>1</ReactPlaceholder>
+                    </td>
+                </tr>
+                <tr>
+                    <td colSpan={colSpan}>
+                        <ReactPlaceholder type='media' ready={false} rows={4}>1</ReactPlaceholder>
+                    </td>
+                </tr>
+                <tr>
+                    <td colSpan={colSpan}>
+                        <ReactPlaceholder type='media' ready={false} rows={4}>1</ReactPlaceholder>
+                    </td>
+                </tr>
+            </tbody>
+        );
+    }
+
     render() {
         return (
             <Col xs="12">
@@ -66,6 +92,7 @@ class ArticleList extends Component {
                         <option value="">10</option>
                     </select>
                 </div>
+                
                 <table className="table-list">
                     <thead>
                         <tr>
@@ -76,7 +103,7 @@ class ArticleList extends Component {
                             <th>Tác giả</th>
                         </tr>
                     </thead>
-                    {this.renderRow()}
+                    {this.props.loading ? this.renderLoading() : this.renderRow()}
                     <tfoot>
                         <tr>
                             <th>ID</th>

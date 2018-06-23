@@ -1,4 +1,5 @@
-//--- Patients ---
+//--- Post ---
+export const POST_LOADING = 'POST_LOADING';
 export const POST_FETCH = 'POST_FETCH';
 export const POST_RESET = 'POST_RESET';
 export const POST_ATTACH = 'POST_ATTACH';

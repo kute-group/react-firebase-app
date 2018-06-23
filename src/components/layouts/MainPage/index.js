@@ -47,6 +47,7 @@ class MainPage extends Component {
                 <div className='main'>
                     {this.props.children}
                 </div>
+                <NotificationSystem ref="notificationSystem" />
             </div>
         );
     }
