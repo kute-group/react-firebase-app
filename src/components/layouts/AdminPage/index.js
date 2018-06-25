@@ -8,24 +8,20 @@ import 'react-placeholder/lib/reactPlaceholder.css';
 //import internal libs
 const LANG = global.LANGUAGES[global.LANG];
 //=== map state ===
-function mapStateToProps({  global }) {
-    return { global };
+function mapStateToProps({  global, post }) {
+    return { global, post };
 }
 class AdminPage extends Component {
     constructor(props) {
         super(props);
     }
 
-    componentWillReceiveProps(props) {
-        const { global } = props;
-        console.log(global, 'global');
+    componentWillReceiveProps(nextProps) {
+        const { global, post } = nextProps;
         // ACTION FOR GLOBAL
-        if(global.action == 'SHOW_NOTI') {
-            console.log(props, 'props');
-            this.fireNotification({
-                message: 'Notification message',
-                level: 'success'
-            });
+        if(global.action === 'SHOW_NOTI' && global.noti.level !=='') {
+            console.log('hello');
+            this.fireNotification(global.noti);
         }
 
     }

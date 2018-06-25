@@ -26,7 +26,7 @@ import {
 import Typist from 'react-typist';
 import FontAwesome from 'react-fontawesome';
 import { NavLink } from 'react-router-dom';
-
+import moment from 'moment';
 //import internal libs
 import ArticleList from './Article.List';
 import ArticleForm from './Article.Form';
@@ -43,6 +43,7 @@ class Article extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            pageSize:5,
             list: null,
             loading: false,
             form: {
@@ -60,7 +61,7 @@ class Article extends Component {
 
     componentWillMount() {
         this.props.dispatch(
-            actions.post.fetchPost()
+            actions.post.fetchPost({pageSize:this.state.pageSize})
         );
         this.setState({ loading: true });
     }
@@ -68,22 +69,23 @@ class Article extends Component {
     componentWillReceiveProps(props) {
         let { post, global } = props;
         // ACTION FOR POST
-        if (post.action == 'POST_FETCH') {
+        if (post.action === 'POST_FETCH') {
             this.setState({
                 loading: false,
                 list: post.list
             });
-        } else if (post.action == 'POST_SAVE') {
-            this.props.history.push('/admin/article');
+        } else if (post.action === 'POST_SAVE') {
+            
             this.props.dispatch(
                 actions.global.showNoti({
-                    message: 'Notification message',
+                    message: 'Cập nhật bản ghi thành công!',
                     level: 'success'
                 })
             );
+            this.props.history.push('/admin/article');
             this.setState({ loading: false, form: { title: '', author: '' } });
             this.props.dispatch(
-                actions.post.fetchPost()
+                actions.post.fetchPost({pageSize: this.state.pageSize})
             );
         }
         else if (post.action == 'POST_DELETE') {
@@ -119,7 +121,9 @@ class Article extends Component {
     }
 
     onSubmit(form) {
-
+        form.status = 'active';
+        form.currentTime = moment().toDate().getTime();
+        console.log(form,'form');
         this.props.dispatch(
             actions.post.savePost(form, this.state.editable)
         );
@@ -150,6 +154,7 @@ class Article extends Component {
     render() {
         const { location, post } = this.props;
         const { list, form } = this.state;
+        console.log(list,'list');
         return (
             <AdminPage>
                 <SEO url="admin/article" />

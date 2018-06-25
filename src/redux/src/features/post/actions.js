@@ -1,5 +1,4 @@
 import * as Types from './types';
-import { actions as globalAction } from '../global';
 import { ApiUrl, FetchHelper } from '../../services';
 import firebase from '../../firebase';
 import axios from 'axios';
@@ -76,9 +75,10 @@ const actionTypes = {
 //=== ACTION MIDLEWARES ===
 const actionMidlewares = {
     fetchPost(params) {
+        
         return dispatch => {
-            dispatch(actionTypes.runLoading(true));
-            firebase.ref('/posts').once('value', snap => {
+            // dispatch(actionTypes.runLoading(true));
+            firebase.ref('/posts').orderByChild('created').limitToLast(params.pageSize).once('value', snap => {
                 var returnArr = [];
 
                 snap.forEach(function (childSnapshot) {
@@ -88,8 +88,8 @@ const actionMidlewares = {
                         returnArr.push(item);
                     }
                 });
-                dispatch(actionTypes.postFetch(returnArr));
-                dispatch(actionTypes.runLoading(false));
+                dispatch(actionTypes.postFetch(returnArr.reverse()));
+                // dispatch(actionTypes.runLoading(false));
             }).catch((error) => {
                 dispatch(actionTypes.postReset(error));
             });
@@ -119,27 +119,31 @@ const actionMidlewares = {
 
     savePost(params, editable) {
         return dispatch => {
-            dispatch(actionTypes.runLoading(true));
-            let { key, title, author, avatar } = params;
+            // dispatch(actionTypes.runLoading(true));
+            let { key, title, author, avatar, currentTime, status } = params;
             let url = !editable ? '/posts' : '/posts/' + key;
             const guestsRef = firebase.ref(url);
             if (editable) {
                 guestsRef.update({
                     title,
                     avatar,
-                    author
+                    author, 
+                    updated:currentTime,
+                    status
                 }).then(() => {
                     dispatch(actionTypes.postSave({ title, author, avatar }));
-                    dispatch(actionTypes.runLoading(false));
+                    // dispatch(actionTypes.runLoading(false));
                 }).catch((error) => {
                     dispatch(actionTypes.postSaveFaild(error));
-                    dispatch(actionTypes.runLoading(false));
+                    // dispatch(actionTypes.runLoading(false));
                 });
             } else {
                 guestsRef.push({
                     title,
                     author,
-                    avatar
+                    avatar,
+                    created: currentTime,
+                    status
                 }).then(() => {
                     dispatch(actionTypes.postSave({ title, author, avatar }));
                 }).catch((error) => {
