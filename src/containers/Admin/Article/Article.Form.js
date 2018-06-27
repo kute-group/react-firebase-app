@@ -21,7 +21,9 @@ import {
     FormText
 } from 'reactstrap';
 import Dropzone from 'react-dropzone';
-import { EditorState, ContentState, convertFromHTML } from 'draft-js';
+// import { EditorState, ContentState, convertFromHTML } from 'draft-js';
+import { convertToRaw,convertFromRaw, EditorState } from 'draft-js';
+
 import { Editor } from 'react-draft-wysiwyg';
 // import draftToHtml from 'draftjs-to-html';
 
@@ -34,14 +36,20 @@ function mapStateToProps({ post, global }) {
 class ArticleForm extends Component {
     constructor(props) {
         super(props);
+        // var json = JSON.parse('<p></p>');
+
+        // var blockArray = convertFromRaw(json);
+
+        // var contentState = ContentState.createFromBlockArray(blockArray);
         this.state = {
             loading: false,
             form: props.form,
             validation: {},
             editable: false,
-            editorState: EditorState.createEmpty(),
-            files: []
+            editorState: '',
+            files: [],
         };
+        this.onEditorStateChange = this.onEditorStateChange.bind(this);
     }
     componentWillReceiveProps(props) {
         let { global } = props;
@@ -58,8 +66,17 @@ class ArticleForm extends Component {
             form: Object.assign({}, this.state.form, { [field]: value.target.value })
         });
     }
+
+    // convertToString(editorState) {
+    //     return JSON.stringify(convertToRaw(editorState.getCurrentContent()));
+    // }
+
     onEditorStateChange(editorState) {
-        this.setState({ editorState });
+        // const stringValue = this.convertToString(editorState);
+        this.setState({
+            editorState: editorState,
+            form: Object.assign({}, this.state.form, { content: convertToRaw(editorState)})
+        });
     }
     onDrop(files) {
         this.props.onUpload(files[0]);
@@ -83,7 +100,7 @@ class ArticleForm extends Component {
                                 editorState={this.state.editorState}
                                 wrapperClassName="admin-wrapper"
                                 editorClassName="admin-editor"
-                                onEditorStateChange={this.onEditorStateChange.bind(this)}
+                                // onChange={this.onEditorStateChange.bind(this)}
                             />
                         </div>
 

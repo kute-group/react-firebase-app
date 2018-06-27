@@ -78,7 +78,7 @@ const actionMidlewares = {
         
         return dispatch => {
             // dispatch(actionTypes.runLoading(true));
-            firebase.ref('/posts').orderByChild('created').limitToLast(params.pageSize).once('value', snap => {
+            firebase.ref('/posts').orderByChild('created').limitToLast(5).once('value', snap => {
                 var returnArr = [];
 
                 snap.forEach(function (childSnapshot) {
