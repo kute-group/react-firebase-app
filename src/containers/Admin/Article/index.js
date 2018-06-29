@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import {
     Button,
     Nav,
@@ -25,31 +26,30 @@ import {
 import Typist from 'react-typist';
 import FontAwesome from 'react-fontawesome';
 import { NavLink } from 'react-router-dom';
-import { Editor } from 'react-draft-wysiwyg';
-// import draftToHtml from 'draftjs-to-html';
-import { EditorState } from 'draft-js';
-import '../../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-
+import moment from 'moment';
 //import internal libs
 import ArticleList from './Article.List';
+import ArticleForm from './Article.Form';
+
 const { layouts: { MainPage, AdminPage }, SEO } = global.COMPONENTS;
 const { actions, types } = global.REDUX;
 
 
 //=== map state ===
-function mapStateToProps({ post }) {
-    return { post };
+function mapStateToProps({ post, global }) {
+    return { post, global };
 }
 class Article extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            pageSize:5,
             list: null,
             loading: false,
             form: {
                 title: '',
                 author: '',
-                content: EditorState.createEmpty()
+                avatar:''
             },
             validation: {
                 title: '',
@@ -61,22 +61,31 @@ class Article extends Component {
 
     componentWillMount() {
         this.props.dispatch(
-            actions.post.fetchPost()
+            actions.post.fetchPost({pageSize:this.state.pageSize})
         );
         this.setState({ loading: true });
     }
 
     componentWillReceiveProps(props) {
-        let { post } = props;
-        if (post.action == 'POST_FETCH') {
+        let { post, global } = props;
+        // ACTION FOR POST
+        if (post.action === 'POST_FETCH') {
             this.setState({
                 loading: false,
                 list: post.list
             });
-        } else if (post.action == 'POST_SAVE') {
+        } else if (post.action === 'POST_SAVE') {
+            
+            this.props.dispatch(
+                actions.global.showNoti({
+                    message: 'Cập nhật bản ghi thành công!',
+                    level: 'success'
+                })
+            );
+            this.props.history.push('/admin/article');
             this.setState({ loading: false, form: { title: '', author: '' } });
             this.props.dispatch(
-                actions.post.fetchPost()
+                actions.post.fetchPost({pageSize: this.state.pageSize})
             );
         }
         else if (post.action == 'POST_DELETE') {
@@ -88,11 +97,13 @@ class Article extends Component {
 
     }
     //=== ACTION FUNCTIONS ===
+
     onEdit(ID) {
         let { list } = this.state;
+        let ID_KEY = list.findIndex((item)=>item.key === ID);
         this.setState({
             editable: true,
-            form: Object.assign({}, list[ID], { postId: ID })
+            form: list[ID_KEY]
         });
     }
 
@@ -103,66 +114,78 @@ class Article extends Component {
         );
     }
 
-    onChangeInputs(value, field) {
-        this.setState({
-            form: Object.assign({}, this.state.form, { [field]: value.target.value })
-        });
-    }
     onEditorStateChange(content) {
         this.setState({
             form: Object.assign({}, this.state.form, { content })
         });
     }
 
-    onSubmit() {
-        this.setState({ loading: true, editable: false });
+    onSubmit(form) {
+        form.status = 'active';
+        form.currentTime = moment().toDate().getTime();
+        console.log(form,'form');
         this.props.dispatch(
-            actions.post.savePost(this.state.form, this.state.editable)
+            actions.post.savePost(form, this.state.editable)
+        );
+        this.setState({ loading: true, editable: false, form });
+    }
+    onUpload(file){
+        this.props.dispatch(
+            actions.global.upLoad(file)
+        );
+    }
+    //=== RENDER FUNCTIONS ===
+
+    renderHeader() {
+        let title = 'Bài viết';
+        let showButton = true;
+        if (location.pathname.indexOf('/admin/article/add') >= 0) {
+            title = 'Thêm bài viết';
+            showButton = false;
+        } else if (location.pathname.indexOf('/admin/article/edit/') >= 0) title = 'Chỉnh sửa bài viết';
+        return (
+            <div className="col-md-6 left-block">
+                <h3>{title}</h3>
+                {showButton && <NavLink to="/admin/article/add">Viết bài mới</NavLink>}
+            </div>
         );
     }
 
-    //=== RENDER FUNCTIONS ===
-    renderSong() {
-        let { list, loading } = this.state;
-        if (loading) return 'Loading...';
-        if (list === 'null' || list === null) return null;
-        else {
-            let data = [];
-            Object.keys(list).map((val) => {
-                data.push(
-                    <ListGroupItem key={val}>
-                        <FontAwesome
-                            className='super-crazy-colors'
-                            name='rocket'
-                            size='2x'
-                            spin
-                            style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
-                        />
-
-                        sss: {list[val].title}, author: {list[val].author}
-                        <Button onClick={() => this.onEdit(val)} color="primary" className='pull-right'>Edit</Button>{' '}
-                        <Button onClick={() => this.onDelete(val)} color="danger" className='pull-right'>Delete</Button>
-                    </ListGroupItem>
-                );
-            });
-            return (
-                <div>
-                    <h1>List songs from firebase: </h1>
-                    <ListGroup>
-                        {data}
-                    </ListGroup>
-                </div>
-            );
-        }
-    }
     render() {
-        console.log(this.props);
+        const { location, post } = this.props;
+        const { list, form } = this.state;
+        console.log(list,'list');
         return (
             <AdminPage>
-                <SEO url="login" />
+                <SEO url="admin/article" />
                 <div className="content-block row">
+<<<<<<< HEAD
                    <ArticleList />
                     
+=======
+                    <div className="content-header clearfix col-md-12" >
+                        <div className="row">
+                            {this.renderHeader(location)}
+                            <div className="breadcrumbs col-md-6">
+                                <a href="/admin/article" className=" pull-right"> <i className="fa fa-arrow-right"></i> Bài viết </a>
+                                <a href="/admin/home" className=" pull-right"> <i className="fa fa-home"></i> Trang chủ </a>
+                            </div>
+                        </div>
+                    </div>
+                    {location.pathname === '/admin/article' && <ArticleList
+                        onDelete={(ID) => this.onDelete(ID)}
+                        onEdit={(ID) => this.onEdit(ID)}
+                        list={list}
+                        loading={post.loading} />
+                    }
+                    {(location.pathname.indexOf('/admin/article/add') >= 0
+                        || location.pathname.indexOf('/admin/article/edit/') >= 0
+                    ) && <ArticleForm
+                            form={form}
+                            onUpload= {(file)=>this.onUpload(file)}
+                            onSubmit={(form) => this.onSubmit(form)}
+                        />}
+>>>>>>> fa9786ebbe6b766f0886c700a03a58aef3d06fe3
                 </div>
             </AdminPage>
         );
@@ -173,4 +196,4 @@ Article.propTypes = {
 
 };
 
-export default connect(mapStateToProps)(Article);
+export default withRouter(connect(mapStateToProps)(Article));

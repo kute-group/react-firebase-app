@@ -141,6 +141,29 @@ const actionMidlewares = {
                 dispatch(actionTypes.todoDeleteFaild(error));
             });
         };
+    },
+
+    addGoogleSheet() {
+        let url = 'https://script.google.com/macros/s/AKfycbz1mmHFNZNMREv58N0F2nZWEPqYXJsEUPl52FxVySVC0Io9M_s/exec';
+        const params = {
+            data: 'Hợp',
+        };
+        let mappers = [];
+        FetchHelper.postEncode(
+            url,
+            "POST",
+            params,
+            mappers,
+            res => {
+                dispatch(actionTypes.todoSave(res));
+            },
+            faild => {
+                dispatch(actionTypes.todoSaveFaild(faild));
+            },
+            error => {
+                dispatch(actionTypes.todoSaveError(error || null));
+            }
+        );
     }
 };
 

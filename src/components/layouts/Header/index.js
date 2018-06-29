@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
 //import internal libs
+const { images } = global.THEMES;
+const LANG = global.LANGUAGES[global.LANG];
 import './style.scss';
 
 class Header extends Component {
@@ -11,21 +13,21 @@ class Header extends Component {
             <div className='header'>
                 <nav className="main-menu">
                     <div className="logo">
-                        <NavLink exact to='/'><img src="https://scontent.fhan3-1.fna.fbcdn.net/v/t1.0-9/25551862_1514378232014017_8031161563457491441_n.jpg?oh=16f664cf34949bc3c0cf7910156fbd9e&oe=5ADD71FE" /></NavLink>
+                        <NavLink exact to='/'><img src={images.default.avatar}/></NavLink>
                     </div>
                     <ul className='menu'>
-                        <li><NavLink exact to='/'>Home</NavLink></li>
-                        <li><NavLink to='/about'>About</NavLink></li>
-                        <li><NavLink to='/services'>Services</NavLink></li>
+                        <li><NavLink exact to='/'>{LANG.text_home}</NavLink></li>
+                        <li><NavLink to='/about'>{LANG.text_about}</NavLink></li>
+                        {/* <li><NavLink to='/services'>{LANG.text_s}</NavLink></li> */}
                         {/* <li><NavLink to='/resume'>Resume</NavLink></li> */}
                         {/* <li><NavLink to='/skills'>Skills</NavLink></li> */}
                         {/* <li><NavLink to='/portfolio'>Portfolio</NavLink></li> */}
                         {/* <li><NavLink to='/calendar'>Calendar</NavLink></li> */}
-                        <li><NavLink to='/blog'>Blog</NavLink></li>
+                        <li><NavLink to='/blog'>{LANG.text_news}</NavLink></li>
                         {/* <li><NavLink to='/page'>Page</NavLink></li> */}
-                        <li><NavLink to='/contact'>Contact</NavLink></li>
-                        <li><NavLink to='/auth/login'>Login</NavLink></li>
-                        <li><NavLink to='/admin/home'>Admin</NavLink></li>
+                        <li><NavLink to='/contact'>{LANG.text_contact}</NavLink></li>
+                        <li><NavLink to='/auth/login'>{LANG.text_login}</NavLink></li>
+                        {/* <li><NavLink to='/admin/home'>Admin</NavLink></li> */}
                     </ul>
                 </nav>
                 <div className='menu-footer'>

@@ -38,15 +38,60 @@
         }
         tbody {
             tr {
+                min-height: 56px;
                 td {
                     padding: 8px 10px;
                     line-height: 1.4em;
+                    .title {
+                        font-weight: bold;
+                        font-weight: 600;
+                        color: #0073aa;
+                    }
+                    .thumb {
+                        width: 145px;
+                        max-height: 200px;
+                        border: 1px solid #ddd;
+                        margin: 3px;
+                        border-radius: 5px;
+                    }
+                    .toggle-actions {
+                        min-height: 20px;
+                        ul {
+                            display: none;
+                            li {
+                                float: left;
+                                a {
+                                    color: #0073aa;
+                                    font-size: 12px;
+                                    cursor: pointer;
+                                }
+                                .danger-link {
+                                    color: #a00;
+                                }
+                                span {
+                                    font-size: 10px;
+                                    color: #ddd;
+                                    padding: 5px;
+                                }
+                            }
+                        }
+                    }
+                }
+                .td-title {
+                    width: 300px;
+                }
+                .td-check {
+                    width: 50px;
                 }
                 &:nth-child(even) {
                     background-color: #f9f9f9;
                 }
                 &:hover {
-                    background-color: #f9f9f9;
+                    .toggle-actions {
+                        ul {
+                            display: block;
+                        }
+                    }
                 }
             }
         }
@@ -225,6 +270,112 @@
                 }
             }
         }
+        .main-content {
+            background: $color-grey;
+            margin-left: 230px;
+            .content-block {
+                .content-header {
+                    margin-bottom: 15px;
+                    .left-block {
+                        h3 {
+                            font-weight: bold;
+                            margin-right: 20px;
+                            float: left;
+                            margin-bottom: 0;
+                            padding: 0;
+                        }
+                        a {
+                            padding: 4px 8px;
+                            position: relative;
+                            text-decoration: none;
+                            border: 1px solid #ccc;
+                            border-radius: 2px;
+                            background: #f7f7f7;
+                            text-shadow: none;
+                            font-weight: 600;
+                            font-size: 13px;
+                            line-height: 25px;
+                            color: #0073aa;
+                            cursor: pointer;
+                            outline: 0;
+                            &:hover {
+                                background: #0073aa;
+                                color: #f7f7f7;
+                                border: 0;
+                            }
+                        }
+                    }
+                    .breadcrumbs {
+                        a {
+                            margin: 0 5px;
+                        }
+                    }
+                }
+                .form-block {
+                    .admin-wrapper {
+                        background: #fff;
+                        border: 1px solid #e5e5e5;
+                    }
+                    .admin-editor {
+                        height: 300px;
+                        padding: 10px;
+                    }
+                    .sidebar-block {
+                        .block-publish {
+                            box-shadow: 0 1px 1px rgba(0, 0, 0, .04);
+                            margin-bottom: 20px;
+                            padding: 0;
+                            line-height: 1;
+                            min-width: 255px;
+                            border: 1px solid #e5e5e5;
+                            background: #fff;
+                            .b-header {
+                                h3 {
+                                    font-size: 14px;
+                                    padding: 8px 12px;
+                                    margin: 0;
+                                    line-height: 1.4;
+                                }
+                            }
+                            .b-content {
+                                border-top: 1px solid #ddd;
+                                padding: 8px 12px;
+                                .dropzone {
+                                    width: 100%;
+                                    height: auto;
+                                    min-height: 180px;
+                                    background: #ddd;
+                                    cursor: pointer;
+                                    img {
+                                        width: 100%;
+                                        height: auto;
+                                        min-height: 180px;
+                                    }
+                                }
+                            }
+                            .b-footer {
+                                padding: 10px;
+                                clear: both;
+                                border-top: 1px solid #ddd;
+                                background: #f5f5f5;
+                                a {
+                                    height: 30px;
+                                    line-height: 28px;
+                                    padding: 6px 12px;
+                                    cursor: pointer;
+                                    background: #0085ba;
+                                    border-color: #0073aa #006799 #006799;
+                                    box-shadow: 0 1px 0 #006799;
+                                    color: #fff;
+                                    text-decoration: none;
+                                    text-shadow: 0 -1px 1px #006799, 1px 0 1px #006799, 0 1px 1px #006799, -1px 0 1px #006799;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     
     .main-content {
@@ -253,5 +404,20 @@
         .main-content {
             background: $color-grey;
             margin-left: 230px;
+            .content-block {
+                .content-header {
+                    .left-block {
+                        h3 {
+                            font-size: 14px;
+                            ;
+                            font-weight: bold;
+                        }
+                        a {
+                            margin-left: 15px;
+                            padding: 5px 10px;
+                        }
+                    }
+                }
+            }
         }
     }

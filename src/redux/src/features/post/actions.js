@@ -1,10 +1,16 @@
 import * as Types from './types';
-import { actions as globalAction } from '../global';
 import { ApiUrl, FetchHelper } from '../../services';
 import firebase from '../../firebase';
+import axios from 'axios';
 
 //=== ACTION TYPES ===
 const actionTypes = {
+    runLoading(loading){
+        return {
+            loading,
+            type: Types.POST_LOADING,
+        };
+    },
     postFetch(list) {
         return {
             type: Types.POST_FETCH,
@@ -69,22 +75,21 @@ const actionTypes = {
 //=== ACTION MIDLEWARES ===
 const actionMidlewares = {
     fetchPost(params) {
+        
         return dispatch => {
-            dispatch(globalAction.loadingShow());
-            firebase.ref('/posts').once('value', snap => {
-              var returnArr = [];
+            // dispatch(actionTypes.runLoading(true));
+            firebase.ref('/posts').orderByChild('created').limitToLast(5).once('value', snap => {
+                var returnArr = [];
 
-              snap.forEach(function(childSnapshot) {
-                  if(childSnapshot.val() !== 1){
-                    var item = childSnapshot.val();
-                    item.key = childSnapshot.key;
-            
-                    returnArr.push(item);
-                  }
-                 
-              });
-                dispatch(actionTypes.postFetch(returnArr));
-                dispatch(globalAction.loadingHide());
+                snap.forEach(function (childSnapshot) {
+                    if (childSnapshot.val() !== 1) {
+                        var item = childSnapshot.val();
+                        item.key = childSnapshot.key;
+                        returnArr.push(item);
+                    }
+                });
+                dispatch(actionTypes.postFetch(returnArr.reverse()));
+                // dispatch(actionTypes.runLoading(false));
             }).catch((error) => {
                 dispatch(actionTypes.postReset(error));
             });
@@ -113,27 +118,34 @@ const actionMidlewares = {
     },
 
     savePost(params, editable) {
-        console.log(params, 'params');
         return dispatch => {
-            let { postId, title, author } = params;
-            let url = !editable ? '/posts' : '/posts/' + postId;
-
+            // dispatch(actionTypes.runLoading(true));
+            let { key, title, author, avatar, currentTime, status } = params;
+            let url = !editable ? '/posts' : '/posts/' + key;
             const guestsRef = firebase.ref(url);
             if (editable) {
                 guestsRef.update({
                     title,
-                    author
+                    avatar,
+                    author, 
+                    updated:currentTime,
+                    status
                 }).then(() => {
-                    dispatch(actionTypes.postSave({ title, author }));
+                    dispatch(actionTypes.postSave({ title, author, avatar }));
+                    // dispatch(actionTypes.runLoading(false));
                 }).catch((error) => {
                     dispatch(actionTypes.postSaveFaild(error));
+                    // dispatch(actionTypes.runLoading(false));
                 });
             } else {
                 guestsRef.push({
                     title,
-                    author
+                    author,
+                    avatar,
+                    created: currentTime,
+                    status
                 }).then(() => {
-                    dispatch(actionTypes.postSave({ title, author }));
+                    dispatch(actionTypes.postSave({ title, author, avatar }));
                 }).catch((error) => {
                     dispatch(actionTypes.postSaveFaild(error));
                 });
@@ -151,6 +163,24 @@ const actionMidlewares = {
             }).catch((error) => {
                 dispatch(actionTypes.postDeleteFaild(error));
             });
+        };
+    },
+
+    addGoogleSheet(request) {
+        const {fullname, phone, note, address} = request;
+        return dispatch => {
+            let url = 'https://script.google.com/macros/s/AKfycbz1mmHFNZNMREv58N0F2nZWEPqYXJsEUPl52FxVySVC0Io9M_s/exec';
+            return axios({
+                method: 'post',
+                url,
+                params: {
+                    fullname,
+                    phone,
+                    address,
+                    note
+                }
+            });
+
         };
     }
 };

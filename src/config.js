@@ -5,7 +5,7 @@ class Config {
         global.REDUX = require('./redux');
         global.HELPERS = require('./helpers');
         global.THEMES = require('./themes');
-        global.LANG = 'LANG_EN';
+        global.LANG = 'LANG_VI';
         global.LANGUAGES = require('./constants/languages');
         global.COMPONENTS = require('./components');
         // global.ROUTES = require('./routePath');
@@ -18,7 +18,8 @@ class Config {
             FIREBASE: {
                 apiKey: 'AIzaSyCZZGVdty7x_zgzsDcDsdnAYjAmGAqC23E',
                 authDomain: 'luongbahop1993.firebaseapp.com',
-                databaseURL: 'https://luongbahop1993.firebaseio.com'
+                databaseURL: 'https://luongbahop1993.firebaseio.com',
+                storageBucket: 'luongbahop1993.appspot.com',
             }
         };
     }
