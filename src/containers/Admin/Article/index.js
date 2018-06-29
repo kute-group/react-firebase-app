@@ -31,9 +31,11 @@ import { EditorState } from 'draft-js';
 import '../../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 //import internal libs
-
+import ArticleList from './Article.List';
 const { layouts: { MainPage, AdminPage }, SEO } = global.COMPONENTS;
 const { actions, types } = global.REDUX;
+
+
 //=== map state ===
 function mapStateToProps({ post }) {
     return { post };
@@ -159,7 +161,7 @@ class Article extends Component {
             <AdminPage>
                 <SEO url="login" />
                 <div className="content-block row">
-                   
+                   <ArticleList />
                     
                 </div>
             </AdminPage>
