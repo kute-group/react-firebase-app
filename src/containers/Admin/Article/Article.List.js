@@ -23,6 +23,7 @@ import { NavLink } from 'react-router-dom';
 import ReactPlaceholder from 'react-placeholder';
 
 const { images } = global.THEMES;
+const { languages } = global.HELPERS;
 class ArticleList extends Component {
 
     //=== RENDER FUNCTIONS ===
@@ -84,6 +85,14 @@ class ArticleList extends Component {
     render() {
         return (
             <Col xs="12">
+                <div className="block-status">
+                  <a >Tất cả <span>(130)</span></a>
+                  <b>|</b>
+                  <a >Đã đăng<span>(130)</span></a>
+                  <b>|</b>
+                  <a >Bản nháp<span>(130)</span></a>
+                  <input className="pull-right search" placeholder={languages.show('search')} />
+                </div>
                 <div className="block-filter">
                     Page:
                     <select name="" id="">

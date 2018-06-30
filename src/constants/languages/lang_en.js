@@ -1,5 +1,6 @@
 const LANG_EN = {
     main_navigation:'Main navigation',
+    search:'Search',
     
     //status
     publish:'Publish',

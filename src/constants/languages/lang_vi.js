@@ -1,5 +1,8 @@
 const LANG_VI = {
     main_navigation: 'Menu chính',
+    search:'Tìm kiếm',
+
+    //menu
     text_home:'Trang chủ',
     text_about:'Giới thiệu',
     text_news:'Tin tức',

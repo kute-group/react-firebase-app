@@ -106,8 +106,10 @@ const actionMidlewares = {
     return dispatch => {
       // dispatch(actionTypes.runLoading(true));
       firebase.ref('/posts').child(key).once('value', snap => {
-        console.log(snap.val(), 'childSnapshot');
-        dispatch(actionTypes.postFetchDetail(snap.val()));
+        const detail = snap.val();
+        detail.key=snap.key;
+        console.log(detail, 'childSnapshot');
+        dispatch(actionTypes.postFetchDetail(detail));
         dispatch(actionTypes.runLoading(false));
       }).catch((error) => {
         dispatch(actionTypes.postReset(error));
@@ -150,26 +152,26 @@ const actionMidlewares = {
           author,
           updated: currentTime,
           status
-        }).then(() => {
-          dispatch(actionTypes.postSave({ title, author, avatar }));
+        }).then((snap) => {
+          console.log(snap.val(),'123');
+          dispatch(actionTypes.postSave({ key, title, author, avatar }));
           // dispatch(actionTypes.runLoading(false));
         }).catch((error) => {
           dispatch(actionTypes.postSaveFaild(error));
           // dispatch(actionTypes.runLoading(false));
         });
       } else {
-        guestsRef.push({
+        const resultKey = guestsRef.push({
           title,
           content,
           author,
           avatar,
           created: currentTime,
           status
-        }).then(() => {
-          dispatch(actionTypes.postSave({ title, author, avatar }));
-        }).catch((error) => {
-          dispatch(actionTypes.postSaveFaild(error));
-        });
+        }).key;
+
+        dispatch(actionTypes.postSave(resultKey));
+        // dispatch(actionTypes.postSaveFaild(error));
       }
 
     };
