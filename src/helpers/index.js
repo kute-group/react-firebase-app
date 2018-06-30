@@ -1,3 +1,4 @@
-import validators from './validators.js';
+import validators from './validators';
+import * as languages from './languages';
 
-export { validators };
+export { validators, languages };

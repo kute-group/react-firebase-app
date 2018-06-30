@@ -1,7 +1,6 @@
 //import external libs
 import React, { Component } from 'react';
 import { Progress } from 'reactstrap';
-import NotificationSystem from 'react-notification-system';
 
 //import internal libs
 

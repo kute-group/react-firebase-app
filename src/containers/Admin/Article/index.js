@@ -74,25 +74,15 @@ class Article extends Component {
                 loading: false,
                 list: post.list
             });
-        } else if (post.action === 'POST_SAVE') {
-            
-            this.props.dispatch(
-                actions.global.showNoti({
-                    message: 'Cập nhật bản ghi thành công!',
-                    level: 'success'
-                })
-            );
-            this.props.history.push('/admin/article');
-            this.setState({ loading: false, form: { title: '', author: '' } });
-            this.props.dispatch(
-                actions.post.fetchPost({pageSize: this.state.pageSize})
-            );
-        }
-        else if (post.action == 'POST_DELETE') {
+        }else if (post.action == 'POST_DELETE') {
             this.setState({ loading: false });
             this.props.dispatch(
                 actions.post.fetchPost()
             );
+        } else if (post.action === 'POST_SAVE') {
+          this.props.dispatch(
+            actions.post.fetchPost()
+        );
         }
 
     }
@@ -100,6 +90,7 @@ class Article extends Component {
 
     onEdit(ID) {
         let { list } = this.state;
+        console.log(ID, 'ID');
         let ID_KEY = list.findIndex((item)=>item.key === ID);
         this.setState({
             editable: true,
@@ -120,14 +111,12 @@ class Article extends Component {
         });
     }
 
-    onSubmit(form) {
-        form.status = 'active';
+    onSubmit(form, editable) {
         form.currentTime = moment().toDate().getTime();
-        console.log(form,'form');
         this.props.dispatch(
             actions.post.savePost(form, this.state.editable)
         );
-        this.setState({ loading: true, editable: false, form });
+        this.setState({ loading: true, editable, form });
     }
     onUpload(file){
         this.props.dispatch(
@@ -159,10 +148,6 @@ class Article extends Component {
             <AdminPage>
                 <SEO url="admin/article" />
                 <div className="content-block row">
-<<<<<<< HEAD
-                   <ArticleList />
-                    
-=======
                     <div className="content-header clearfix col-md-12" >
                         <div className="row">
                             {this.renderHeader(location)}
@@ -182,10 +167,10 @@ class Article extends Component {
                         || location.pathname.indexOf('/admin/article/edit/') >= 0
                     ) && <ArticleForm
                             form={form}
+                            onEdit={(ID) => this.onEdit(ID)}
                             onUpload= {(file)=>this.onUpload(file)}
-                            onSubmit={(form) => this.onSubmit(form)}
+                            onSubmit={(form, editable) => this.onSubmit(form, editable)}
                         />}
->>>>>>> fa9786ebbe6b766f0886c700a03a58aef3d06fe3
                 </div>
             </AdminPage>
         );

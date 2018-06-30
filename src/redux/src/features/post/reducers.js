@@ -3,6 +3,7 @@ import * as Types from './types';
 const initialState = {
     action: null,
     list: null,
+    detail:null,
     attach: null,
     saveResult: null,
     saveFaild: null,
@@ -21,6 +22,10 @@ export default function post(state = initialState, action) {
         case Types.POST_FETCH:
             return Object.assign({}, state, {
                 list: action.list
+            });
+        case Types.POST_FETCH_DETAIL:
+            return Object.assign({}, state, {
+              detail: action.detail
             });
         case Types.POST_LOADING:
             return Object.assign({}, state, {

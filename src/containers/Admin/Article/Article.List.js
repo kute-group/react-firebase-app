@@ -40,9 +40,9 @@ class ArticleList extends Component {
                             <NavLink className="title" onClick={()=>this.props.onEdit(val.key)} to={`/admin/article/edit/${val.key}`}>{val.title}</NavLink>
                             <div className="toggle-actions">
                                 <ul>
-                                    <li><NavLink onClick={()=>this.props.onEdit(val.key)} to={`/admin/article/edit/${val.key}`}>Chỉnh sửa</NavLink> <span>|</span></li>
+                                    <li><NavLink to={`/admin/article/edit/${val.key}`}>Chỉnh sửa</NavLink> <span>|</span></li>
                                     <li><a className="danger-link" onClick={()=>this.props.onDelete(val.key)}>Xoá tạm</a><span>|</span></li>
-                                    <li><NavLink onClick={()=>this.props.onEdit(key)} to={`/admin/article/edit/${val.key}`}>Sao chép</NavLink></li>
+                                    <li><NavLink to={`/admin/article/edit/${val.key}`}>Sao chép</NavLink></li>
                                 </ul>
                             </div>
                         

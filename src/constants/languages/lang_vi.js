@@ -5,5 +5,10 @@ const LANG_VI = {
     text_news:'Tin tức',
     text_login:'Đăng nhập',
     text_contact:'Liên hệ',
+    //status
+    publish:'Đã đăng',
+    draft:'Bản nháp',
+    pending:'Chờ duyệt',
+
 };
 export default LANG_VI;

@@ -7,6 +7,7 @@ class Config {
         global.THEMES = require('./themes');
         global.LANG = 'LANG_VI';
         global.LANGUAGES = require('./constants/languages');
+        global.CONSTANTS = require('./constants/global');
         global.COMPONENTS = require('./components');
         // global.ROUTES = require('./routePath');
         global.CONFIG = {

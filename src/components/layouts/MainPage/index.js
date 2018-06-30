@@ -1,7 +1,6 @@
 //import external libs
 import React, { Component } from 'react';
 import { Progress } from 'reactstrap';
-import NotificationSystem from 'react-notification-system';
 
 //import internal libs
 import Header from '../Header';
@@ -47,7 +46,6 @@ class MainPage extends Component {
                 <div className='main'>
                     {this.props.children}
                 </div>
-                <NotificationSystem ref="notificationSystem" />
             </div>
         );
     }
