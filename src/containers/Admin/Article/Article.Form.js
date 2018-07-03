@@ -50,7 +50,7 @@ class ArticleForm extends Component {
             const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
             const editorState = EditorState.createWithContent(contentState);
             this.state = {
-                ID:'',
+                ID: '',
                 loading: false,
                 form: {},
                 validation: {},
@@ -59,16 +59,12 @@ class ArticleForm extends Component {
                 files: [],
             };
         }
-
-
-        this.onEditorStateChange = this.onEditorStateChange.bind(this);
-        this.onChange = (editorState) => this.setState({ editorState });
     }
 
     componentDidMount() {
         const { location } = this.props;
         if (location.pathname.indexOf('/article/add') >= 0) {
-            this.setState({ editable: false, form:{} });
+            this.setState({ editable: false, form: {} });
         } else if (location.pathname.indexOf('/article/edit') >= 0) {
             const ID = location.pathname.replace('/admin/article/edit/', '');
             this.props.dispatch(
@@ -81,7 +77,7 @@ class ArticleForm extends Component {
         let { global, post, location } = props;
 
         if (location.pathname.indexOf('/article/add') >= 0) {
-            this.setState({ editable: false, form:{} });
+            this.setState({ editable: false, form: {} });
         }
         // ACTION FOR GLOBAL
         if (global.action == 'UPLOAD_SUCCESS') {
@@ -100,11 +96,10 @@ class ArticleForm extends Component {
 
         }
         if (post.action === 'POST_SAVE') {
-            console.log(post, 'post');
             this.props.dispatch(
                 actions.post.fetchPostDetail(post.saveResult)
             );
-            setTimeout(()=>{
+            setTimeout(() => {
                 this.props.history.push(`/admin/article/edit/${post.saveResult}`);
             }, 500);
             this.props.dispatch(
@@ -122,17 +117,6 @@ class ArticleForm extends Component {
         });
     }
 
-    // convertToString(editorState) {
-    //     return JSON.stringify(convertToRaw(editorState.getCurrentContent()));
-    // }
-
-    // onEditorStateChange(editorState) {
-    //     // const stringValue = this.convertToString(editorState);
-    //     this.setState({
-    //         editorState: editorState,
-    //         form: Object.assign({}, this.state.form, { content: convertToRaw(editorState)})
-    //     });
-    // }
     onEditorStateChange(editorState) {
         this.setState({
             editorState,
@@ -146,7 +130,8 @@ class ArticleForm extends Component {
         });
     }
 
-    onSubmit() {
+    onSubmit(event) {
+        event.preventDefault();
         const { form, editable, editorState } = this.state;
         form.status = form.status ? form.status : 'publish';
         form.avatar = form.avatar ? form.avatar : '';
@@ -157,8 +142,8 @@ class ArticleForm extends Component {
     }
     render() {
         const { form, editable, editorState } = this.state;
-        console.log(this.state, 'state');
-        console.log(this.props, 'props');
+        // console.log(this.state, 'state');
+        // console.log(this.props, 'props');
         return (
             <div className="form-block col-md-12">
                 <div className="row">
@@ -172,7 +157,7 @@ class ArticleForm extends Component {
                                 wrapperClassName="admin-wrapper"
                                 editorClassName="admin-editor"
                                 editorState={editorState}
-                                onEditorStateChange={(editorState)=>this.onEditorStateChange(editorState)} />
+                                onEditorStateChange={(editorState) => this.onEditorStateChange(editorState)} />
                         </div>
                         <div className="block-publish">
                             <div className="b-header">
@@ -228,7 +213,7 @@ class ArticleForm extends Component {
                                 </table>
                             </div>
                             <div className="b-footer">
-                                <a color="primary" onClick={() => this.onSubmit()} >Cập nhật</a>
+                                <a color="primary" onClick={(event) => this.onSubmit(event)} >Cập nhật</a>
                             </div>
                         </div>
                         <div className="block-publish">
@@ -239,7 +224,7 @@ class ArticleForm extends Component {
                                 <Dropzone
                                     className="dropzone"
                                     multiple={false}
-                                    onDrop={(files)=>this.onDrop(files)}>
+                                    onDrop={(files) => this.onDrop(files)}>
                                     <img src={this.state.form.avatar} />
                                 </Dropzone>
                             </div>

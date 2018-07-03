@@ -8,37 +8,36 @@ import 'react-placeholder/lib/reactPlaceholder.css';
 //import internal libs
 const LANG = global.LANGUAGES[global.LANG];
 //=== map state ===
-function mapStateToProps({  global, post }) {
+function mapStateToProps({ global, post }) {
     return { global, post };
 }
 class AdminPage extends Component {
     constructor(props) {
         super(props);
+        this.noti = null;
     }
 
     componentWillReceiveProps(nextProps) {
         const { global, post } = nextProps;
         // ACTION FOR GLOBAL
-        if(global.action === 'SHOW_NOTI' && global.noti.level !=='') {
-            console.log('hello');
+        if (global.action === 'SHOW_NOTI' && global.noti.level !== '') {
+            this.noti = this.refs.notificationSystem;
             this.fireNotification(global.noti);
         }
 
     }
     fireNotification(noti) {
         if (!this.noti) {
-            this.noti = this.refs.notificationSystem;
+            this.noti = null;
         }
         if (this.noti) {
-            if (
-                noti &&
-                noti.message &&
-                noti.message.indexOf('CLIENT-01') !== -1
-            )
-                return;
             this.noti.addNotification(noti);
         }
     }
+    componentDidMount() {
+        this.noti = this.refs.notificationSystem;
+    }
+
     render() {
         return (
             <div className='wrap-admin theme-adminLTE skin-blue'>

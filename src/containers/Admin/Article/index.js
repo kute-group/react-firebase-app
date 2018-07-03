@@ -90,7 +90,6 @@ class Article extends Component {
 
     onEdit(ID) {
         let { list } = this.state;
-        console.log(ID, 'ID');
         let ID_KEY = list.findIndex((item)=>item.key === ID);
         this.setState({
             editable: true,
@@ -143,7 +142,7 @@ class Article extends Component {
     render() {
         const { location, post } = this.props;
         const { list, form } = this.state;
-        console.log(list,'list');
+        // console.log(list,'list');
         return (
             <AdminPage>
                 <SEO url="admin/article" />

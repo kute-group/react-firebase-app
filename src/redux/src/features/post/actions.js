@@ -153,7 +153,6 @@ const actionMidlewares = {
           updated: currentTime,
           status
         }).then((snap) => {
-          console.log(snap.val(),'123');
           dispatch(actionTypes.postSave({ key, title, author, avatar }));
           // dispatch(actionTypes.runLoading(false));
         }).catch((error) => {
