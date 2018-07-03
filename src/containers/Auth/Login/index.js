@@ -34,8 +34,8 @@ const { layouts: { MainPage, AuthPage }, SEO } = global.COMPONENTS;
 const { actions, types } = global.REDUX;
 const { validators } = global.HELPERS;
 //=== map state ===
-function mapStateToProps({ todo }) {
-    return { todo }
+function mapStateToProps({ todo, auth }) {
+    return { todo, auth }
 }
 class Login extends Component {
     constructor(props) {
@@ -52,8 +52,9 @@ class Login extends Component {
     }
     onSubmit() {
         const { form } = this.state;
-        this.props.history.push('/admin/home');
-        if (this.doValidate()) this.doLogin();
+        // this.props.history.push('/admin/home');
+        // if (this.doValidate()) this.doLogin();
+        this.doLogin();
     }
     doValidate() {
         const RULES = [
@@ -81,6 +82,9 @@ class Login extends Component {
     }
     doLogin() {
         console.log(this.state.form);
+        this.props.dispatch(
+            actions.auth.login(this.state.form)
+        );
     }
     renderTextHelper(field) {
         const { error } = this.state;
@@ -96,7 +100,6 @@ class Login extends Component {
         return text;
     }
     render() {
-        console.log(this.state, 'state');
         return (
             <MainPage>
                 <SEO url="login" />
