@@ -240,6 +240,7 @@ class Silk extends Component {
 
     render() {
         const height = window.innerHeight - 5;
+        console.log(this.props,'product');
         return (
             <MainPage>
                 <SEO url="home" />
@@ -290,14 +291,9 @@ class Silk extends Component {
                         <div className="product-popup">
                             <div className="info">
                                 <img className="images-product" src={(this.state.product !== null && typeof(this.state.product.avatar) !== 'undefined' && this.state.product.avatar !== '') ? this.state.product.avatar : images.default.imageDefault}/>
-                                <p>Bạn muốn sang trọng quý phái, bạn muốn mềm mại êm ái, bạn muốn cảm giác thoả mái mỗi sáng thức dậy, sau khi tắm xong, sau khi đi spa hay tập thể hình</p>
-    
-                                <p>Đầy đủ kích thước, phù hợp với mọi nhu cầu.</p>
-                                <ul>
-                                    <li>- Khăn 100% cotton, khăn modal mềm mại, mượt mà.</li>
-                                    <li>- Không mẫn cảm, kích ứng với da.</li>
-                                    <li>- ship toàn quốc</li>
-                                </ul>
+                                
+                                {(this.state.product !== null) && <div dangerouslySetInnerHTML={{__html: this.state.product.content || ''}} /> }
+                                
                             </div>
                            <div className="cart-field">
                                 <div className="form-group">
