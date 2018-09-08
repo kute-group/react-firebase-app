@@ -6,6 +6,7 @@ const LANG_VI = {
     text_home:'Trang chủ',
     text_about:'Giới thiệu',
     text_news:'Tin tức',
+    text_service: 'Dịch vụ ',
     text_login:'Đăng nhập',
     text_contact:'Liên hệ',
     //status

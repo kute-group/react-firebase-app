@@ -5,7 +5,7 @@ class Config {
         global.REDUX = require('./redux');
         global.HELPERS = require('./helpers');
         global.THEMES = require('./themes');
-        global.LANG = 'LANG_VI';
+        global.LANG = 'LANG_EN';
         global.LANGUAGES = require('./constants/languages');
         global.CONSTANTS = require('./constants/global');
         global.COMPONENTS = require('./components');

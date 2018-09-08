@@ -18,12 +18,12 @@ class Header extends Component {
                     <ul className='menu'>
                         <li><NavLink exact to='/'>{LANG.text_home}</NavLink></li>
                         <li><NavLink to='/about'>{LANG.text_about}</NavLink></li>
-                        {/* <li><NavLink to='/services'>{LANG.text_s}</NavLink></li> */}
+                        <li><NavLink to='/services'>{LANG.text_service}</NavLink></li>
                         {/* <li><NavLink to='/resume'>Resume</NavLink></li> */}
                         {/* <li><NavLink to='/skills'>Skills</NavLink></li> */}
                         {/* <li><NavLink to='/portfolio'>Portfolio</NavLink></li> */}
                         {/* <li><NavLink to='/calendar'>Calendar</NavLink></li> */}
-                        <li><NavLink to='/blog'>{LANG.text_news}</NavLink></li>
+                        {/* <li><NavLink to='/blog'>{LANG.text_news}</NavLink></li> */}
                         {/* <li><NavLink to='/page'>Page</NavLink></li> */}
                         <li><NavLink to='/contact'>{LANG.text_contact}</NavLink></li>
                         {/* <li><NavLink to='/auth/login'>{LANG.text_login}</NavLink></li> */}
