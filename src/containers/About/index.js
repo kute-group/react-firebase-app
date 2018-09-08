@@ -18,7 +18,7 @@ class About extends Component {
                         <figure>
                             <LazyLoad>
                                 <img
-                                    src={images.default.avatar}
+                                    src={images.default.admin}
                                     alt="avatar"
                                 />
                             </LazyLoad>
