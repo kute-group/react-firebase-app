@@ -160,10 +160,10 @@ class Home extends Component {
                                      Steve Luong 
                                 </h1>
                                 <Typist.Delay ms={500} />
-                                <h2>Web/Mobile Developer, DevOps Engineer </h2>
+                                <h2>Web/Mobile Developer, DevOps Engineer, Trader, Investor </h2>
                                 <Typist.Delay ms={700} />
                                 <div className="button-large">
-                                    <a target="_blank" href="https://www.topcv.vn/xem-cv/f5a04956d682fe06145f3f4f73715afc">Download my CV</a>
+                                    <a target="_blank" href="http://teachyourself.vn/">My personal blog</a>
                                 </div>
                             </Typist>
                         </div>

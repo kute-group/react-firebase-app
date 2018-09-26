@@ -279,6 +279,7 @@ html {
 
 .home .intro .content h2 {
     margin-bottom: 30px;
+    color: #fff;
 }
 
 .home .intro .content .button-large a {
@@ -353,7 +354,7 @@ html {
 .wrap .main .about {}
 
 .about .avatar {
-    width: 30%;
+    width: 28%;
     float: left;
 }
 
@@ -384,7 +385,7 @@ html {
 }
 
 .about .infomation {
-    width: 70%;
+    width: 72%;
     float: right;
     padding: 0 30px;
 }
@@ -405,12 +406,21 @@ html {
 }
 
 .about .infomation .contact-block {
-    margin-top: 30px;
+    margin-top: 5px;
 }
 
 .about .infomation .contact-block .item {
     width: 33.3333%;
     float: left;
+}
+
+.about .infomation .contact-block .item p{
+    margin: 0;
+}
+
+.about .infomation .contact-block .item h4{
+    margin-bottom: 10px;
+    font-size: 17px;
 }
 
 .about .infomation .description {
@@ -704,6 +714,7 @@ html {
         top: 0px;
         z-index: 999;
         background: #2f3742;
+        min-height: 600px;
     }
     .header .main-menu {
         padding-bottom: 110px;
@@ -719,10 +730,10 @@ html {
     .header .main-menu .logo img {
         width: 100%;
         border-radius: 10px;
-        animation-name: blinker;
-        animation-duration: 4s;
-        animation-timing-function: linear;
-        animation-iteration-count: infinite;
+        // animation-name: blinker;
+        // animation-duration: 4s;
+        // animation-timing-function: linear;
+        // animation-iteration-count: infinite;
     }
     .header .main-menu .menu {
         list-style: none;

@@ -18,12 +18,12 @@ class About extends Component {
                         <figure>
                             <LazyLoad>
                                 <img
-                                    src={images.default.avatar}
+                                    src={images.default.admin}
                                     alt="avatar"
                                 />
                             </LazyLoad>
                             <div className="links">
-                                <a target="_blank"  href="https://www.facebook.com/steve.luong.5">
+                                <a target="_blank" href="https://www.facebook.com/tam.cao.the.ngao">
                                     <FontAwesome
                                         name='facebook'
                                         size='3x'
@@ -35,7 +35,7 @@ class About extends Component {
                                         size='3x'
                                     />
                                 </a>
-                                <a target="_blank" href="https://www.topcv.vn/xem-cv/f5a04956d682fe06145f3f4f73715afc">
+                                <a target="_blank" href="http://teachyourself.vn/">
                                     <FontAwesome
                                         name='laptop'
                                         size='3x'
@@ -62,43 +62,43 @@ class About extends Component {
                                     size='3x'
                                 />
                                 <div className="contact-info">
-                                    <h4>Name:</h4>
-                                    <p>Steve Luong</p>
+                                    <p>Name:</p>
+                                    <h4>Steve Luong</h4>
                                 </div>
                             </div>
                             <div className="item">
                                 <FontAwesome name='envelope' size='3x' />
                                 <div className="contact-info">
-                                    <h4>Email:</h4>
-                                    <p>luonghop.lc@gmail.com</p>
+                                    <p>Email:</p>
+                                    <h4>luonghop.lc@gmail.com</h4>
                                 </div>
                             </div>
                             <div className="item">
                                 <FontAwesome name='phone' size='3x' />
                                 <div className="contact-info">
-                                    <h4>Phone:</h4>
-                                    <p>01632 434 165</p>
+                                    <p>Phone:</p>
+                                    <h4>01632 434 165</h4>
                                 </div>
                             </div>
                             <div className="item">
                                 <FontAwesome name='calendar' size='3x' />
                                 <div className="contact-info">
-                                    <h4>Date of Birth:</h4>
-                                    <p>27 Febuary 1993</p>
+                                    <p>Date of Birth:</p>
+                                    <h4>27 Febuary 1993</h4>
                                 </div>
                             </div>
                             <div className="item">
                                 <FontAwesome name='map' size='3x' />
                                 <div className="contact-info">
-                                    <h4>Address:</h4>
-                                    <p>225 Quan Hoa, Cau Giay, Ha Noi</p>
+                                    <p>Address:</p>
+                                    <h4>Quan Hoa, Cau Giay, Ha Noi</h4>
                                 </div>
                             </div>
                             <div className="item">
                                 <FontAwesome name='address-card' size='3x' />
                                 <div className="contact-info">
-                                    <h4>Nationality:</h4>
-                                    <p>Viet Nam</p>
+                                    <p>Nationality:</p>
+                                    <h4>Viet Nam</h4>
                                 </div>
                             </div>
                         </div>

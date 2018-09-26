@@ -1,5 +1,5 @@
 const images = {
-    avatar: require('./images/silk.jpg'),
+    admin: require('./images/admin.jpg'),
     imageDefault: require('./images/imageDefault.png'),
     silk: require('./images/silk.jpg'),
     home: require('./images/background.png'),
